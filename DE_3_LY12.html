@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đề ôn kiểm tra giữa HK II – Vật lí 12 – Mã đề 03</title>
+<style>
+:root{color-scheme:dark;--bg1:#1a1a2e;--bg2:#0f3460;--gold:#d4af37;--ink:#f2f2f2;--mut:#b9c0d4;--card:rgba(255,255,255,.08);--ok:#1e8a4c;--bad:#c0392b;--red:#8b0000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg1);z-index:40}
+#app{max-width:1100px;margin:12px auto;padding:20px;border:3px solid var(--gold);border-radius:18px;background:rgba(8,10,30,.55);font-size:24px;line-height:1.5}
+h1,h2,h3{color:var(--gold);margin:.3em 0}
+h1{font-size:1.35em;text-align:center}
+.sub{text-align:center;color:var(--mut);font-size:.8em}
+.screen[hidden]{display:none}
+.btn{background:var(--gold);color:#1a1a2e;border:0;border-radius:999px;padding:.5em 1.3em;font:inherit;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}.btn:disabled{opacity:.4;cursor:default}
+.btn.red{background:var(--red);color:#fff}.btn.ghost{background:transparent;color:var(--gold);border:2px solid var(--gold)}
+.btn.sm{font-size:.7em;padding:.35em .9em}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.card{background:var(--card);border:1px solid rgba(212,175,55,.5);border-radius:14px;padding:12px 16px;font-size:.8em}
+.card b{color:var(--gold)}
+.rules{background:var(--card);border-radius:14px;padding:10px 20px;font-size:.75em}
+.rules li{margin:.3em 0}
+.center{text-align:center;margin:18px 0}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--red);border-radius:12px;padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;font-size:.7em;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.bar .t{font-weight:700}
+#timer{font-size:1.5em;font-weight:800;font-variant-numeric:tabular-nums;color:#fff}
+#timer.warn{color:#ff6b6b}#timer.blink{color:#ff3b3b;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:.2}}
+.fs button{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:8px;padding:.2em .7em;font:inherit;cursor:pointer}
+.note{margin:10px 0 0;color:var(--gold);font-size:.75em;text-align:center}
+#grid{margin:12px 0;font-size:.6em}
+.gr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0}
+.gr span{color:var(--gold);font-weight:700;min-width:5.5em}
+.cell{width:2.4em;height:2.4em;border-radius:8px;border:2px solid transparent;background:rgba(255,255,255,.12);color:#fff;font:inherit;cursor:pointer}
+.cell.on{background:var(--ok)}.cell.cur{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.q{background:var(--card);border-radius:14px;padding:14px 20px;margin-top:8px}
+.part{color:var(--mut);font-size:.65em;text-transform:uppercase;letter-spacing:.05em}
+.q p{margin:.4em 0}
+.lb{color:var(--gold)}
+.ctx{background:rgba(212,175,55,.12);border-left:4px solid var(--gold);padding:6px 14px;margin:8px 0;border-radius:6px;font-size:.9em}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;margin:8px 0;padding:10px 14px;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.2);border-radius:12px;color:var(--ink);font:inherit;cursor:pointer}
+.opt b{background:rgba(255,255,255,.2);border-radius:50%;min-width:1.7em;height:1.7em;display:inline-flex;align-items:center;justify-content:center;font-size:.85em}
+.opt:hover{border-color:var(--gold)}.opt.sel{border-color:var(--gold);background:rgba(212,175,55,.22)}.opt.sel b{background:var(--gold);color:#1a1a2e}
+.opt.ok{border-color:#37d67a;background:rgba(30,138,76,.35)}.opt.bad{border-color:#ff6b5b;background:rgba(192,57,43,.35)}
+.st{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.2)}
+.st>div:first-child{flex:1 1 60%}
+.tfb{display:flex;gap:8px}
+.tfb button{font:inherit;font-size:.85em;padding:.25em 1em;border-radius:10px;border:2px solid rgba(255,255,255,.3);background:transparent;color:var(--ink);cursor:pointer}
+.tfb button.sel{background:var(--gold);color:#1a1a2e;border-color:var(--gold);font-weight:700}
+#sa{font:inherit;width:min(100%,360px);padding:.4em .8em;border-radius:10px;border:2px solid var(--gold);background:rgba(0,0,0,.35);color:#fff;margin-top:6px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:14px 0}
+.big{font-size:3em;font-weight:800;color:var(--gold);text-align:center}.big small{font-size:.4em;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.75em;margin:10px 0;display:block;overflow-x:auto}
+td,th{border:1px solid rgba(212,175,55,.5);padding:6px 12px;text-align:center}th{color:var(--gold)}
+.rv{background:var(--card);border-radius:14px;padding:12px 18px;margin:12px 0;border-left:6px solid var(--bad)}
+.rv.good{border-left-color:#37d67a}.rv.part{border-left-color:var(--gold)}
+.rv h3{display:flex;justify-content:space-between;gap:10px;font-size:1em}
+.pts{font-size:.8em;color:#fff;background:var(--bad);border-radius:999px;padding:0 .8em}.good .pts{background:var(--ok)}.part .pts{background:#9a7b12}
+.ans{font-size:.8em}.ans .y{color:#37d67a;font-weight:700}.ans .n{color:#ff8a7a;font-weight:700}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+#modal[hidden]{display:none}
+#modal div{background:#16213e;border:3px solid var(--gold);border-radius:16px;padding:20px 26px;max-width:520px;font-size:.85em;text-align:center}
+#modal .row{display:flex;gap:10px;justify-content:center;margin-top:14px}
+#info{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 0}
+#info input{font:inherit;font-size:.8em;padding:.4em .8em;border-radius:10px;border:2px solid var(--gold);background:rgba(255,255,255,.1);color:var(--ink);min-width:220px;flex:1 1 220px;max-width:340px}
+#info input::placeholder{color:var(--mut)}
+#err{color:#ff8a7a;text-align:center;font-size:.75em;min-height:1.3em;margin:6px 0 0}
+#sendst{text-align:center;font-size:.75em;margin:10px 0;padding:.4em .8em;border-radius:10px;background:var(--card)}
+#sendst.ok{color:#37d67a}#sendst.bad{color:#ff8a7a}#sendst.wait{color:var(--gold)}
+</style>
+</head>
+<body>
+<div id="app">
+<section class="screen" id="s-start">
+ <h1>ĐỀ ÔN KIỂM TRA GIỮA HỌC KÌ II<br>MÔN VẬT LÍ 12 – MÃ ĐỀ 03</h1>
+ <p class="sub">Trường THPT Phạm Thành Trung · Năm học 2026 – 2027 · Chương 1. Vật lí nhiệt · 45 phút · 28 câu · 10 điểm</p>
+ <div class="cards">
+  <div class="card"><b>Phần I</b> · 18 câu<br>Trắc nghiệm nhiều phương án (A–D)<br>0,25 điểm/câu = <b>4,5 điểm</b></div>
+  <div class="card"><b>Phần II</b> · 4 câu<br>Đúng – Sai, mỗi câu 4 ý a–d<br>Tối đa 1 điểm/câu = <b>4,0 điểm</b></div>
+  <div class="card"><b>Phần III</b> · 6 câu<br>Trả lời ngắn (điền một số)<br>0,25 điểm/câu = <b>1,5 điểm</b></div>
+ </div>
+ <ul class="rules">
+  <li>Một đồng hồ chung cho cả bài (45 phút), không tạm dừng; hết giờ bài tự động được nộp.</li>
+  <li>Làm lần lượt Phần I → II → III, nhưng có thể chuyển câu và sửa đáp án tự do bằng bảng số câu hoặc nút Câu trước/Câu sau (phím ← →).</li>
+  <li>Phần I: chọn 1 đáp án (có thể bấm phím A–D). Phần II: chọn Đúng/Sai cho từng ý, bấm lại để bỏ chọn; đúng 1 ý 0,1 · 2 ý 0,25 · 3 ý 0,5 · 4 ý 1,0 điểm.</li>
+  <li>Phần III: điền một số, chấp nhận dấu phẩy hoặc dấu chấm thập phân; làm tròn theo yêu cầu của đề.</li>
+  <li>Sau khi nộp bài chỉ hiện điểm số, không hiện đáp án. Điểm được gửi tự động về giáo viên khi nộp bài, nhớ nhập đúng họ tên và lớp.</li>
+  <li id="note-start" hidden></li>
+ </ul>
+ <div id="info"><input id="hs-name" type="text" placeholder="Họ và tên" autocomplete="name"><input id="hs-class" type="text" placeholder="Lớp (vd: 12A1)" autocomplete="off"></div>
+ <div id="err"></div>
+ <div class="center"><button class="btn" onclick="begin()">Bắt đầu làm bài</button></div>
+</section>
+
+<section class="screen" id="s-exam" hidden>
+ <div class="bar">
+  <span class="t">Mã đề 03 · Giữa HK II</span>
+  <span id="timer">45:00</span>
+  <span class="fs">Cỡ chữ <button onclick="setFs(st.fs-2)">A−</button> <button onclick="setFs(st.fs+2)">A+</button></span>
+  <span id="cnt"></span>
+  <button class="btn red sm" style="border:2px solid #fff" onclick="ask()">Nộp bài</button>
+ </div>
+ <div id="note-exam" class="note" hidden></div>
+ <div id="grid"></div>
+ <div class="q" id="qbox"></div>
+ <div class="nav"><button class="btn ghost" id="prev" onclick="go(st.cur-1)">← Câu trước</button><button class="btn" id="next" onclick="nextQ()">Câu sau →</button></div>
+</section>
+
+<section class="screen" id="s-result" hidden></section>
+</div>
+<div id="modal" hidden><div><p id="mmsg"></p><div class="row"><button class="btn ghost" onclick="$('#modal').hidden=true">Làm tiếp</button><button class="btn red" onclick="$('#modal').hidden=true;submit(false)">Nộp bài</button></div></div></div>
+
+<script>
+const D={"mcq": [{"q": "Theo mô hình động học phân tử, ở thể khí", "o": ["các phân tử dao động quanh các vị trí cân bằng xác định.", "các phân tử chuyển động hỗn loạn, khoảng cách giữa chúng rất lớn so với kích thước phân tử.", "lực tương tác giữa các phân tử rất mạnh.", "các phân tử sắp xếp có trật tự."], "a": 1}, {"q": "Phát biểu nào sau đây <b>không<\/b> đúng khi nói về các phân tử cấu tạo nên chất?", "o": ["Các phân tử chuyển động không ngừng.", "Giữa các phân tử có khoảng cách.", "Có lúc các phân tử đứng yên, có lúc chúng chuyển động.", "Nhiệt độ của vật càng cao thì các phân tử chuyển động càng nhanh."], "a": 2}, {"q": "Sự đông đặc là quá trình chuyển thể từ", "o": ["thể lỏng sang thể rắn.", "thể rắn sang thể lỏng.", "thể khí sang thể lỏng.", "thể lỏng sang thể khí."], "a": 0}, {"q": "Thế năng tương tác giữa các phân tử cấu tạo nên vật phụ thuộc chủ yếu vào", "o": ["vận tốc của vật.", "độ cao của vật so với mặt đất.", "khối lượng riêng của từng phân tử.", "khoảng cách giữa các phân tử, tức là thể tích của vật."], "a": 3}, {"q": "Có thể làm thay đổi nội năng của một vật bằng cách", "o": ["thay đổi vận tốc của vật.", "thực hiện công hoặc truyền nhiệt.", "thay đổi độ cao của vật.", "thay đổi vị trí của vật trong phòng."], "a": 1}, {"q": "Nhiệt độ không tuyệt đối 0 K ứng với nhiệt độ gần đúng trong thang Celsius là", "o": ["0 °C.", "273 °C.", "−273 °C.", "−100 °C."], "a": 2}, {"q": "Gọi <i>λ<\/i> là nhiệt nóng chảy riêng của một chất. Nhiệt lượng cần cung cấp để một khối chất rắn khối lượng <i>m<\/i> nóng chảy hoàn toàn ở nhiệt độ nóng chảy là", "o": ["<i>Q<\/i> = <i>λm<\/i>.", "<i>Q<\/i> = <i>λ<\/i>/<i>m<\/i>.", "<i>Q<\/i> = <i>m<\/i>/<i>λ<\/i>.", "<i>Q<\/i> = <i>λm<\/i>Δ<i>T<\/i>."], "a": 0}, {"q": "Nhiệt hóa hơi riêng của nước ở 100 °C là 2,26.10⁶ J/kg. Điều này có nghĩa là", "o": ["cần cung cấp nhiệt lượng 2,26.10⁶ J để 1 kg nước tăng thêm 1 K.", "cần cung cấp nhiệt lượng 2,26.10⁶ J để làm nóng 1 kg nước từ 0 °C đến 100 °C.", "1 kg hơi nước ở 100 °C nhận nhiệt lượng 2,26.10⁶ J khi ngưng tụ hoàn toàn.", "cần cung cấp nhiệt lượng 2,26.10⁶ J để 1 kg nước hóa hơi hoàn toàn ở 100 °C."], "a": 3}, {"q": "Trong thí nghiệm đo nhiệt dung riêng của nước bằng nhiệt lượng kế có dây điện trở, dụng cụ nào sau đây <b>không<\/b> cần sử dụng?", "o": ["Nhiệt kế.", "Áp kế.", "Oát kế.", "Cân."], "a": 1}, {"q": "Ở áp suất không đổi, trong suốt quá trình sôi, nhiệt độ của chất lỏng", "o": ["không thay đổi.", "tăng dần.", "giảm dần.", "lúc tăng lúc giảm."], "a": 0}, {"q": "Trường hợp nào sau đây, nội năng của vật thay đổi do thực hiện công?", "o": ["Thả miếng sắt nung đỏ vào chậu nước, miếng sắt nguội đi.", "Để cốc nước ngoài nắng, cốc nước ấm lên.", "Khi phanh gấp, má phanh xe nóng lên.", "Đặt nồi cơm lên bếp, nồi nóng lên."], "a": 2}, {"q": "Rót nước đá lạnh vào một chiếc cốc khô để trong phòng. Một lúc sau, mặt ngoài cốc có nhiều giọt nước nhỏ bám vào. Các giọt nước này xuất hiện do", "o": ["nước trong cốc thấm qua thành cốc ra ngoài.", "nước đá trong cốc nóng chảy và bay hơi ra ngoài.", "thành cốc tỏa nhiệt làm không khí hóa lỏng.", "hơi nước trong không khí ngưng tụ khi gặp thành cốc lạnh."], "a": 3}, {"q": "Đối với khí lí tưởng, nội năng của một lượng khí xác định chỉ phụ thuộc vào nhiệt độ vì", "o": ["bỏ qua tương tác giữa các phân tử nên nội năng chỉ gồm tổng động năng của các phân tử.", "các phân tử khí không chuyển động.", "thể tích của khối khí luôn không đổi.", "thế năng tương tác giữa các phân tử khí rất lớn."], "a": 0}, {"q": "Một khối khí được chứa trong một bình kín có thể tích không đổi. Khi đun nóng khối khí thì", "o": ["<i>A<\/i> &gt; 0, Δ<i>U<\/i> &gt; 0.", "<i>A<\/i> = 0, Δ<i>U<\/i> = <i>Q<\/i> &gt; 0.", "<i>A<\/i> &lt; 0, Δ<i>U<\/i> = 0.", "<i>Q<\/i> = 0, Δ<i>U<\/i> = <i>A<\/i> &gt; 0."], "a": 1}, {"q": "Nước thường được dùng làm chất làm mát trong động cơ ô tô chủ yếu vì nước", "o": ["có nhiệt độ sôi thấp.", "có nhiệt nóng chảy riêng nhỏ.", "có nhiệt dung riêng lớn nên hấp thụ được nhiều nhiệt lượng mà nhiệt độ tăng không nhiều.", "dẫn nhiệt kém."], "a": 2}, {"q": "Xoa một ít cồn lên mu bàn tay, ta thấy chỗ đó mát lạnh. Nguyên nhân là do", "o": ["cồn có nhiệt độ thấp hơn nhiều so với không khí.", "cồn ngưng tụ trên da và tỏa nhiệt.", "cồn thực hiện công lên da.", "cồn bay hơi, nhận nhiệt lượng từ da."], "a": 3}, {"q": "Hai chất lỏng A và B có cùng khối lượng, cùng nhiệt độ ban đầu, được đun bằng hai nguồn nhiệt giống nhau có công suất không đổi, bỏ qua hao phí. Đồ thị nhiệt độ theo thời gian của hai chất lỏng (trước khi sôi) là hai đoạn thẳng, trong đó đồ thị của A dốc hơn đồ thị của B. Kết luận nào sau đây là đúng?", "o": ["Nhiệt dung riêng của A nhỏ hơn nhiệt dung riêng của B.", "Nhiệt dung riêng của A lớn hơn nhiệt dung riêng của B.", "Trong cùng thời gian, A nhận nhiệt lượng lớn hơn B.", "Trong cùng thời gian, A nhận nhiệt lượng nhỏ hơn B."], "a": 0}, {"q": "Thả một miếng kim loại nóng vào một bình cách nhiệt chứa hỗn hợp gồm rất nhiều nước đá và một ít nước ở 0 °C. Khi cân bằng nhiệt, trong bình vẫn còn nước đá. Nhận xét nào sau đây là đúng?", "o": ["Nhiệt độ của hỗn hợp lớn hơn 0 °C, lượng nước đá không đổi.", "Nhiệt độ của hỗn hợp vẫn là 0 °C, lượng nước đá giảm.", "Nhiệt độ của hỗn hợp nhỏ hơn 0 °C, lượng nước đá tăng.", "Nhiệt độ của hỗn hợp vẫn là 0 °C, lượng nước đá không đổi."], "a": 1}], "tf": [{"stem": ["Một khối khí được chứa trong một xilanh thẳng đứng có pit-tông chuyển động được. Đun nóng khối khí thì khối khí giãn nở, đẩy pit-tông đi lên và nhiệt độ của khối khí tăng."], "s": [{"t": "Khối khí nhận nhiệt lượng nên <i>Q<\/i> &gt; 0.", "a": true}, {"t": "Khối khí sinh công nên <i>A<\/i> &lt; 0.", "a": true}, {"t": "Nội năng của khối khí không đổi.", "a": false}, {"t": "Nhiệt lượng mà khối khí nhận được lớn hơn độ tăng nội năng của nó.", "a": true}]}, {"stem": ["Một nhóm học sinh tìm hiểu cách xác định nhiệt lượng chất lỏng nhận được khi công suất của nguồn nhiệt thay đổi theo thời gian và thực hiện các nội dung sau:", "<b class=\"lb\">(I) Vấn đề nghiên cứu:<\/b> Khi công suất của nguồn nhiệt không đổi theo thời gian thì nhiệt lượng chất lỏng nhận được và độ tăng nhiệt độ của nó được xác định như thế nào?", "<b class=\"lb\">(II) Giả thuyết:<\/b> Nhiệt lượng chất lỏng nhận được trong một khoảng thời gian bằng diện tích hình giới hạn bởi đồ thị công suất theo thời gian <i>P<\/i>(<i>t<\/i>) và trục thời gian; độ tăng nhiệt độ được tính bằng Δ<i>T<\/i> = <i>Q<\/i>/(<i>mc<\/i>).", "<b class=\"lb\">(III) Tiến trình thí nghiệm:<\/b> Cho 0,25 kg nước ở 20 °C vào nhiệt lượng kế có dây điện trở; điều chỉnh công suất điện của dây điện trở thay đổi theo thời gian, dùng oát kế đọc công suất và vẽ đồ thị <i>P<\/i> theo <i>t<\/i>. Khuấy đều, bỏ qua hao phí nhiệt và nhiệt dung của nhiệt lượng kế. Biết nhiệt dung riêng của nước là 4200 J/(kg·K).", "<b class=\"lb\">(IV) Kết quả thí nghiệm:<\/b> Đồ thị công suất theo thời gian trong 60 s đầu được cho ở hình dưới (đoạn nằm trên trục Ot ứng với lúc ngắt điện).<svg viewBox=\"0 0 500 250\" role=\"img\" aria-label=\"Đồ thị công suất P theo thời gian t\" style=\"width:100%;max-width:520px;height:auto;display:block;margin:8px auto\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"13\" fill=\"#f2f2f2\">\n<polygon points=\"60,200 60,110 186.7,110 186.7,200\" fill=\"rgba(212,175,55,.22)\"/>\n<polygon points=\"250,200 250,50 440,50 440,200\" fill=\"rgba(212,175,55,.22)\"/>\n<g stroke=\"#f2f2f2\" stroke-width=\"1.5\" fill=\"none\"><path d=\"M60,22V200H472\"/><path d=\"M472,200l-8,-4M472,200l-8,4\"/><path d=\"M60,22l-4,8M60,22l4,8\"/><\/g>\n<g stroke=\"#b9c0d4\" stroke-width=\"1\" stroke-dasharray=\"4 4\" fill=\"none\"><path d=\"M60,50H440\"/><\/g>\n<polyline points=\"60,110 186.7,110 186.7,200 250,200 250,50 440,50 440,200\" fill=\"none\" stroke=\"#d4af37\" stroke-width=\"3\" stroke-linejoin=\"round\"/>\n<g text-anchor=\"end\"><text x=\"54\" y=\"114\">150<\/text><text x=\"54\" y=\"54\">250<\/text><text x=\"54\" y=\"204\">0<\/text><\/g>\n<g text-anchor=\"middle\"><text x=\"186.7\" y=\"218\">20<\/text><text x=\"250\" y=\"218\">30<\/text><text x=\"440\" y=\"218\">60<\/text><text x=\"60\" y=\"14\">P (W)<\/text><text x=\"478\" y=\"222\">t (s)<\/text><\/g>\n<\/svg>"], "s": [{"t": "Trong khoảng thời gian từ 20 s đến 30 s, công suất bằng 0 nên nhiệt độ của nước giảm dần.", "a": false}, {"t": "Nhiệt lượng nước nhận được trong 60 s đầu bằng diện tích hình giới hạn bởi đồ thị và trục Ot, có giá trị 10,5 kJ.", "a": true}, {"t": "Nhiệt độ của nước ở thời điểm 60 s là 30 °C.", "a": true}, {"t": "Nếu thay nước bằng 0,25 kg chất lỏng có nhiệt dung riêng 2100 J/(kg·K) và làm lại thí nghiệm với cùng đồ thị <i>P<\/i>–<i>t<\/i> thì độ tăng nhiệt độ trong 60 s đầu vẫn là 10 K.", "a": false}]}, {"stem": ["Một nhóm học sinh tìm hiểu về nhiệt dung riêng của nước muối và thực hiện các nội dung sau:", "<b class=\"lb\">(I) Vấn đề nghiên cứu:<\/b> Khi hòa tan muối vào nước thì nhiệt dung riêng của chất lỏng thu được có thay đổi so với nước tinh khiết hay không?", "<b class=\"lb\">(II) Giả thuyết:<\/b> Nhiệt dung riêng của nước muối nhỏ hơn nhiệt dung riêng của nước tinh khiết.", "<b class=\"lb\">(III) Tiến trình thí nghiệm:<\/b> Dùng hai nhiệt lượng kế giống nhau, mỗi bình có một dây điện trở hoạt động với cùng công suất không đổi (đo bằng oát kế). Bình 1 chứa nước tinh khiết, bình 2 chứa nước muối có cùng khối lượng và cùng nhiệt độ ban đầu. Cấp điện cho hai dây điện trở cùng lúc, khuấy đều và ghi nhiệt độ ở hai bình sau mỗi phút.", "<b class=\"lb\">(IV) Kết quả thí nghiệm:<\/b> Trong cùng một khoảng thời gian, nhiệt độ nước muối ở bình 2 tăng nhiều hơn nhiệt độ nước tinh khiết ở bình 1."], "s": [{"t": "Dùng hai nhiệt lượng kế giống nhau với hai dây điện trở có cùng công suất là để trong cùng một khoảng thời gian, hai chất lỏng nhận được nhiệt lượng như nhau.", "a": true}, {"t": "Kết quả thí nghiệm phù hợp với giả thuyết của nhóm học sinh.", "a": true}, {"t": "Nhiệt độ nước muối tăng nhanh hơn vì trong cùng một khoảng thời gian, nước muối nhận được nhiệt lượng lớn hơn nước tinh khiết.", "a": false}, {"t": "Nếu khối lượng nước muối ở bình 2 lớn hơn khối lượng nước tinh khiết ở bình 1 mà trong cùng thời gian nhiệt độ nước muối vẫn tăng nhiều hơn thì kết quả đó vẫn phù hợp với giả thuyết.", "a": true}]}, {"stem": ["Một nhóm học sinh tìm hiểu về sự nóng chảy của nước đá thông qua đồ thị nhiệt độ theo nhiệt lượng cung cấp và thực hiện các nội dung sau:", "<b class=\"lb\">(I) Vấn đề nghiên cứu:<\/b> Từ đồ thị nhiệt độ theo nhiệt lượng cung cấp, có thể xác định được những đặc trưng nào của quá trình nước đá nóng chảy rồi nước nóng lên?", "<b class=\"lb\">(II) Giả thuyết:<\/b> Đồ thị gồm các đoạn thẳng; ở đoạn nhiệt độ tăng, độ dốc Δ<i>T<\/i>/Δ<i>Q<\/i> = 1/(<i>mc<\/i>); ở đoạn nằm ngang (đang nóng chảy), phần nhiệt lượng cung cấp trên đoạn đó bằng <i>mλ<\/i>.", "<b class=\"lb\">(III) Tiến trình thí nghiệm:<\/b> Dùng 0,20 kg nước đá đập nhỏ ở −20 °C trong cốc cách nhiệt, cấp nhiệt bằng dây điện trở có công suất không đổi (đo bằng oát kế), tính nhiệt lượng cung cấp <i>Q<\/i> = <i>Pt<\/i>. Khuấy đều, ghi nhiệt độ <i>T<\/i> tương ứng cho đến khi nước đạt 20 °C. Bỏ qua hao phí nhiệt. Biết nhiệt dung riêng của nước là 4200 J/(kg·K).", "<b class=\"lb\">(IV) Kết quả thí nghiệm:<\/b> Đồ thị nhiệt độ <i>T<\/i> theo nhiệt lượng cung cấp <i>Q<\/i> gồm ba đoạn thẳng (1), (2), (3) như hình dưới.<svg viewBox=\"0 0 500 250\" role=\"img\" aria-label=\"Đồ thị nhiệt độ T theo nhiệt lượng Q\" style=\"width:100%;max-width:520px;height:auto;display:block;margin:8px auto\" font-family=\"Segoe UI,Arial,sans-serif\" font-size=\"13\" fill=\"#f2f2f2\">\n<g stroke=\"#b9c0d4\" stroke-width=\"1\" stroke-dasharray=\"4 4\" fill=\"none\"><path d=\"M60,50H446.4V200M95.3,110V200M375.8,110V200\"/><\/g>\n<g stroke=\"#f2f2f2\" stroke-width=\"1.5\" fill=\"none\"><path d=\"M60,22V200M60,110H474\"/><path d=\"M474,110l-8,-4M474,110l-8,4\"/><path d=\"M60,22l-4,8M60,22l4,8\"/><\/g>\n<polyline points=\"60,170 95.3,110 375.8,110 446.4,50\" fill=\"none\" stroke=\"#d4af37\" stroke-width=\"3\" stroke-linejoin=\"round\"/>\n<g fill=\"#d4af37\"><circle cx=\"60\" cy=\"170\" r=\"3.5\"/><circle cx=\"95.3\" cy=\"110\" r=\"3.5\"/><circle cx=\"375.8\" cy=\"110\" r=\"3.5\"/><circle cx=\"446.4\" cy=\"50\" r=\"3.5\"/><\/g>\n<g text-anchor=\"end\"><text x=\"54\" y=\"54\">20<\/text><text x=\"54\" y=\"114\">0<\/text><text x=\"54\" y=\"174\">−20<\/text><\/g>\n<g text-anchor=\"middle\"><text x=\"95.3\" y=\"218\">8,4<\/text><text x=\"375.8\" y=\"218\">75,2<\/text><text x=\"446.4\" y=\"218\">92,0<\/text><text x=\"60\" y=\"14\">T (°C)<\/text><text x=\"474\" y=\"98\">Q (kJ)<\/text>\n<text x=\"226\" y=\"98\">(2)<\/text><\/g>\n<text x=\"104\" y=\"158\">(1)<\/text><text x=\"424\" y=\"96\">(3)<\/text>\n<\/svg>"], "s": [{"t": "Trên đoạn (2), nhiệt độ không đổi nên nhiệt lượng cung cấp không làm thay đổi nội năng của hỗn hợp nước và nước đá.", "a": false}, {"t": "Từ đồ thị, nhiệt nóng chảy riêng của nước đá tính được là 3,34.10⁵ J/kg.", "a": true}, {"t": "Đoạn (3) có độ dốc nhỏ hơn đoạn (1) chứng tỏ nhiệt dung riêng của nước lớn hơn nhiệt dung riêng của nước đá.", "a": true}, {"t": "Nếu làm lại thí nghiệm với 0,40 kg nước đá (cùng nhiệt độ ban đầu) thì trên đồ thị, phần nhiệt lượng ứng với đoạn (2) tăng gấp đôi còn độ dốc của đoạn (1) vẫn không đổi.", "a": false}]}], "sa": [{"c": "Để đo nhiệt dung riêng của một chất lỏng, một nhóm học sinh cho 0,30 kg chất lỏng vào nhiệt lượng kế có dây điện trở hoạt động với công suất không đổi 50 W (đo bằng oát kế). Sau 2,0 phút, nhiệt độ của chất lỏng tăng từ 20,0 °C lên 24,8 °C. Không làm tròn các phép tính trung gian.", "q": "Bỏ qua sự hấp thụ nhiệt của nhiệt lượng kế và môi trường. Nhiệt dung riêng của chất lỏng tính được là bao nhiêu J/(kg·K) (làm tròn kết quả đến chữ số hàng đơn vị)?", "a": "4167"}, {"c": "Để đo nhiệt dung riêng của một chất lỏng, một nhóm học sinh cho 0,30 kg chất lỏng vào nhiệt lượng kế có dây điện trở hoạt động với công suất không đổi 50 W (đo bằng oát kế). Sau 2,0 phút, nhiệt độ của chất lỏng tăng từ 20,0 °C lên 24,8 °C. Không làm tròn các phép tính trung gian.", "q": "Thực tế, nhiệt lượng kế và môi trường đã hấp thụ 4 % nhiệt lượng do dây điện trở tỏa ra. Nhiệt dung riêng của chất lỏng khi tính đến hao phí này là bao nhiêu J/(kg·K) (làm tròn kết quả đến chữ số hàng đơn vị)?", "a": "4000"}, {"c": "Một khối khí được chứa trong một xilanh thẳng đứng. Khi được truyền nhiệt lượng 500 J, khối khí giãn nở, đẩy pit-tông đi lên đều một đoạn 8,0 cm. Biết lực do khối khí tác dụng lên pit-tông có độ lớn không đổi bằng 2000 N.", "q": "Độ biến thiên nội năng của khối khí là bao nhiêu jun (J)?", "a": "340"}, {"c": "Một khối khí được chứa trong một xilanh thẳng đứng. Khi được truyền nhiệt lượng 500 J, khối khí giãn nở, đẩy pit-tông đi lên đều một đoạn 8,0 cm. Biết lực do khối khí tác dụng lên pit-tông có độ lớn không đổi bằng 2000 N.", "q": "Nếu giữ cố định pit-tông và truyền cho khối khí cùng nhiệt lượng 500 J thì độ tăng nội năng của khối khí lớn hơn so với trường hợp trên bao nhiêu jun (J)?", "a": "160"}, {"c": "Dẫn 20 g hơi nước ở 100 °C vào một bình cách nhiệt chứa 0,50 lít nước ở 20 °C. Bình có nhiệt dung 150 J/K và ban đầu cũng ở 20 °C. Biết nhiệt hóa hơi riêng của nước ở 100 °C là 2,26.10⁶ J/kg, nhiệt dung riêng của nước là 4200 J/(kg·K), khối lượng riêng của nước là 1000 kg/m³. Bỏ qua sự trao đổi nhiệt với môi trường. Không làm tròn các phép tính trung gian.", "q": "Tổng nhiệt lượng do lượng hơi nước trên tỏa ra từ lúc được dẫn vào bình cho đến khi hệ đạt cân bằng nhiệt là bao nhiêu kilôjun (kJ) (làm tròn kết quả đến chữ số hàng phần mười)?", "a": "50,1"}, {"c": "Dẫn 20 g hơi nước ở 100 °C vào một bình cách nhiệt chứa 0,50 lít nước ở 20 °C. Bình có nhiệt dung 150 J/K và ban đầu cũng ở 20 °C. Biết nhiệt hóa hơi riêng của nước ở 100 °C là 2,26.10⁶ J/kg, nhiệt dung riêng của nước là 4200 J/(kg·K), khối lượng riêng của nước là 1000 kg/m³. Bỏ qua sự trao đổi nhiệt với môi trường. Không làm tròn các phép tính trung gian.", "q": "Nhiệt độ của hệ khi có cân bằng nhiệt là bao nhiêu độ C (°C) (làm tròn kết quả đến chữ số hàng phần mười)?", "a": "42,2"}], "minutes": 45, "note": "Cho T (K) = t (°C) + 273"};
+const WEBHOOK="https://script.google.com/macros/s/AKfycbwTA4N16x2HBJw098Rfn4lYYb090T2rGRwK3LaDhz8_E6kLH5NHcRIjdZhbm0U3hwXV/exec";
+const MA_DE="DE3_GK2_LY12";
+const $=s=>document.querySelector(s);
+const N1=D.mcq.length,N2=D.tf.length,N3=D.sa.length,NT=N1+N2+N3,TFP=[0,.1,.25,.5,1],L='ABCD';
+const st={ans:null,cur:0,end:0,timer:null,active:false,fs:innerWidth<700?18:24,res:null};
+const fmt=x=>String(Math.round(x*100)/100).replace('.',',');
+const num=x=>parseFloat(String(x).replace(/\s/g,'').replace(',','.'));
+function show(id){document.querySelectorAll('.screen').forEach(e=>e.hidden=e.id!==id);scrollTo(0,0)}
+function setFs(v){st.fs=Math.max(16,Math.min(36,v));$('#app').style.fontSize=st.fs+'px'}
+function kind(i){return i<N1?1:i<N1+N2?2:3}
+function done(i){const k=kind(i);if(k==1)return st.ans.m[i]>=0;if(k==2)return st.ans.t[i-N1].some(v=>v!==null);return st.ans.s[i-N1-N2].trim()!==''}
+function nDone(){let c=0;for(let i=0;i<NT;i++)if(done(i))c++;return c}
+const hs={name:'',cls:'',attempt:0};
+function begin(){
+ const n=$('#hs-name').value.trim().replace(/\s+/g,' '),c=$('#hs-class').value.trim();
+ if(n.length<2||!c){$('#err').textContent='Vui lòng nhập đầy đủ họ tên và lớp trước khi làm bài.';return}
+ $('#err').textContent='';hs.name=n;hs.cls=c;hs.attempt=0;start()}
+function buildPayload(r,T,auto){
+ const L2='ABCD';
+ return {maDe:MA_DE,hoTen:hs.name,lop:hs.cls,lanLam:hs.attempt,
+  tongDiem:T,diem:T,thangDiem:10,phan1:Math.round(r.p1*100)/100,phan2:Math.round(r.p2*100)/100,phan3:Math.round(r.p3*100)/100,
+  soCauDaLam:nDone(),tongSoCau:NT,tuNop:auto?'Hết giờ':'Tự nộp',
+  thoiGianLam:Math.round((D.minutes*60000-Math.max(0,st.end-Date.now()))/1000),
+  dapAnP1:st.ans.m.map(v=>v<0?'-':L2[v]).join(''),
+  dapAnP2:st.ans.t.map(a=>a.map(v=>v===null?'-':v?'Đ':'S').join('')).join(' | '),
+  dapAnP3:st.ans.s.map(v=>v.trim()||'-').join(' | '),
+  nopLuc:new Date().toLocaleString('vi-VN')}}
+function sendResult(p){
+ const el=$('#sendst');if(!el)return;
+ el.className='wait';el.textContent='⏳ Đang gửi điểm cho giáo viên...';
+ const body=JSON.stringify(p);let tries=0;
+ const fail=m=>{el.className='bad';el.innerHTML='⚠️ Chưa gửi được điểm: '+m+' <button class="btn sm" id="resend">Gửi lại</button>';$('#resend').onclick=()=>sendResult(p)};
+ const blind=()=>fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body})
+  .then(()=>{el.className='ok';el.innerHTML='✅ Đã gửi điểm cho giáo viên (chưa nhận được xác nhận từ máy chủ).'})
+  .catch(e=>fail('lỗi mạng ('+(e&&e.message||e)+').'));
+ const go=()=>{tries++;
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body})
+  .then(r=>r.text().then(t=>{let j=null;try{j=JSON.parse(t)}catch(e){}
+   if(j&&j.ok){el.className='ok';el.innerHTML='✅ Điểm đã được gửi và ghi vào bảng của giáo viên.'}
+   else if(j&&j.error){fail('máy chủ báo lỗi: '+String(j.error).replace(/</g,'&lt;'))}
+   else fail('máy chủ không trả về kết quả hợp lệ (có thể chưa triển khai đúng quyền "Bất kỳ ai"). Mã '+r.status+'.')}))
+  .catch(()=>{if(tries<2)setTimeout(go,1200);else blind()})};
+ go()}
+function start(){
+ st.ans={m:Array(N1).fill(-1),t:D.tf.map(()=>[null,null,null,null]),s:Array(N3).fill('')};st.cur=0;st.active=true;hs.attempt++;
+ st.end=Date.now()+D.minutes*60000;clearInterval(st.timer);st.timer=setInterval(tick,500);setFs(st.fs);tick();show('s-exam');renderGrid();renderQ()}
+function tick(){
+ const r=Math.max(0,Math.round((st.end-Date.now())/1000)),t=$('#timer');
+ t.textContent=String(Math.floor(r/60)).padStart(2,'0')+':'+String(r%60).padStart(2,'0');
+ t.className=r<=60?'blink':r<=300?'warn':'';
+ if(r<=0&&st.active)submit(true)}
+function renderGrid(){
+ let g='';[['Phần I',0,N1],['Phần II',N1,N1+N2],['Phần III',N1+N2,NT]].forEach(([n,a,b])=>{
+  g+=`<div class="gr"><span>${n}</span>`;
+  for(let i=a;i<b;i++)g+=`<button class="cell${done(i)?' on':''}${i==st.cur?' cur':''}" onclick="go(${i})">${i-a+1}</button>`;
+  g+='</div>'});
+ $('#grid').innerHTML=g;$('#cnt').textContent='Đã làm '+nDone()+'/'+NT}
+function renderQ(){
+ const i=st.cur,k=kind(i);let h='';
+ if(k==1){const q=D.mcq[i];
+  h=`<div class="part">Phần I · Trắc nghiệm nhiều phương án</div><h3>Câu ${i+1}</h3><p>${q.q}</p>`+
+  q.o.map((o,j)=>`<button class="opt${st.ans.m[i]==j?' sel':''}" onclick="pick(${i},${j})"><b>${L[j]}</b><span>${o}</span></button>`).join('')}
+ else if(k==2){const j=i-N1,q=D.tf[j];
+  h=`<div class="part">Phần II · Đúng – Sai</div><h3>Câu ${j+1}</h3>`+q.stem.map(p=>`<p>${p}</p>`).join('')+
+  q.s.map((s,x)=>`<div class="st"><div><b>${'abcd'[x]})</b> ${s.t}</div><div class="tfb"><button class="${st.ans.t[j][x]===true?'sel':''}" onclick="tf(${j},${x},true)">Đúng</button><button class="${st.ans.t[j][x]===false?'sel':''}" onclick="tf(${j},${x},false)">Sai</button></div></div>`).join('')}
+ else{const j=i-N1-N2,q=D.sa[j];
+  h=`<div class="part">Phần III · Trả lời ngắn</div><h3>Câu ${j+1}</h3>${q.c?`<div class="ctx">${q.c}</div>`:''}<p>${q.q}</p><input id="sa" type="text" inputmode="decimal" autocomplete="off" placeholder="Nhập đáp án (một số)" oninput="sa(${j},this.value)">`}
+ $('#qbox').innerHTML=h;
+ if(k==3)$('#sa').value=st.ans.s[i-N1-N2];
+ $('#prev').disabled=i==0;$('#next').textContent=i==NT-1?'Nộp bài ✔':'Câu sau →'}
+function go(i){if(i<0||i>=NT)return;st.cur=i;renderGrid();renderQ();scrollTo({top:0})}
+function nextQ(){st.cur==NT-1?ask():go(st.cur+1)}
+function pick(i,j){st.ans.m[i]=j;renderGrid();renderQ()}
+function tf(j,x,v){const a=st.ans.t[j];a[x]=a[x]===v?null:v;renderGrid();renderQ()}
+function sa(j,v){st.ans.s[j]=v;renderGrid()}
+function ask(){
+ const left=NT-nDone();
+ $('#mmsg').innerHTML=left?`Bạn còn <b>${left}</b> câu chưa làm.<br>Bạn có chắc muốn nộp bài?`:'Bạn đã làm hết các câu.<br>Nộp bài ngay bây giờ?';
+ $('#modal').hidden=false}
+function grade(){
+ const r={m:[],t:[],s:[]};
+ D.mcq.forEach((q,i)=>r.m.push(st.ans.m[i]===q.a?.25:0));
+ D.tf.forEach((q,j)=>{const c=q.s.filter((s,x)=>st.ans.t[j][x]===s.a).length;r.t.push({c,p:TFP[c]})});
+ D.sa.forEach((q,j)=>r.s.push(num(st.ans.s[j])===num(q.a)?.25:0));
+ const sum=a=>a.reduce((x,y)=>x+y,0);
+ r.p1=sum(r.m);r.p2=sum(r.t.map(x=>x.p));r.p3=sum(r.s);r.total=r.p1+r.p2+r.p3;return r}
+function submit(auto){
+ if(!st.active)return;st.active=false;clearInterval(st.timer);$('#modal').hidden=true;
+ const r=st.res=grade(),T=Math.round(r.total*100)/100;
+ const cm=T>=9?'Xuất sắc! Kiến thức rất vững.':T>=8?'Giỏi! Hãy tiếp tục phát huy.':T>=6.5?'Khá. Ôn thêm để lên mức giỏi.':T>=5?'Trung bình. Cần ôn lại lí thuyết và bài tập cơ bản.':'Cần ôn tập thêm kiến thức.';
+ const n1=r.m.filter(x=>x>0).length,n3=r.s.filter(x=>x>0).length,n2=r.t.filter(x=>x.c==4).length;
+ $('#s-result').innerHTML=`<h1>KẾT QUẢ BÀI LÀM</h1><p class="sub">${hs.name.replace(/</g,'&lt;')} · Lớp ${hs.cls.replace(/</g,'&lt;')}</p>${auto?'<p class="sub">Hết giờ – bài đã được tự động nộp.</p>':''}<div class="big">${fmt(T)}<small> /10</small></div><p class="center">${cm}</p>
+ <table><tr><th>Phần</th><th>Điểm</th></tr>
+ <tr><td>I. Nhiều phương án</td><td>${fmt(r.p1)}/4,5</td></tr>
+ <tr><td>II. Đúng – Sai</td><td>${fmt(r.p2)}/4</td></tr>
+ <tr><td>III. Trả lời ngắn</td><td>${fmt(r.p3)}/1,5</td></tr>
+ <tr><th>Tổng</th><th>${fmt(T)}/10</th></tr></table>
+ <div id="sendst"></div>
+ <div class="center"><button class="btn ghost" onclick="start()">Làm lại đề</button> <button class="btn ghost" onclick="show('s-start')">Trang đầu</button></div>`;
+ show('s-result');sendResult(buildPayload(r,T,auto))}
+if(D.note){['#note-start','#note-exam'].forEach(s=>{const e=$(s);e.textContent=D.note;e.hidden=false})}
+addEventListener('beforeunload',e=>{if(st.active){e.preventDefault();e.returnValue=''}});
+addEventListener('keydown',e=>{
+ if(!st.active||!$('#modal').hidden||e.target.tagName==='INPUT')return;
+ if(e.key==='ArrowRight')nextQ();else if(e.key==='ArrowLeft')go(st.cur-1);
+ else if(kind(st.cur)==1){const j='abcd'.indexOf(e.key.toLowerCase());if(j>=0&&e.key.length==1)pick(st.cur,j)}});
+</script>
+</body>
+</html>
