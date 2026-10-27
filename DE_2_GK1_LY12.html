@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đề ôn kiểm tra giữa HK I – Vật lí 12 – Đề 2</title>
+<style>
+:root{color-scheme:dark;--fs:24px;--gold:#d4af37;--navy:#1a1a2e;--card:rgba(10,18,45,.72)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(135deg,#1a1a2e,#0f3460) fixed;color:#f4f1e8;min-height:100%;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+#app{max-width:920px;margin:10px auto;border:2px solid var(--gold);border-radius:18px;background:rgba(15,25,60,.55);font-size:var(--fs);overflow:hidden}
+.pad{padding:18px 20px}
+h1,h2{color:var(--gold);margin:.3em 0}
+h1{font-size:1.25em;text-align:center}h2{font-size:1.05em}
+.scr{display:none}.scr.on{display:block}
+.btn{background:var(--gold);color:var(--navy);border:0;border-radius:999px;padding:.45em 1.1em;font:inherit;font-size:.8em;font-weight:700;cursor:pointer}
+.btn.red{background:#8b0000;color:#fff}.btn.ghost{background:transparent;border:2px solid var(--gold);color:var(--gold)}
+.btn:disabled{opacity:.4;cursor:default}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--gold);border-radius:12px;padding:10px 14px;font-size:.8em}
+.card b{color:var(--gold)}
+ul.rules{font-size:.8em;line-height:1.5;padding-left:1.2em}
+.bar{position:sticky;top:0;z-index:5;background:#8b0000;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 14px;padding-top:calc(8px + env(safe-area-inset-top,0px));font-size:.7em}
+.bar .t{font-weight:700;flex:1 1 180px}
+#clock{font-size:1.4em;font-weight:800;font-variant-numeric:tabular-nums}
+#clock.w{color:#ffd166}#clock.d{color:#ff5a5a;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.25}}
+.bar .btn{font-size:1em;padding:.25em .8em}
+.nav{padding:10px 14px;font-size:.62em}
+.nav .row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:3px 0}
+.nav .lb{color:var(--gold);font-weight:700;min-width:5.5em}
+.nb{width:2.2em;height:2.2em;border-radius:8px;border:1px solid #6b7aa8;background:transparent;color:#f4f1e8;font:inherit;cursor:pointer}
+.nb.done{background:#2e8b57;border-color:#2e8b57}.nb.cur{outline:3px solid var(--gold)}
+.qbox{padding:8px 20px 4px}
+.qh{color:var(--gold);font-weight:700;font-size:.85em;margin-bottom:6px}
+.qt{line-height:1.45}
+.qt p{margin:.4em 0}.qt i{color:#ffe9a8}
+.opt{display:flex;gap:.6em;width:100%;text-align:left;background:var(--card);color:inherit;border:2px solid #4a5a8f;border-radius:12px;padding:.45em .7em;margin:.35em 0;font:inherit;cursor:pointer}
+.opt b{color:var(--gold);min-width:1.2em}.opt.sel{border-color:var(--gold);background:rgba(212,175,55,.22)}
+.st{background:var(--card);border:1px solid #4a5a8f;border-radius:12px;padding:.5em .7em;margin:.45em 0}
+.st .tf{display:flex;gap:8px;margin-top:.35em}
+.tfb{flex:1;max-width:9em;background:transparent;color:inherit;border:2px solid #6b7aa8;border-radius:999px;font:inherit;font-size:.8em;padding:.2em;cursor:pointer}
+.tfb.sel{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+input.sa{font:inherit;width:100%;max-width:12em;padding:.3em .6em;border-radius:10px;border:2px solid var(--gold);background:#0b1430;color:#fff}
+.go{display:flex;justify-content:space-between;gap:10px;padding:10px 20px 18px}
+.tbl{width:100%;border-collapse:collapse;font-size:.8em;margin:10px 0}
+.tbl td,.tbl th{border:1px solid var(--gold);padding:.35em .6em;text-align:center}
+.big{font-size:2.4em;text-align:center;color:var(--gold);font-weight:800}
+.rv{border-radius:12px;padding:10px 14px;margin:10px 0;border:2px solid}
+.rv.ok{border-color:#2e8b57;background:rgba(46,139,87,.15)}.rv.no{border-color:#c0392b;background:rgba(192,57,43,.15)}
+.rv .ex{font-size:.75em;color:#cfd8ff;margin-top:.3em;line-height:1.4}
+.ok-t{color:#6be3a0}.no-t{color:#ff8a80}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+#modal.on{display:flex}
+#modal div{background:#14204a;border:2px solid var(--gold);border-radius:14px;padding:18px;max-width:440px;font-size:.8em}
+#modal .row{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+</style>
+</head>
+<body>
+<div id="app">
+ <section id="s-start" class="scr on pad">
+  <h1>ĐỀ ÔN KIỂM TRA GIỮA HỌC KÌ I – VẬT LÍ 12 – ĐỀ 2</h1>
+  <p style="text-align:center;font-size:.8em;margin:0 0 12px">Chương 1: Vật lí nhiệt · Thời gian: 45 phút · 28 câu · 10 điểm</p>
+  <div class="cards">
+   <div class="card"><b>Phần I</b> – Trắc nghiệm nhiều phương án<br>18 câu · 0,25 điểm/câu · 4,5 điểm</div>
+   <div class="card"><b>Phần II</b> – Đúng/Sai theo tiến trình tư duy khoa học<br>4 câu · 1,0 điểm/câu · 4,0 điểm</div>
+   <div class="card"><b>Phần III</b> – Trả lời ngắn<br>6 câu · 0,25 điểm/câu · 1,5 điểm</div>
+  </div>
+  <h2>Quy định làm bài</h2>
+  <ul class="rules">
+   <li>Một đồng hồ chung cho cả bài, không tạm dừng; hết giờ bài được nộp tự động.</li>
+   <li>Làm tuần tự Phần I → II → III nhưng được chuyển câu và sửa đáp án tự do (phím ←/→; phím a–d chọn đáp án Phần I).</li>
+   <li>Phần II: mỗi câu có 4 ý a–d, đúng 1 ý được 0,1; 2 ý được 0,25; 3 ý được 0,5; 4 ý được 1,0 điểm. Bấm lại vào lựa chọn để bỏ chọn.</li>
+   <li>Phần III: điền một số (chấp nhận dấu phẩy hoặc dấu chấm thập phân), chú ý đơn vị và cách làm tròn ghi trong đề.</li>
+   <li>Đáp án chỉ hiện sau khi nộp bài.</li>
+  </ul>
+  <div style="text-align:center"><button class="btn" id="bStart">Bắt đầu làm bài</button></div>
+ </section>
+
+ <section id="s-exam" class="scr">
+  <div class="bar">
+   <span class="t">Đề 2 – Vật lí nhiệt</span>
+   <span id="clock">45:00</span>
+   <span><button class="btn ghost" id="fm">A−</button> <button class="btn ghost" id="fp">A+</button></span>
+   <span id="cnt">Đã làm 0/28</span>
+   <button class="btn" id="bSub">Nộp bài</button>
+  </div>
+  <div class="nav" id="nav"></div>
+  <div class="qbox" id="qbox"></div>
+  <div class="go"><button class="btn ghost" id="bPrev">← Câu trước</button><button class="btn" id="bNext">Câu sau →</button></div>
+ </section>
+
+ <section id="s-result" class="scr pad">
+  <h1>KẾT QUẢ BÀI LÀM</h1>
+  <div class="big" id="score"></div>
+  <p id="remark" style="text-align:center"></p>
+  <table class="tbl" id="rt"></table>
+  <div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+   <button class="btn" id="bRev">Xem đáp án chi tiết</button><button class="btn ghost" id="bRe">Làm lại đề</button><button class="btn ghost" id="bHome">Trang đầu</button>
+  </div>
+ </section>
+
+ <section id="s-review" class="scr pad">
+  <h1>ĐÁP ÁN CHI TIẾT</h1>
+  <div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn ghost" id="bBack">← Kết quả</button><button class="btn ghost" id="bRe2">Làm lại đề</button><button class="btn ghost" id="bHome2">Trang đầu</button></div>
+  <div id="rvl"></div>
+ </section>
+</div>
+<div id="modal"><div><p id="mt"></p><div class="row"><button class="btn ghost" id="mNo">Tiếp tục làm</button><button class="btn red" id="mYes">Nộp bài</button></div></div></div>
+
+<script>
+/* ===== vẽ đồ thị SVG ===== */
+function plot(o){
+ const W=540,H=310,L=66,R=24,T=24,B=54,sx=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R),sy=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-T-B);
+ const tk=t=>Array.isArray(t)?t:[t,String(t).replace('.',',').replace('-','−')];
+ let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:560px;background:#fff;border-radius:10px;margin:8px 0" font-family="Segoe UI,sans-serif" font-size="13" fill="#111">`;
+ (o.yt||[]).map(tk).forEach(([v,l])=>{s+=`<line x1="${L}" x2="${W-R}" y1="${sy(v)}" y2="${sy(v)}" stroke="#e3e3e3"/><text x="${L-8}" y="${sy(v)+4}" text-anchor="end">${l}</text>`});
+ (o.xt||[]).map(tk).forEach(([v,l])=>{s+=`<line y1="${T}" y2="${H-B}" x1="${sx(v)}" x2="${sx(v)}" stroke="#eee"/><text x="${sx(v)}" y="${H-B+18}" text-anchor="middle">${l}</text>`});
+ s+=`<path d="M${L} ${T} V${H-B} H${W-R}" fill="none" stroke="#222" stroke-width="1.8"/>`;
+ const P=o.pts.map(p=>sx(p[0])+','+sy(p[1])).join(' ');
+ if(o.poly)s+=`<polygon points="${P}" fill="rgba(231,76,60,.18)" stroke="none"/>`;
+ if(o.guide)o.pts.forEach(p=>{s+=`<path d="M${L} ${sy(p[1])} H${sx(p[0])} V${H-B}" fill="none" stroke="#888" stroke-dasharray="4 4"/>`});
+ s+=`<polyline points="${o.poly?o.pts.slice(0,3).map(p=>sx(p[0])+','+sy(p[1])).join(' '):P}" fill="none" stroke="#c0392b" stroke-width="2.8"/>`;
+ (o.lab||[]).forEach(([x,y,t,dx,dy])=>{s+=`<circle cx="${sx(x)}" cy="${sy(y)}" r="4" fill="#c0392b"/><text x="${sx(x)+dx}" y="${sy(y)+dy}" font-weight="700">${t}</text>`});
+ (o.txt||[]).forEach(([x,y,t])=>{s+=`<text x="${sx(x)}" y="${sy(y)}" text-anchor="middle" fill="#1a5276" font-size="12">${t}</text>`});
+ s+=`<text x="${-(T+(H-T-B)/2)}" y="16" transform="rotate(-90)" text-anchor="middle">${o.yl}</text><text x="${L+(W-L-R)/2}" y="${H-8}" text-anchor="middle">${o.xl}</text></svg>`;
+ return s;
+}
+const GR={
+ c1:()=>plot({x0:0,x1:26,y0:0,y1:160,xt:[0,3,9,13,25],yt:[20,80,140],guide:1,xl:'Thời gian t (phút)',yl:'Nhiệt độ (°C)',pts:[[0,20],[3,80],[9,80],[13,140],[25,140]],lab:[[0,20,'A',8,-6],[3,80,'B',-14,-8],[9,80,'C',4,-8],[13,140,'D',-14,-8],[25,140,'E',-8,-10]]}),
+ c2:()=>plot({x0:0,x1:11.6,y0:-20,y1:115,xt:[[0,'0'],[1,'2,1'],[4,'35,1'],[6.5,'77,1'],[11,'307,1']],yt:[-10,0,100],guide:1,xl:'Nhiệt lượng Q (kJ) – không theo tỉ lệ',yl:'Nhiệt độ (°C)',pts:[[0,-10],[1,0],[4,0],[6.5,100],[11,100]],lab:[[0,-10,'A',8,-6],[1,0,'B',-14,-8],[4,0,'C',2,16],[6.5,100,'D',-14,-8],[11,100,'E',-8,-10]]}),
+ c3:()=>plot({x0:0,x1:180,y0:0,y1:700,xt:[0,40,80,120,160],yt:[0,200,400,600],poly:1,xl:'Thời gian t (s)',yl:'Công suất P (W)',pts:[[0,0],[40,600],[160,600],[160,0]],lab:[[40,600,'',0,0],[160,600,'',0,0]]}),
+ c4:()=>plot({x0:0,x1:2000,y0:400,y1:520,xt:[0,460,920,1380,1840],yt:[420,440,460,480,500],guide:1,xl:'Thời gian t (s)',yl:'Khối lượng nước m (g)',pts:[[0,500],[1840,420]],lab:[[0,500,'',0,0],[1840,420,'',0,0]]}),
+ c6:()=>plot({x0:0,x1:11,y0:-35,y1:120,xt:[],yt:[-20,0,100],guide:1,xl:'Thời gian t (không theo tỉ lệ)',yl:'Nhiệt độ (°C)',pts:[[0,-20],[1,0],[4,0],[7,100],[10,100]],lab:[[0,-20,'A',8,-6],[1,0,'B',-14,-8],[4,0,'C',2,16],[7,100,'D',-14,-8],[10,100,'E',-8,-10]],txt:[[0.5,-27,'rắn'],[2.5,-9,'rắn+lỏng'],[5.5,50,'lỏng'],[8.5,110,'lỏng+hơi']]})
+};
+
+/* ===== dữ liệu đề ===== */
+const M=(q,o,a,e)=>({q,o,a,e});
+const S=(t,a,e)=>({t,a,e});
+const P1=[
+M('Theo mô hình động học phân tử, nhiệt độ của vật càng cao thì các phân tử cấu tạo nên vật',['chuyển động nhiệt càng chậm','chuyển động nhiệt càng nhanh','có kích thước càng lớn','đứng yên trong mạng tinh thể'],1,'Nhiệt độ đặc trưng cho mức độ chuyển động nhiệt: các phân tử chuyển động càng nhanh thì nhiệt độ càng cao.'),
+M('Chuyển động Brown của hạt phấn hoa trong nước chứng tỏ',['hạt phấn hoa tự chuyển động nhờ năng lượng sinh học','các phân tử nước đứng yên, chỉ hạt phấn hoa chuyển động','giữa các phân tử nước chỉ có lực đẩy','các phân tử nước chuyển động hỗn loạn không ngừng và va chạm vào hạt phấn hoa'],3,'Hạt phấn hoa bị các phân tử nước chuyển động nhiệt hỗn loạn va đập không cân bằng từ nhiều phía.'),
+M('Chất nào sau đây là chất rắn vô định hình?',['Muối ăn','Kim cương','Nhựa đường','Thạch anh'],2,'Nhựa đường, thủy tinh, chất dẻo là chất rắn vô định hình (không có cấu trúc tinh thể, không có nhiệt độ nóng chảy xác định).'),
+M('Trong suốt quá trình nóng chảy của chất rắn kết tinh (áp suất không đổi), nhiệt độ của chất đó',['không đổi','tăng dần','giảm dần','tăng rồi giảm'],0,'Chất rắn kết tinh có nhiệt độ nóng chảy xác định; khi đang nóng chảy nhiệt độ giữ không đổi.'),
+M('Điểm khác nhau cơ bản giữa sự sôi và sự bay hơi là',['bay hơi cần nhiệt độ cao còn sôi xảy ra ở mọi nhiệt độ','sôi xảy ra cả trong lòng và trên mặt thoáng ở nhiệt độ sôi xác định; bay hơi chỉ xảy ra ở mặt thoáng và ở nhiệt độ bất kì','bay hơi làm tăng nhiệt độ chất lỏng còn sôi làm giảm nhiệt độ','sôi chỉ xảy ra ở mặt thoáng của chất lỏng'],1,'Sự sôi: hóa hơi cả bên trong lẫn trên mặt thoáng ở nhiệt độ sôi xác định. Sự bay hơi: chỉ ở mặt thoáng, ở nhiệt độ bất kì.'),
+M('Nội năng của một vật là',['nhiệt lượng mà vật nhận được','công mà vật thực hiện lên vật khác','tổng động năng và thế năng của các phân tử cấu tạo nên vật','tổng động năng và thế năng của vật trong trường trọng lực'],2,'Nội năng U là tổng động năng và thế năng tương tác của các phân tử cấu tạo nên vật.'),
+M('Nội năng của một vật phụ thuộc vào',['vị trí của vật so với mặt đất','tốc độ chuyển động của cả vật','khối lượng riêng của môi trường','nhiệt độ và thể tích của vật'],3,'U = f(T, V): động năng phân tử phụ thuộc nhiệt độ, thế năng phân tử phụ thuộc thể tích.'),
+M('Hệ nhận nhiệt lượng 300 J và thực hiện công 100 J lên môi trường. Nội năng của hệ',['tăng 400 J','tăng 200 J','giảm 200 J','giảm 400 J'],1,'Q = +300 J; hệ sinh công nên A = −100 J ⇒ ΔU = Q + A = 200 J > 0: nội năng tăng 200 J.'),
+M('Nước đá đang tan ở 0 °C. Nội năng của khối nước đá đó',['giảm vì nhiệt độ không đổi','không đổi vì nhiệt độ không đổi','tăng vì thế năng phân tử tăng','giảm vì tỏa nhiệt'],2,'Nước đá nhận nhiệt (Q > 0); động năng không đổi nhưng khoảng cách phân tử tăng làm thế năng tăng ⇒ ΔU > 0.'),
+M('Nhiệt độ của một vật là 37 °C. Giá trị này theo thang Kelvin (lấy T = t + 273) là',['310 K','236 K','373 K','37 K'],0,'T = 37 + 273 = 310 K.'),
+M('Nhiệt độ của vật tăng thêm 10 °C. Theo thang Fahrenheit, nhiệt độ của vật tăng thêm',['18 °F','10 °F','50 °F','283 °F'],0,'Δt(°F) = 1,8·Δt(°C) = 1,8·10 = 18 °F.'),
+M('Không dùng nhiệt kế rượu thông thường để đo nhiệt độ hơi nước đang sôi (ở 1 atm) vì',['rượu đông đặc ở 100 °C','rượu dẫn nhiệt kém','rượu có màu khó quan sát','rượu có nhiệt độ sôi (≈ 78 °C) thấp hơn 100 °C nên có nguy cơ làm vỡ nhiệt kế'],3,'Rượu sôi ở khoảng 78 °C, hóa hơi mạnh trong ống kín gây áp suất lớn, có thể làm nổ nhiệt kế.'),
+M('Nhiệt dung riêng của nước là 4200 J/(kg.K). Điều đó có nghĩa là',['cần cung cấp 4200 J để 1 kg nước nóng thêm 1 K','1 kg nước tỏa ra 4200 J khi nóng lên 1 K','mọi khối nước đều cần 4200 J để nóng thêm 1 K','cần 4200 J để 1 kg nước hóa hơi hoàn toàn'],0,'Nhiệt dung riêng là nhiệt lượng cần truyền cho 1 kg chất để nhiệt độ tăng thêm 1 K.'),
+M('Truyền cùng một nhiệt lượng cho 1 kg nhôm (c = 880 J/kg.K) và 1 kg đồng (c = 380 J/kg.K). Miếng nào nóng lên nhiều hơn?',['Nhôm, vì nhiệt dung riêng lớn hơn','Đồng, vì nhiệt dung riêng nhỏ hơn','Hai miếng nóng lên như nhau','Không so sánh được'],1,'Δt = Q/(mc): cùng Q và m, c càng nhỏ thì Δt càng lớn ⇒ đồng nóng lên nhiều hơn.'),
+M('Nhiệt lượng cần để làm nóng chảy hoàn toàn 2 kg nước đá ở 0 °C là (cho λ = 3,3.10<sup>5</sup> J/kg)',['1,65.10<sup>5</sup> J','3,3.10<sup>5</sup> J','6,6.10<sup>3</sup> J','6,6.10<sup>5</sup> J'],3,'Q = λm = 3,3.10⁵ · 2 = 6,6.10⁵ J.'),
+M('Ở trên núi cao, nước sôi ở nhiệt độ thấp hơn 100 °C vì',['nhiệt độ không khí thấp','áp suất khí quyển ở đó thấp hơn áp suất tiêu chuẩn','nước ở đó có lẫn tạp chất','trọng lực ở đó nhỏ hơn'],1,'Nhiệt độ sôi phụ thuộc áp suất: áp suất khí quyển giảm thì nhiệt độ sôi giảm.'),
+M('Khi tăng công suất bếp lên gấp đôi lúc nước đang sôi ở 100 °C (1 atm), đại lượng nào sau đây KHÔNG thay đổi?',['Nhiệt lượng bếp cung cấp mỗi giây','Nhiệt độ của nước đang sôi','Tốc độ hóa hơi của nước','Khối lượng nước hóa hơi sau mỗi phút'],1,'Nhiệt độ sôi chỉ phụ thuộc áp suất và bản chất chất lỏng nên vẫn là 100 °C; tốc độ hóa hơi tăng gấp đôi.'),
+M('Hai vật tiếp xúc nhau và không có sự truyền nhiệt ròng giữa chúng. Kết luận đúng là',['hai vật có nhiệt độ bằng nhau','hai vật có nội năng bằng nhau','hai vật có khối lượng bằng nhau','hai vật có nhiệt dung riêng bằng nhau'],0,'Hai vật ở trạng thái cân bằng nhiệt khi nhiệt độ của chúng bằng nhau.')
+];
+const P2=[
+{t:'Khi nung nóng liên tục một chất rắn kết tinh, nhiệt độ tăng dần đến nhiệt độ nóng chảy rồi giữ không đổi trong suốt quá trình nóng chảy; chất lỏng khi đang sôi cũng giữ nhiệt độ không đổi.',
+ h:'“Chất X là chất rắn kết tinh: có nhiệt độ nóng chảy xác định, và nhiệt độ không đổi trong khi chất chuyển thể.”',
+ x:'Dụng cụ: bình nhiệt lượng kế chứa mẫu X, bếp điện công suất không đổi, nhiệt kế điện tử, đồng hồ. (1) Cân mẫu X ở thể rắn, 20 °C, đặt vào bình. (2) Bật bếp, khuấy nhẹ. (3) Ghi nhiệt độ theo thời gian cho đến khi X sôi. Bỏ qua hao phí nhiệt.',
+ r:'Đồ thị nhiệt độ – thời gian như hình.',g:'c1',
+ s:[S('Từ phút thứ 3 đến phút thứ 9, X đang nóng chảy nên tồn tại đồng thời ở thể rắn và thể lỏng.',1,'Đoạn nằm ngang BC (80 °C) là quá trình nóng chảy: rắn và lỏng cùng tồn tại.'),
+    S('Chỉ cần quan sát thấy một đoạn nằm ngang bất kì trên đồ thị (kể cả đoạn ở 140 °C) là đủ kết luận X là chất rắn kết tinh.',0,'Đoạn ngang ở 140 °C là sự sôi, chất lỏng nào cũng có. Phải có đoạn ngang ở quá trình rắn → lỏng mới kết luận được X kết tinh.'),
+    S('Nhiệt dung riêng của X ở thể lỏng bằng 4/3 nhiệt dung riêng ở thể rắn (cùng khối lượng, công suất nguồn không đổi).',1,'c = P/(m·k) với k là độ dốc: k_rắn = 60/3 = 20 °C/phút, k_lỏng = 60/4 = 15 °C/phút ⇒ c_lỏng/c_rắn = 20/15 = 4/3.'),
+    S('Kết quả ủng hộ giả thuyết: X nóng chảy ở 80 °C trong 6 phút và sôi ở 140 °C trong 12 phút, nhiệt độ không đổi trong cả hai quá trình.',1,'Nóng chảy: 9 − 3 = 6 phút ở 80 °C; sôi: 25 − 13 = 12 phút ở 140 °C, nhiệt độ không đổi ⇒ phù hợp giả thuyết.')]},
+{t:'Nội năng của vật là tổng động năng và thế năng của các phân tử cấu tạo nên vật. Động năng phân tử phụ thuộc nhiệt độ; thế năng phân tử phụ thuộc khoảng cách giữa các phân tử (thể tích, cấu trúc). Khi truyền nhiệt: ΔU = Q.',
+ h:'“Khi cung cấp nhiệt lượng cho vật thì nội năng của vật chỉ tăng khi nhiệt độ của vật tăng.”',
+ x:'Khối nước đá 0,1 kg ở −10 °C đặt trong nhiệt lượng kế (bỏ qua nhiệt dung của bình và trao đổi nhiệt với môi trường). (1) Cung cấp nhiệt lượng đều đặn bằng dây điện trở. (2) Đo nhiệt độ bằng nhiệt kế điện tử, ghi các cặp (Q, t) đến khi nước hóa hơi hoàn toàn. Cho c<sub>đá</sub> = 2100 J/kg.K; c<sub>nước</sub> = 4200 J/kg.K; λ = 3,3.10<sup>5</sup> J/kg; L = 2,3.10<sup>6</sup> J/kg.',
+ r:'Đồ thị nhiệt độ theo nhiệt lượng nhận vào như hình (minh họa, không theo tỉ lệ).',g:'c2',
+ s:[S('Nội năng của khối chất gồm động năng và thế năng phân tử; nhiệt độ liên quan đến động năng, còn thế năng liên quan đến khoảng cách giữa các phân tử.',1,'Đúng theo định nghĩa nội năng.'),
+    S('Trong đoạn BC nhiệt độ không đổi nên nội năng của khối chất không đổi.',0,'Ở BC chất nhận nhiệt (Q > 0), động năng không đổi nhưng thế năng tăng (phá vỡ cấu trúc tinh thể) ⇒ ΔU > 0.'),
+    S('Nhiệt lượng làm 0,1 kg nước đá nóng chảy hoàn toàn (đoạn BC) là 3,3 kJ.',0,'Q = λm = 3,3.10⁵ · 0,1 = 33 000 J = 33 kJ (từ 2,1 kJ đến 35,1 kJ). Cũng có: ΔU từ A đến D là 77,1 kJ.'),
+    S('Kết quả thí nghiệm bác bỏ giả thuyết: ở các đoạn BC và DE nhiệt độ không đổi nhưng nội năng vẫn tăng.',1,'Ở BC và DE hệ vẫn nhận nhiệt (ΔU = Q > 0) dù nhiệt độ không đổi ⇒ nội năng không chỉ thay đổi theo nhiệt độ; giả thuyết sai.')]},
+{t:'Nếu công suất P không đổi thì điện năng (nhiệt lượng) cung cấp trong thời gian τ là Q = P·τ. Nhiệt lượng làm vật nóng lên: Q = mcΔt.',
+ h:'“Nhiệt lượng nước nhận được bằng điện năng của dây điện trở, được xác định bằng diện tích giới hạn bởi đồ thị công suất – thời gian và trục thời gian.”',
+ x:'Dụng cụ: 0,5 kg nước ở 20 °C trong nhiệt lượng kế, dây điện trở nối biến trở, oát kế, nhiệt kế. (1) Cho công suất thay đổi theo thời gian. (2) Ghi công suất P theo thời gian trên oát kế. (3) Sau 160 s ngắt điện, đọc nhiệt độ cuối. Bỏ qua nhiệt dung của bình và hao phí; c<sub>nước</sub> = 4200 J/kg.K.',
+ r:'Đồ thị P – t như hình; nhiệt độ cuối đo được là 60 °C.',g:'c3',
+ s:[S('Từ giây thứ 40 đến giây thứ 160 công suất không đổi nên nhiệt độ của nước không đổi.',0,'Dây vẫn cung cấp nhiệt (P = 600 W > 0) nên nước vẫn tăng nhiệt độ; nhiệt độ chỉ không đổi khi chuyển thể.'),
+    S('Nhiệt lượng cung cấp trong 40 s đầu là 12 000 J.',1,'Diện tích tam giác: ½ · 40 · 600 = 12 000 J.'),
+    S('Tổng nhiệt lượng cung cấp trong 160 s là 84 000 J nên nước nóng thêm 40 °C, phù hợp với số đo 60 °C.',1,'Q = 12 000 + 120·600 = 84 000 J; Δt = Q/(mc) = 84 000/(0,5·4200) = 40 °C ⇒ 20 + 40 = 60 °C.'),
+    S('Nếu chỉ tính giai đoạn công suất không đổi (từ 40 s đến 160 s) thì nhiệt độ cuối vẫn xấp xỉ 60 °C như số đo.',0,'Khi đó Q = 72 000 J ⇒ Δt ≈ 34,3 °C ⇒ nhiệt độ cuối ≈ 54,3 °C, không khớp 60 °C. Phải tính cả phần tam giác.')]},
+{t:'Nhiệt hóa hơi riêng L của chất lỏng là nhiệt lượng cần để 1 kg chất lỏng hóa hơi hoàn toàn ở nhiệt độ sôi: Q = Lm. L là hằng số phụ thuộc bản chất chất lỏng.',
+ h:'“Khi nước đang sôi, nhiệt lượng do dây điện trở cung cấp chỉ dùng để hóa hơi nước, nên khối lượng nước giảm đều theo thời gian và L = P·τ/Δm.”',
+ x:'Dụng cụ: bình nhiệt lượng kế đặt trên cân điện tử, dây điện trở P = 100 W, đồng hồ. (1) Đun nước đến 100 °C. (2) Giữ công suất 100 W, bắt đầu tính thời gian khi nước sôi. (3) Ghi số chỉ của cân theo thời gian. Bỏ qua hao phí nhiệt.',
+ r:'Đồ thị khối lượng nước trong bình theo thời gian như hình.',g:'c4',
+ s:[S('Trong suốt thời gian ghi số liệu nước giữ ở 100 °C và nhiệt lượng do dây cung cấp chỉ dùng để làm nước hóa hơi.',1,'Nước đang sôi: nhiệt độ không đổi, nhiệt lượng nhận vào dùng để phá vỡ liên kết, chuyển lỏng → hơi.'),
+    S('Trong 1840 s, khối lượng nước đã hóa hơi là 420 g.',0,'420 g là khối lượng còn lại. Khối lượng hóa hơi: 500 − 420 = 80 g.'),
+    S('Nhiệt hóa hơi riêng của nước tính được từ thí nghiệm là 2,3.10⁶ J/kg.',1,'L = Pτ/Δm = 100 · 1840 / 0,08 = 2,3.10⁶ J/kg.'),
+    S('Nếu tăng công suất lên gấp đôi (200 W) thì nhiệt hóa hơi riêng L đo được cũng tăng gấp đôi.',0,'L là hằng số của chất. Công suất gấp đôi thì nước hóa hơi nhanh gấp đôi (đồ thị dốc hơn) nhưng L không đổi.')]}
+];
+const P3=[
+{q:'Một nhiệt kế bị hỏng: khi nhúng vào nước đá đang tan (1 atm) nó chỉ 4 °C, khi nhúng vào hơi nước sôi (1 atm) nó chỉ 98 °C. Khi nhúng nhiệt kế này vào một cốc nước thì nó chỉ 51 °C. Nhiệt độ thực của nước trong cốc là bao nhiêu °C? (Làm tròn đến hàng đơn vị)',a:50,e:'t/100 = (51 − 4)/(98 − 4) ⇒ t = 4700/94 = 50 °C.'},
+{q:'Khối khí trong xilanh nhận nhiệt lượng 180 J và thực hiện công 75 J lên môi trường. Độ tăng nội năng của khối khí là bao nhiêu J? (Làm tròn đến hàng đơn vị)',a:105,e:'Q = +180 J, A = −75 J ⇒ ΔU = Q + A = 105 J.'},
+{q:'Thả miếng nhôm khối lượng 0,3 kg đang ở 100 °C vào 0,5 kg nước ở 20 °C. Bỏ qua nhiệt dung của bình và hao phí. Cho c<sub>nhôm</sub> = 880 J/kg.K, c<sub>nước</sub> = 4200 J/kg.K. Nhiệt độ khi cân bằng nhiệt là bao nhiêu °C? (Làm tròn đến hàng đơn vị)',a:29,e:'0,3·880·(100 − t) = 0,5·4200·(t − 20) ⇒ 26 400 − 264t = 2100t − 42 000 ⇒ t = 68 400/2364 ≈ 28,9 ≈ 29 °C.'},
+{q:'Dùng bếp điện công suất 1000 W đun 2 kg nước từ 20 °C đến 70 °C. Chỉ 84% điện năng tiêu thụ làm nóng nước. Cho c<sub>nước</sub> = 4200 J/kg.K. Thời gian đun là bao nhiêu giây? (Làm tròn đến hàng đơn vị)',a:500,e:'Q ích = 2·4200·50 = 420 000 J; A = Q/H = 420 000/0,84 = 500 000 J; τ = A/P = 500 s.'},
+{q:'Một lò điện nấu chảy nhôm có hiệu suất 80%. Để nấu chảy hoàn toàn 100 kg nhôm đã ở nhiệt độ nóng chảy cần cung cấp bao nhiêu kW.h điện năng? Cho λ<sub>nhôm</sub> = 4.10<sup>5</sup> J/kg; 1 kW.h = 3,6.10<sup>6</sup> J. (Làm tròn đến hàng đơn vị)',a:14,e:'Q = λm = 4.10⁵ · 100 = 4.10⁷ J; A = Q/H = 5.10⁷ J = 5.10⁷/3,6.10⁶ ≈ 13,9 ≈ 14 kW.h.'},
+{q:'Khối nước đá 0,3 kg ở −20 °C được đun bằng bếp công suất không đổi 1000 W, toàn bộ nhiệt do bếp tỏa ra được khối chất hấp thụ; bỏ qua nhiệt dung của bình. Đồ thị nhiệt độ theo thời gian như hình (không theo tỉ lệ). Cho c<sub>đá</sub> = 2000 J/kg.K; c<sub>nước</sub> = 4200 J/kg.K; λ = 3,3.10<sup>5</sup> J/kg; L = 2,3.10<sup>6</sup> J/kg. Khối lượng nước còn lại trong bình sau 8 phút kể từ lúc bắt đầu đun là bao nhiêu gam? (Làm tròn đến hàng đơn vị)',g:'c6',a:194,e:'AB: Q₁ = 0,3·2000·20 = 12 000 J. BC: Q₂ = λm = 0,3·3,3.10⁵ = 99 000 J. CD: Q₃ = 0,3·4200·100 = 126 000 J. Tổng đến khi sôi: 237 000 J (237 s). Sau 8 phút = 480 s bếp cấp 480 000 J, còn 243 000 J dùng để hóa hơi: m_hơi = 243 000/2,3.10⁶ ≈ 0,1057 kg ≈ 105,7 g. Khối lượng còn lại: 300 − 105,7 ≈ 194 g.'}
+];
+const LET=['A','B','C','D'];
+const NQ=28;
+let ans,cur,left,timer,fs=innerWidth<600?18:24,run=false;
+const $=id=>document.getElementById(id);
+const show=id=>{document.querySelectorAll('.scr').forEach(e=>e.classList.toggle('on',e.id===id));scrollTo(0,0)};
+function reset(){ans={a:Array(18).fill(null),b:P2.map(()=>[null,null,null,null]),c:Array(6).fill('')};cur=0}
+function isDone(i){if(i<18)return ans.a[i]!==null;if(i<22)return ans.b[i-18].some(v=>v!==null);return ans.c[i-22].trim()!==''}
+function nCount(){let n=0;for(let i=0;i<NQ;i++)if(isDone(i))n++;return n}
+function setFs(v){fs=Math.max(16,Math.min(36,v));$('app').style.setProperty('--fs',fs+'px')}
+function drawNav(){
+ const row=(lb,a,b)=>{let h=`<div class="row"><span class="lb">${lb}</span>`;for(let i=a;i<b;i++)h+=`<button class="nb${isDone(i)?' done':''}${i===cur?' cur':''}" data-i="${i}">${i<18?i+1:i<22?i-17:i-21}</button>`;return h+'</div>'};
+ $('nav').innerHTML=row('Phần I',0,18)+row('Phần II',18,22)+row('Phần III',22,28);
+ $('nav').querySelectorAll('.nb').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+ $('cnt').textContent='Đã làm '+nCount()+'/'+NQ;
+}
+function qHtml(i){
+ if(i<18){const q=P1[i];return `<div class="qh">PHẦN I · Câu ${i+1}/18</div><div class="qt"><p>${q.q}</p></div>`+q.o.map((t,k)=>`<button class="opt${ans.a[i]===k?' sel':''}" data-k="${k}"><b>${LET[k]}.</b><span>${t}</span></button>`).join('')}
+ if(i<22){const j=i-18,q=P2[j];return `<div class="qh">PHẦN II · Câu ${j+1}/4 – chọn Đúng hoặc Sai cho mỗi ý</div><div class="qt"><p>${q.t}</p><p><b>Giả thuyết:</b> <i>${q.h}</i></p><p><b>Thí nghiệm:</b> ${q.x}</p><p><b>Kết quả:</b> <i>${q.r}</i></p>${GR[q.g]()}</div>`+q.s.map((s,k)=>`<div class="st"><div>${'abcd'[k]}) ${s.t}</div><div class="tf"><button class="tfb${ans.b[j][k]===true?' sel':''}" data-k="${k}" data-v="1">Đúng</button><button class="tfb${ans.b[j][k]===false?' sel':''}" data-k="${k}" data-v="0">Sai</button></div></div>`).join('')}
+ const j=i-22,q=P3[j];return `<div class="qh">PHẦN III · Câu ${j+1}/6</div><div class="qt"><p>${q.q}</p>${q.g?GR[q.g]():''}</div><input class="sa" id="sa" inputmode="decimal" autocomplete="off" placeholder="Nhập đáp án" value="${ans.c[j].replace(/"/g,'')}">`}
+function draw(){
+ $('qbox').innerHTML=qHtml(cur);
+ $('qbox').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans.a[cur]=ans.a[cur]===+b.dataset.k?null:+b.dataset.k;draw()});
+ $('qbox').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{const j=cur-18,k=+b.dataset.k,v=b.dataset.v==='1';ans.b[j][k]=ans.b[j][k]===v?null:v;draw()});
+ const sa=$('sa');if(sa)sa.oninput=()=>{ans.c[cur-22]=sa.value;drawNav()};
+ $('bPrev').disabled=cur===0;
+ $('bNext').textContent=cur===NQ-1?'Nộp bài ✔':'Câu sau →';
+ drawNav();
+}
+function go(i){cur=Math.max(0,Math.min(NQ-1,i));draw();scrollTo(0,0)}
+function tick(){
+ const m=Math.floor(left/60),s=left%60;$('clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+ $('clock').className=left<=60?'d':left<=300?'w':'';
+ if(left<=0){submit();return}left--;
+}
+function start(){reset();left=2700;run=true;show('s-exam');draw();clearInterval(timer);tick();timer=setInterval(tick,1000)}
+function ask(){
+ const u=NQ-nCount();$('mt').textContent=u>0?`Bạn còn ${u} câu chưa làm. Bạn có chắc muốn nộp bài?`:'Bạn đã làm hết các câu. Nộp bài ngay?';$('modal').classList.add('on');
+}
+function num(v){const x=parseFloat(String(v).trim().replace(',','.'));return isNaN(x)?null:x}
+function grade(){
+ const r={a:[],b:[],c:[],pa:0,pb:0,pc:0};
+ P1.forEach((q,i)=>{const ok=ans.a[i]===q.a;r.a.push(ok);if(ok)r.pa+=.25});
+ P2.forEach((q,j)=>{let k=0;const d=q.s.map((s,n)=>{const ok=ans.b[j][n]===!!s.a&&ans.b[j][n]!==null;if(ok)k++;return ok});r.b.push({d,k,p:TFP[k]});r.pb+=TFP[k]});
+ P3.forEach((q,j)=>{const v=num(ans.c[j]),ok=v!==null&&Math.abs(v-q.a)<1e-9;r.c.push(ok);if(ok)r.pc+=.25});
+ return r;
+}
+const TFP=[0,.1,.25,.5,1];
+const f2=n=>(Math.round(n*100)/100).toString().replace('.',',');
+function submit(){
+ clearInterval(timer);run=false;$('modal').classList.remove('on');
+ const r=grade(),tot=r.pa+r.pb+r.pc;window._r=r;
+ $('score').textContent=f2(tot)+' / 10';
+ $('remark').textContent=tot>=8.5?'Xuất sắc! Kiến thức Vật lí nhiệt rất vững.':tot>=7?'Khá tốt! Xem lại các ý sai để hoàn thiện thêm.':tot>=5?'Đạt yêu cầu. Cần ôn lại nội năng, đồ thị chuyển thể và các công thức Q.':'Cần ôn tập kĩ hơn. Hãy xem đáp án chi tiết rồi làm lại đề.';
+ $('rt').innerHTML=`<tr><th>Phần</th><th>Đúng</th><th>Điểm</th><th>Tối đa</th></tr><tr><td>I</td><td>${r.a.filter(Boolean).length}/18</td><td>${f2(r.pa)}</td><td>4,5</td></tr><tr><td>II</td><td>${r.b.reduce((s,x)=>s+x.k,0)}/16 ý</td><td>${f2(r.pb)}</td><td>4,0</td></tr><tr><td>III</td><td>${r.c.filter(Boolean).length}/6</td><td>${f2(r.pc)}</td><td>1,5</td></tr><tr><th colspan="2">Tổng</th><th>${f2(tot)}</th><th>10</th></tr>`;
+ show('s-result');
+}
+function review(){
+ const r=window._r;let h='';
+ P1.forEach((q,i)=>{const ok=r.a[i],u=ans.a[i];h+=`<div class="rv ${ok?'ok':'no'}"><b>Phần I – Câu ${i+1}</b> <span class="${ok?'ok-t':'no-t'}">${ok?'+0,25':'0'}</span><div class="qt"><p>${q.q}</p></div><div>Bạn chọn: <b>${u===null?'(bỏ trống)':LET[u]}</b> · Đáp án đúng: <b class="ok-t">${LET[q.a]}. ${q.o[q.a]}</b></div><div class="ex">${q.e}</div></div>`});
+ P2.forEach((q,j)=>{const x=r.b[j];h+=`<div class="rv ${x.k===4?'ok':'no'}"><b>Phần II – Câu ${j+1}</b> <span class="${x.k?'ok-t':'no-t'}">+${f2(x.p)}</span> (đúng ${x.k}/4 ý)<div class="qt"><p>${q.t}</p><p><b>Giả thuyết:</b> <i>${q.h}</i></p>${GR[q.g]()}</div>`+q.s.map((s,n)=>{const u=ans.b[j][n];return `<div class="st" style="border-color:${x.d[n]?'#2e8b57':'#c0392b'}">${'abcd'[n]}) ${s.t}<div>Bạn chọn: <b>${u===null?'(bỏ trống)':u?'Đúng':'Sai'}</b> · Đáp án: <b class="ok-t">${s.a?'Đúng':'Sai'}</b></div><div class="ex">${s.e}</div></div>`}).join('')+'</div>'});
+ P3.forEach((q,j)=>{const ok=r.c[j];h+=`<div class="rv ${ok?'ok':'no'}"><b>Phần III – Câu ${j+1}</b> <span class="${ok?'ok-t':'no-t'}">${ok?'+0,25':'0'}</span><div class="qt"><p>${q.q}</p>${q.g?GR[q.g]():''}</div><div>Bạn điền: <b>${ans.c[j].trim()||'(bỏ trống)'}</b> · Đáp án: <b class="ok-t">${q.a}</b></div><div class="ex">${q.e}</div></div>`});
+ $('rvl').innerHTML=h;show('s-review');
+}
+$('bStart').onclick=start;$('bSub').onclick=ask;$('mNo').onclick=()=>$('modal').classList.remove('on');$('mYes').onclick=submit;
+$('bPrev').onclick=()=>go(cur-1);$('bNext').onclick=()=>cur===NQ-1?ask():go(cur+1);
+$('fm').onclick=()=>setFs(fs-2);$('fp').onclick=()=>setFs(fs+2);
+$('bRev').onclick=review;$('bBack').onclick=()=>show('s-result');
+['bRe','bRe2'].forEach(id=>$(id).onclick=start);['bHome','bHome2'].forEach(id=>$(id).onclick=()=>show('s-start'));
+document.addEventListener('keydown',e=>{
+ if(!run||$('modal').classList.contains('on'))return;
+ if(e.target.tagName==='INPUT'&&e.key!=='Enter')return;
+ if(e.key==='ArrowRight')go(cur+1);else if(e.key==='ArrowLeft')go(cur-1);
+ else if(cur<18&&'abcd'.includes(e.key.toLowerCase())&&e.key.length===1){const k='abcd'.indexOf(e.key.toLowerCase());ans.a[cur]=ans.a[cur]===k?null:k;draw()}
+});
+window.addEventListener('beforeunload',e=>{if(run){e.preventDefault();e.returnValue=''}});
+setFs(fs);reset();
+</script>
+</body>
+</html>

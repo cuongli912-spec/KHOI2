@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đề Kiểm Tra Giữa HK I – Vật Lí 12 – Mã Đề 04</title>
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--tx:#1d2733;--mu:#5b6b7c;--ac:#2563eb;--r:#dc2626;--g:#16a34a;--ln:#d6dde6;--hl:#fff7d6;--badge:#eff6ff}
+@media(prefers-color-scheme:dark){:root{--bg:#10151c;--card:#19212b;--tx:#e6edf5;--mu:#97a6b6;--ac:#60a5fa;--r:#f87171;--g:#4ade80;--ln:#2c3846;--hl:#3a3418;--badge:#1e293b}}
+*{box-sizing:border-box}
+html{font-size:24px}
+body{margin:0;background:var(--bg);color:var(--tx);font:1rem/1.65 system-ui,-apple-system,sans-serif;padding:10px}
+.w{max-width:1180px;margin:auto}
+.top{position:sticky;top:0;z-index:10;display:flex;gap:12px;align-items:center;background:var(--bg);padding:8px 0;margin-bottom:10px;border-bottom:1px solid var(--ln);flex-wrap:wrap}
+.bar{display:flex;gap:6px;flex:1;min-width:220px}
+.bar b{flex:1;height:12px;border-radius:6px;background:var(--ln);cursor:pointer;transition:.2s}
+.bar b.on{background:var(--ac)}
+.bar b.ok{background:var(--g)}
+.fs{display:flex;gap:6px;align-items:center;font-size:16px}
+.fs button{padding:4px 10px;font-size:15px}
+.fs b{min-width:44px;text-align:center;cursor:pointer}
+.score-box{font-size:16px;font-weight:700;background:var(--hl);padding:5px 12px;border-radius:8px;border:1px solid var(--ln)}
+.c,.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:16px;margin-bottom:12px}
+.head-bar{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--ln);padding-bottom:10px;margin-bottom:14px}
+h1{font-size:1.18rem;margin:0 0 4px;color:var(--ac)}
+h2{font-size:1.02rem;margin:0 0 6px}
+.k{background:var(--hl);border-radius:8px;padding:8px 12px;margin:8px 0;font-size:.92rem}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+button{font:inherit;font-size:.88rem;padding:6px 12px;border-radius:8px;border:1px solid var(--ac);background:var(--card);color:var(--ac);cursor:pointer;transition:.15s}
+button:hover:not(:disabled){filter:brightness(.95)}
+button.p{background:var(--ac);color:#fff}
+button:disabled{opacity:.45;cursor:not-allowed}
+input[type=text]{font:inherit;font-size:.92rem;padding:6px 10px;border-radius:8px;border:1px solid var(--ln);background:var(--bg);color:var(--tx);width:160px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:6px 0}
+td,th{border:1px solid var(--ln);padding:6px 8px;vertical-align:middle}
+th{background:var(--hl);text-align:center}
+.q-card{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:14px;margin-bottom:12px}
+.meta{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:6px;background:var(--badge);color:var(--ac);font-weight:600;margin-left:6px}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+@media(max-width:680px){.opt-grid{grid-template-columns:1fr}}
+.opt-btn{display:block;width:100%;text-align:left;padding:8px 12px;border:1px solid var(--ln);color:var(--tx);background:var(--bg);border-radius:8px}
+.opt-btn.good{background:var(--g)!important;color:#fff!important;border-color:var(--g)!important;font-weight:600}
+.opt-btn.bad{background:var(--r)!important;color:#fff!important;border-color:var(--r)!important}
+.tf-btn{padding:4px 12px;min-width:68px;border:1px solid var(--ln);color:var(--tx);background:var(--bg)}
+.tf-btn.good{background:var(--g)!important;color:#fff!important;border-color:var(--g)!important;font-weight:700}
+.tf-btn.bad{background:var(--r)!important;color:#fff!important;border-color:var(--r)!important}
+details.q{margin-top:8px;border-top:1px dashed var(--ln);padding-top:6px}
+details.q summary{cursor:pointer;font-weight:600;color:var(--ac);font-size:.88rem;list-style:none}
+details.q summary::-webkit-details-marker{display:none}
+details.q .hs{margin-top:6px;padding:8px 12px;background:var(--hl);border-radius:8px;font-size:.88rem}
+.nav{display:flex;justify-content:space-between;margin-top:12px}
+.nav button{font-size:16px;padding:8px 18px}
+.mu{color:var(--mu);font-size:.85rem}
+.context-box{background:var(--badge);border-left:4px solid var(--ac);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="top">
+    <div style="font-size:16px;font-weight:700;color:var(--ac)">VL12 • GK1 • MÃ ĐỀ 04</div>
+    <div class="bar" id="bar"></div>
+    <div class="score-box" id="scoreBox">Điểm: 0,00 / 10</div>
+    <div class="fs" title="Cỡ chữ 18–36">
+      <button onclick="fs(-2)">A−</button>
+      <b id="fsv" onclick="fs(-99)">24</b>
+      <button onclick="fs(2)">A+</button>
+    </div>
+  </div>
+
+  <div class="c" id="mainContent"></div>
+
+  <div class="nav">
+    <button id="pv">← Phần trước</button>
+    <button id="nx" class="p">Phần tiếp →</button>
+  </div>
+</div>
+
+<script>
+let sz = 24, step = 0, done = [];
+let scoreP1 = 0, scoreP2 = [0,0,0,0], scoreP3 = 0;
+let p2User = {0:{}, 1:{}, 2:{}, 3:{}};
+
+const S = [
+  {
+    t: 'PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn (4,5 điểm)',
+    sub: 'Thí sinh trả lời từ câu 1 đến câu 18 (8 Biết – 2 Hiểu – 8 Vận dụng) • Mỗi câu đúng 0,25 điểm'
+  },
+  {
+    t: 'PHẦN II. Câu trắc nghiệm Đúng – Sai (4,0 điểm)',
+    sub: 'Thí sinh trả lời từ câu 1 đến câu 4 (6 Biết – 8 Hiểu – 2 Vận dụng) • Đúng 1 ý: 0,1đ; 2 ý: 0,25đ; 3 ý: 0,5đ; 4 ý: 1,0đ'
+  },
+  {
+    t: 'PHẦN III. Câu trắc nghiệm trả lời ngắn (1,5 điểm)',
+    sub: 'Thí sinh trả lời từ câu 1 đến câu 6 (2 Biết – 2 Hiểu – 2 Vận dụng) • Mỗi câu đúng 0,25 điểm'
+  },
+  {
+    t: 'BẢNG ĐÁP ÁN & ĐỐI CHIẾU MA TRẬN – MÃ ĐỀ 04',
+    sub: 'Sở GD&ĐT Đồng Tháp – Trường THPT Phạm Thành Trung • Kiểm tra Giữa HK I (2026 – 2027)'
+  }
+];
+
+// DỮ LIỆU PHẦN I (18 CÂU)
+const P1 = [
+  {c:1, lv:'Biết', tp:'CĐ1: Sự chuyển thể', q:'Sự nóng chảy là quá trình chuyển thể từ', o:['thể lỏng sang thể rắn.','thể rắn sang thể lỏng.','thể lỏng sang thể khí.','thể khí sang thể lỏng.'], a:1, e:'Nóng chảy là quá trình chuyển từ thể rắn sang thể lỏng.'},
+  {c:2, lv:'Biết', tp:'CĐ2: Nội năng & ĐL I', q:'Một khối khí vừa nhận nhiệt lượng vừa bị nén. Theo quy ước dấu trong biểu thức của định luật I nhiệt động lực học (ΔU = A + Q) thì', o:['A < 0, Q > 0 và nội năng có thể tăng hoặc giảm.','A > 0, Q < 0 và nội năng giảm.','A > 0, Q > 0 và nội năng tăng.','A < 0, Q < 0 và nội năng giảm.'], a:2, e:'Khí bị nén (nhận công) nên A > 0; khí nhận nhiệt nên Q > 0 ⇒ ΔU = A + Q > 0 (nội năng tăng).'},
+  {c:3, lv:'Biết', tp:'CĐ2: Nội năng & ĐL I', q:'Nội năng của một vật là', o:['tổng động năng và thế năng cơ học của cả vật.','tổng động năng và thế năng của các phân tử cấu tạo nên vật.','nhiệt lượng mà vật nhận được trong quá trình truyền nhiệt.','công mà vật nhận được từ các vật khác tác dụng lên nó.'], a:1, e:'Theo định nghĩa, nội năng của vật bằng tổng động năng và thế năng tương tác của các phân tử cấu tạo nên vật.'},
+  {c:4, lv:'Biết', tp:'CĐ3: Thang nhiệt độ', q:'Khi hai vật tiếp xúc nhau, năng lượng nhiệt tự truyền từ', o:['vật có nội năng lớn hơn sang vật có nội năng nhỏ hơn.','vật có khối lượng lớn hơn sang vật có khối lượng nhỏ hơn.','vật có nhiệt dung riêng lớn hơn sang vật có nhiệt dung riêng nhỏ hơn.','vật có nhiệt độ cao hơn sang vật có nhiệt độ thấp hơn.'], a:3, e:'Năng lượng nhiệt luôn tự truyền từ vật có nhiệt độ cao hơn sang vật có nhiệt độ thấp hơn.'},
+  {c:5, lv:'Biết', tp:'CĐ4: c, λ, L', q:'Gọi m là khối lượng, c là nhiệt dung riêng của chất làm vật, ΔT là độ tăng nhiệt độ của vật (chưa chuyển thể). Nhiệt lượng vật thu vào là', o:['Q = mΔT/c.','Q = cΔT/m.','Q = mcΔT.','Q = mc/ΔT.'], a:2, e:'Công thức tính nhiệt lượng làm vật tăng nhiệt độ là Q = mcΔT.'},
+  {c:6, lv:'Biết', tp:'CĐ4: c, λ, L', q:'Nhiệt nóng chảy riêng của nước đá là 3,34.10⁵ J/kg. Điều này có nghĩa là', o:['cần cung cấp nhiệt lượng 3,34.10⁵ J để 1 kg nước đá ở 0 °C nóng chảy hoàn toàn.','cần cung cấp nhiệt lượng 3,34.10⁵ J để 1 kg nước đá tăng thêm 1 K.','1 kg nước đá ở 0 °C tỏa ra nhiệt lượng 3,34.10⁵ J khi nóng chảy hoàn toàn.','cần cung cấp nhiệt lượng 3,34.10⁵ J để 1 kg nước hóa hơi hoàn toàn.'], a:0, e:'Nhiệt nóng chảy riêng λ = 3,34.10⁵ J/kg cho biết nhiệt lượng cần để 1 kg nước đá nóng chảy hoàn toàn ở nhiệt độ nóng chảy (0 °C).'},
+  {c:7, lv:'Biết', tp:'CĐ4: c, λ, L', q:'Gọi L là nhiệt hóa hơi riêng của một chất lỏng. Nhiệt lượng Q cần cung cấp để làm hóa hơi hoàn toàn một lượng chất lỏng có khối lượng m ở nhiệt độ sôi là', o:['Q = L/m.','Q = L.m.','Q = m/L.','Q = L.m².'], a:1, e:'Công thức tính nhiệt lượng hóa hơi ở nhiệt độ sôi: Q = L.m.'},
+  {c:8, lv:'Biết', tp:'CĐ4: c, λ, L', q:'Trong thí nghiệm thực hành đo nhiệt dung riêng của nước, bộ dụng cụ nào sau đây không cần sử dụng?', o:['Nhiệt lượng kế có dây nung và que khuấy.','Nhiệt kế và cân điện tử.','Oát kế và đồng hồ bấm giây.','Lực kế lò xo và thước đo góc.'], a:3, e:'Thí nghiệm đo nhiệt dung riêng c = (P.t)/(m.ΔT) không dùng lực kế lò xo và thước đo góc.'},
+  {c:9, lv:'Hiểu', tp:'CĐ1: Sự chuyển thể', q:'Phát biểu nào sau đây là đúng khi so sánh sự bay hơi và sự sôi của một chất lỏng?', o:['Cả sự bay hơi và sự sôi đều chỉ xảy ra ở một nhiệt độ xác định.','Sự bay hơi chỉ xảy ra trên mặt thoáng ở mọi nhiệt độ, còn sự sôi xảy ra cả trên mặt thoáng và trong lòng chất lỏng ở nhiệt độ sôi.','Sự bay hơi xảy ra trong lòng chất lỏng, còn sự sôi chỉ xảy ra trên mặt thoáng của chất lỏng.','Ở cùng một áp suất, mọi chất lỏng khác nhau đều có cùng nhiệt độ sôi.'], a:1, e:'Bay hơi xảy ra trên mặt thoáng ở mọi nhiệt độ; sự sôi xảy ra cả trên mặt thoáng và trong lòng chất lỏng ở nhiệt độ sôi xác định.'},
+  {c:10, lv:'Hiểu', tp:'CĐ3: Thang nhiệt độ', q:'Cho hai vật A và B tiếp xúc nhiệt với nhau trong một bình cách nhiệt. Ban đầu vật A có nhiệt độ 80 °C, sau khi đạt trạng thái cân bằng nhiệt thì nhiệt độ chung của hai vật là 50 °C. Lấy T (K) = t (°C) + 273. Kết luận nào sau đây là đúng?', o:['Năng lượng nhiệt đã truyền từ vật B sang vật A.','Năng lượng nhiệt đã truyền từ vật A sang vật B và nhiệt độ khi cân bằng là 323 K.','Nhiệt độ ban đầu của vật B cao hơn 353 K.','Khi đã đạt nhiệt độ 50 °C, vật A vẫn tiếp tục truyền năng lượng nhiệt cho vật B.'], a:1, e:'Vì nhiệt độ của A giảm từ 80 °C xuống 50 °C nên A đã truyền nhiệt sang B. Nhiệt độ cân bằng T = 50 + 273 = 323 K.'},
+  {c:11, lv:'Vận dụng', tp:'CĐ1: Sự chuyển thể', q:'Quần áo phơi ngoài trời nắng và có gió thường nhanh khô hơn khi phơi trong phòng kín. Nguyên nhân là do', o:['trời nắng làm giảm nhiệt độ của quần áo.','nhiệt độ cao và gió làm nước trên quần áo bay hơi nhanh hơn.','gió làm nước trên quần áo đông đặc.','nước trên quần áo sôi ở nhiệt độ phòng.'], a:1, e:'Tốc độ bay hơi tăng khi nhiệt độ cao, có gió và diện tích mặt thoáng lớn.'},
+  {c:12, lv:'Vận dụng', tp:'CĐ1: Sự chuyển thể', q:'Ở một số vùng có sương giá, người trồng cây ăn trái thường phun nước lên cây trong đêm lạnh. Khi nước đông đặc trên cành lá, cây ít bị hại do quá lạnh vì', o:['nước đông đặc tỏa nhiệt nên giữ nhiệt độ quanh cành lá ở khoảng 0 °C.','nước đông đặc nhận nhiệt từ cây.','lớp băng có nhiệt độ rất thấp.','nước làm tăng nhiệt dung riêng của cây.'], a:0, e:'Quá trình đông đặc của nước tỏa nhiệt lượng làm giữ nhiệt độ bề mặt lá ở khoảng 0 °C, ngăn lá bị đóng băng sâu.'},
+  {c:13, lv:'Vận dụng', tp:'CĐ2: Nội năng & ĐL I', q:'Người ta thực hiện công 150 J để nén một lượng khí trong một xilanh. Biết trong quá trình đó khí truyền ra môi trường xung quanh một nhiệt lượng 40 J. Độ biến thiên nội năng của khối khí là', o:['ΔU = 110 J (nội năng tăng 110 J).','ΔU = −110 J (nội năng giảm 110 J).','ΔU = 190 J (nội năng tăng 190 J).','ΔU = −190 J (nội năng giảm 190 J).'], a:0, e:'Nhận công A = +150 J; truyền nhiệt ra ngoài Q = −40 J ⇒ ΔU = A + Q = 150 + (−40) = 110 J.'},
+  {c:14, lv:'Vận dụng', tp:'CĐ3: Thang nhiệt độ', q:'Để khảo sát chiều truyền năng lượng nhiệt giữa hai vật có nhiệt độ khác nhau khi tiếp xúc nhau, một học sinh sử dụng: một cốc nhôm chứa nước nóng, một chậu nhựa chứa nước lạnh và hai nhiệt kế. Thứ tự các bước tiến hành thí nghiệm hợp lí nhất là:<br>(1) Đặt cốc nhôm chứa nước nóng vào trong chậu nước lạnh.<br>(2) Dùng hai nhiệt kế đo nhiệt độ ban đầu của nước trong cốc (t₁) và nước trong chậu (t₂).<br>(3) Theo dõi sự thay đổi số chỉ của hai nhiệt kế theo thời gian cho đến khi không đổi và rút ra kết luận.', o:['(1) → (2) → (3).','(2) → (1) → (3).','(3) → (2) → (1).','(2) → (3) → (1).'], a:1, e:'Cần đo nhiệt độ ban đầu (2) trước khi cho tiếp xúc nhiệt (1), sau đó quan sát sự thay đổi nhiệt độ đến khi cân bằng (3).'},
+  {c:15, lv:'Vận dụng', tp:'CĐ4: c, λ, L', q:'Trong thí nghiệm đo nhiệt dung riêng của một chất lỏng, học sinh dùng dây đun có công suất không đổi P = 24 W để đun 0,20 kg chất lỏng trong bình nhiệt lượng kế. Biết sau thời gian t = 350 s thì nhiệt độ của chất lỏng tăng thêm 10 K. Bỏ qua hao phí nhiệt ra môi trường và nhiệt lượng kế. Nhiệt dung riêng của chất lỏng đo được là', o:['2400 J/(kg·K).','4200 J/(kg·K).','3800 J/(kg·K).','1200 J/(kg·K).'], a:1, e:'Ta có Q = P.t = m.c.ΔT ⇒ c = (P.t)/(m.ΔT) = (24 × 350)/(0,20 × 10) = 4200 J/(kg·K).'},
+  {c:16, lv:'Vận dụng', tp:'CĐ4: c, λ, L', q:'Dùng một bếp điện có công suất không đổi P = 500 W để đun nóng chảy hoàn toàn 0,50 kg nước đá ở 0 °C. Biết nhiệt nóng chảy riêng của nước đá là λ = 3,34.10⁵ J/kg và hiệu suất của quá trình đun là 100 %. Thời gian đun chảy hết lượng nước đá trên là', o:['334 s.','668 s.','167 s.','500 s.'], a:0, e:'Ta có Q = λ.m = P.t ⇒ t = (λ.m)/P = (3,34.10⁵ × 0,50)/500 = 334 s.'},
+  {c:17, lv:'Vận dụng', tp:'CĐ4: c, λ, L', q:'Một ấm đun nước siêu tốc có công suất 1500 W đang đun sôi nước ở 100 °C. Biết nhiệt hóa hơi riêng của nước ở 100 °C là L = 2,26.10⁶ J/kg và coi toàn bộ điện năng tiêu thụ dùng để làm hóa hơi nước. Nếu quên tắt ấm sau khi nước đã sôi trong thời gian 2 phút thì khối lượng nước đã hóa hơi là', o:['159,2 g.','79,6 g.','53,1 g.','13,3 g.'], a:1, e:'Trong t = 2 phút = 120 s: Q = P.t = L.m ⇒ m = (1500 × 120)/(2,26.10⁶) ≈ 0,07965 kg = 79,6 g.'},
+  {c:18, lv:'Vận dụng', tp:'CĐ4: c, λ, L', q:'Thả một quả cầu bằng đồng có khối lượng 0,20 kg được nung nóng tới 100 °C vào một cốc nước ở 20 °C. Sau một thời gian, nhiệt độ của quả cầu và của nước đều bằng 25 °C. Coi như chỉ có quả cầu và nước truyền nhiệt cho nhau. Biết nhiệt dung riêng của đồng là 380 J/(kg·K), của nước là 4200 J/(kg·K). Khối lượng của nước trong cốc xấp xỉ bằng', o:['0,27 kg.','0,54 kg.','0,18 kg.','0,36 kg.'], a:0, e:'Phương trình cân bằng nhiệt: m₁c₁(100 − 25) = m₂c₂(25 − 20) ⇒ 0,20 × 380 × 75 = m₂ × 4200 × 5 ⇒ m₂ ≈ 0,27 kg.'}
+];
+
+// DỮ LIỆU PHẦN II (4 CÂU ĐÚNG - SAI)
+const P2 = [
+  {
+    c: 1, tp: 'Chủ đề 1: Sự chuyển thể (2 Biết – 2 Hiểu)',
+    stem: 'Một nồi nước tinh khiết đang sôi trên bếp ở áp suất khí quyển tiêu chuẩn.',
+    items: [
+      {id:'a', lv:'Biết', txt:'Quá trình nước chuyển từ thể lỏng sang thể khí (hơi) được gọi là sự hóa hơi.', a:true, e:'Đúng. Chuyển từ thể lỏng sang thể khí gọi là sự hóa hơi (gồm bay hơi và sôi).'},
+      {id:'b', lv:'Biết', txt:'Ở áp suất tiêu chuẩn, nhiệt độ sôi của nước tinh khiết là 100 °C.', a:true, e:'Đúng. Mốc 100 °C trong thang Celsius là nhiệt độ sôi của nước tinh khiết ở áp suất tiêu chuẩn.'},
+      {id:'c', lv:'Hiểu', txt:'Khi nước đang sôi, sự hóa hơi xảy ra đồng thời ở cả trong lòng và trên mặt thoáng của khối nước.', a:true, e:'Đúng. Đây là đặc điểm phân biệt sự sôi với sự bay hơi.'},
+      {id:'d', lv:'Hiểu', txt:'Nếu tiếp tục đun khi nước đang sôi ở áp suất không đổi thì nhiệt độ của nước tăng dần theo thời gian.', a:false, e:'Sai. Trong suốt quá trình sôi ở áp suất không đổi, nhiệt độ của chất lỏng giữ không đổi.'}
+    ]
+  },
+  {
+    c: 2, tp: 'Chủ đề 2: Nội năng & Định luật I NĐLH (2 Biết – 2 Hiểu)',
+    stem: 'Một nhóm học sinh tìm hiểu về các cách làm thay đổi nội năng của nước. Học sinh dùng hai bình cách nhiệt giống nhau chứa cùng một lượng nước ở cùng nhiệt độ ban đầu 25 °C. Ở bình 1, dùng dây điện trở đun nóng nước. Ở bình 2, dùng cánh khuấy (do động cơ bên ngoài làm quay) khuấy nước liên tục. Dừng thí nghiệm ở mỗi bình khi nhiệt độ của nước đều đạt tới 28 °C.',
+    items: [
+      {id:'a', lv:'Biết', txt:'Hai bình được làm cách nhiệt để hạn chế sự trao đổi nhiệt giữa nước trong bình với môi trường ngoài.', a:true, e:'Đúng. Vỏ cách nhiệt giúp giảm hao phí nhiệt ra môi trường.'},
+      {id:'b', lv:'Biết', txt:'Ở bình 1 nội năng của nước thay đổi bằng cách truyền nhiệt, còn ở bình 2 nội năng của nước thay đổi bằng cách thực hiện công.', a:true, e:'Đúng. Dây đun truyền nhiệt (bình 1), cánh khuấy thực hiện công cơ học (bình 2).'},
+      {id:'c', lv:'Hiểu', txt:'Vì cách làm nóng nước ở hai bình khác nhau nên khi cùng tăng từ 25 °C lên 28 °C, độ biến thiên nội năng của nước ở hai bình là khác nhau.', a:false, e:'Sai. Cùng một lượng nước tăng cùng một độ tăng nhiệt độ (từ 25 °C lên 28 °C) thì độ tăng nội năng ở hai bình là như nhau.'},
+      {id:'d', lv:'Hiểu', txt:'Ở bình 2, nếu công mà cánh khuấy truyền cho nước là 3,5 kJ và nhiệt lượng thất thoát ra vỏ bình là 0,3 kJ thì độ tăng nội năng của nước là 3,2 kJ.', a:true, e:'Đúng. Theo định luật I NĐLH: ΔU = A + Q = 3,5 + (−0,3) = 3,2 kJ.'}
+    ]
+  },
+  {
+    c: 3, tp: 'Chủ đề 4: Nhiệt nóng chảy riêng λ (1 Biết – 2 Hiểu – 1 Vận dụng)',
+    stem: 'Một nhóm học sinh tìm hiểu về nhiệt nóng chảy riêng của nước đá và thực hiện các nội dung sau:<div class="context-box"><b>(I) Vấn đề nghiên cứu:</b> Xác định nhiệt nóng chảy riêng của nước đá ở 0 °C.<br><b>(II) Giả thuyết:</b> Nhiệt lượng cần cung cấp để làm nóng chảy nước đá ở 0 °C tỉ lệ thuận với khối lượng nước đá bị nóng chảy.<br><b>(III) Tiến trình thí nghiệm:</b> Dùng hai phễu giống nhau chứa đầy nước đá đập nhỏ đang tan ở 0 °C, dưới mỗi phễu đặt một cốc hứng nước trên cân điện tử. Phễu 1 có dây điện trở công suất P = 30 W đặt ngập trong nước đá; phễu 2 có dây điện trở giống hệt nhưng không cấp điện. Sau thời gian cấp điện t = 300 s, cân lượng nước thu được ở cốc 1 là m₁ = 35 g, ở cốc 2 là m₂ = 8 g.</div>',
+    items: [
+      {id:'a', lv:'Biết', txt:'Công thức tính nhiệt lượng cần cung cấp để làm nóng chảy hoàn toàn m (kg) nước đá ở nhiệt độ nóng chảy là Q = λm.', a:true, e:'Đúng. Đây là công thức định nghĩa nhiệt lượng nóng chảy.'},
+      {id:'b', lv:'Hiểu', txt:'Phễu 2 dùng để xác định lượng nước đá tự tan do nhận nhiệt lượng từ môi trường xung quanh.', a:true, e:'Đúng. Phễu 2 đóng vai trò đối chứng để trừ đi lượng đá tan do môi trường.'},
+      {id:'c', lv:'Hiểu', txt:'Khối lượng nước đá tan chỉ do nhiệt lượng của dây điện trở ở phễu 1 cung cấp trong 300 s là 43 g.', a:false, e:'Sai. Khối lượng nước đá tan chỉ do dây điện trở là Δm = m₁ − m₂ = 35 − 8 = 27 g.'},
+      {id:'d', lv:'Vận dụng', txt:'Từ số liệu thí nghiệm trên, giá trị nhiệt nóng chảy riêng của nước đá mà nhóm học sinh xác định được là 3,33.10⁵ J/kg (làm tròn đến chữ số hàng phần trăm).', a:true, e:'Đúng. Ta có λ = (P.t)/Δm = (30 × 300)/0,027 ≈ 3,33.10⁵ J/kg.'}
+    ]
+  },
+  {
+    c: 4, tp: 'Chủ đề 4: Nhiệt hóa hơi riêng L (1 Biết – 2 Hiểu – 1 Vận dụng)',
+    stem: 'Một nhóm học sinh thực hiện thí nghiệm đo nhiệt hóa hơi riêng của nước bằng một ấm đun siêu tốc đặt trên đĩa cân điện tử. Khi nước bắt đầu sôi ở 100 °C, học sinh mở nắp ấm, đọc công suất của ấm trên oát kế là P = 1500 W và đồng thời theo dõi khối lượng nước trong ấm giảm dần theo thời gian t trên cân điện tử.',
+    items: [
+      {id:'a', lv:'Biết', txt:'Trong thí nghiệm trên, cân điện tử dùng để đo khối lượng nước đã hóa hơi và oát kế dùng để đo công suất của dòng điện.', a:true, e:'Đúng. Cân đo độ giảm khối lượng Δm, oát kế đo công suất P.'},
+      {id:'b', lv:'Hiểu', txt:'Việc mở nắp ấm khi nước sôi giúp hơi nước thoát ra ngoài dễ dàng, tránh ngưng tụ lại ở nắp ấm làm sai lệch kết quả đo khối lượng.', a:true, e:'Đúng. Mở nắp giúp hơi nước bay ra ngoài và ấm không tự ngắt điện.'},
+      {id:'c', lv:'Hiểu', txt:'Với công suất đun không đổi, đồ thị biểu diễn sự phụ thuộc của khối lượng nước đã hóa hơi Δm theo thời gian đun t (khi đang sôi) là một đường cong parabol.', a:false, e:'Sai. Vì Δm = (P/L).t nên đồ thị Δm theo t là một đoạn thẳng đi qua gốc tọa độ.'},
+      {id:'d', lv:'Vận dụng', txt:'Biết sau khoảng thời gian Δt = 180 s kể từ lúc sôi, số chỉ của cân điện tử giảm đi 115 g. Nếu bỏ qua hao phí nhiệt ra môi trường thì nhiệt hóa hơi riêng của nước đo được trong thí nghiệm này xấp xỉ bằng 2,35.10⁶ J/kg.', a:true, e:'Đúng. Ta có L = (P.Δt)/Δm = (1500 × 180)/0,115 ≈ 2,348.10⁶ J/kg ≈ 2,35.10⁶ J/kg.'}
+    ]
+  }
+];
+
+// DỮ LIỆU PHẦN III (6 CÂU TRẢ LỜI NGẮN)
+const P3 = [
+  {c:1, lv:'Biết', tp:'CĐ2: Định luật I NĐLH', q:'Trong một quá trình biến đổi trạng thái, người ta truyền cho khối khí trong xilanh nhiệt lượng Q = 250 J. Khối khí nở ra và thực hiện một công 90 J đẩy pit-tông đi lên (tức là A = −90 J). Độ biến thiên nội năng của khối khí trong quá trình này bằng bao nhiêu jun (J)?', ans:'160', unit:'J', e:'Áp dụng công thức ΔU = A + Q = (−90) + 250 = 160 J.'},
+  {c:2, lv:'Biết', tp:'CĐ3: Thang nhiệt độ', q:'Trong quá trình hàn nhiệt luyện kim, nhiệt độ của một mối hàn đạt tới 1227 °C. Biết công thức chuyển đổi nhiệt độ là T (K) = t (°C) + 273. Nhiệt độ của mối hàn này theo thang Kelvin là bao nhiêu Kelvin (K)?', ans:'1500', unit:'K', e:'Ta có T (K) = 1227 + 273 = 1500 K.'},
+  {c:3, lv:'Hiểu', tp:'CĐ2: Định luật I NĐLH', q:'Người ta thực hiện một công 450 J để nén một lượng khí trong xilanh, đồng thời lượng khí này truyền ra môi trường xung quanh một nhiệt lượng 130 J. Độ tăng nội năng của lượng khí trong quá trình trên là bao nhiêu jun (J)?', ans:'320', unit:'J', e:'Khí nhận công A = +450 J, truyền nhiệt ra ngoài Q = −130 J ⇒ ΔU = A + Q = 450 − 130 = 320 J.'},
+  {c:4, lv:'Hiểu', tp:'CĐ4: Cân bằng nhiệt', q:'Khi tôi một lưỡi dao, người thợ nhúng lưỡi dao bằng thép có khối lượng 0,30 kg đang ở nhiệt độ 500 °C vào một xô chứa 6,0 kg nước ở 25 °C. Biết nhiệt dung riêng của thép là 460 J/(kg·K), của nước là 4200 J/(kg·K). Bỏ qua sự hóa hơi của nước và sự trao đổi nhiệt với xô và môi trường. Nhiệt độ của nước khi có cân bằng nhiệt là bao nhiêu độ C (°C) (làm tròn kết quả đến chữ số hàng phần mười)?', ans:'27,6', unit:'°C', e:'Phương trình cân bằng nhiệt: 0,30 × 460 × (500 − t) = 6,0 × 4200 × (t − 25) ⇒ 138(500 − t) = 25200(t − 25) ⇒ t ≈ 27,6 °C.'},
+  {c:5, lv:'Vận dụng', tp:'CĐ2: ĐL I NĐLH & Cơ năng', q:'Một ô tô có khối lượng 1200 kg đang chạy trên đường ngang với tốc độ 72 km/h thì phanh gấp và dừng lại hoàn toàn. Coi 60 % động năng ban đầu của ô tô chuyển hóa thành nội năng của bốn đĩa phanh bằng thép có tổng khối lượng 16 kg. Biết nhiệt dung riêng của thép là 460 J/(kg·K). Độ tăng nhiệt độ của các đĩa phanh là bao nhiêu Kelvin (K) (làm tròn kết quả đến chữ số hàng phần mười)?', ans:'19,6', unit:'K', e:'Đổi v = 72 km/h = 20 m/s. Động năng Wđ = ½mv² = 0,5 × 1200 × 20² = 2,4.10⁵ J. Độ tăng nội năng đĩa phanh: ΔU = 0,60 × Wđ = 1,44.10⁵ J. Độ tăng nhiệt độ: ΔT = ΔU/(m.c) = 1,44.10⁵/(16 × 460) ≈ 19,6 K.'},
+  {c:6, lv:'Vận dụng', tp:'CĐ4: Nhiệt hóa hơi riêng', q:'Một nồi cơm điện có công suất 700 W. Sau khi nước trong nồi sôi ở 100 °C, nồi tiếp tục hoạt động ở chế độ nấu thêm 10 phút. Trong thời gian đó, 40 % điện năng tiêu thụ được dùng để làm nước hóa hơi ở nhiệt độ sôi. Biết nhiệt hóa hơi riêng của nước ở 100 °C là 2,26.10⁶ J/kg. Khối lượng nước đã hóa hơi trong 10 phút đó là bao nhiêu gam (g) (làm tròn kết quả đến chữ số hàng phần mười)?', ans:'74,3', unit:'g', e:'Nhiệt lượng làm hóa hơi nước: Q = 0,40.P.t = 0,40 × 700 × (10 × 60) = 1,68.10⁵ J. Khối lượng nước hóa hơi: m = Q/L = 1,68.10⁵/(2,26.10⁶) ≈ 0,07434 kg = 74,3 g.'}
+];
+
+function updateScoreBox(){
+  const totalP2 = scoreP2.reduce((a,b)=>a+b,0);
+  const total = scoreP1 + totalP2 + scoreP3;
+  document.getElementById('scoreBox').textContent = `Điểm: ${total.toFixed(2).replace('.',',')} / 10`;
+}
+
+function ansP1(btn, qi, oi){
+  const q = P1[qi];
+  const parent = btn.parentNode;
+  const btns = parent.querySelectorAll('.opt-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[q.a].classList.add('good');
+  if(oi === q.a){
+    scoreP1 += 0.25;
+  } else {
+    btn.classList.add('bad');
+  }
+  const st = document.getElementById('p1s_'+qi);
+  st.innerHTML = oi===q.a ? `<b style="color:var(--g)">✅ Chính xác (+0,25 đ)</b>` : `<b style="color:var(--r)">❌ Chưa đúng (Đáp án đúng: ${'ABCD'[q.a]})</b>`;
+  document.getElementById('p1d_'+qi).open = true;
+  updateScoreBox();
+}
+
+function ansP2(qi, itemIdx, val, btn){
+  const q = P2[qi];
+  const item = q.items[itemIdx];
+  const rowBtns = btn.parentNode.querySelectorAll('.tf-btn');
+  rowBtns.forEach(b => b.disabled = true);
+  if(val === item.a){
+    btn.classList.add('good');
+  } else {
+    btn.classList.add('bad');
+    rowBtns[item.a ? 0 : 1].classList.add('good');
+  }
+  p2User[qi][itemIdx] = (val === item.a);
+  const correctCount = Object.values(p2User[qi]).filter(Boolean).length;
+  const ptsMap = [0, 0.1, 0.25, 0.5, 1.0];
+  scoreP2[qi] = ptsMap[correctCount];
+  document.getElementById(`p2score_${qi}`).textContent = `Đúng ${correctCount}/4 ý (${scoreP2[qi].toFixed(2).replace('.',',')} điểm)`;
+  if(Object.keys(p2User[qi]).length === 4){
+    document.getElementById(`p2d_${qi}`).open = true;
+  }
+  updateScoreBox();
+}
+
+function ansP3(qi){
+  const q = P3[qi];
+  const inp = document.getElementById(`p3in_${qi}`);
+  const btn = document.getElementById(`p3btn_${qi}`);
+  const raw = inp.value.trim().replace('.',',');
+  if(!raw) return;
+  inp.disabled = true;
+  btn.disabled = true;
+  const numUser = parseFloat(raw.replace(',','.'));
+  const numAns = parseFloat(q.ans.replace(',','.'));
+  const isOk = Math.abs(numUser - numAns) < 0.05;
+  const st = document.getElementById(`p3st_${qi}`);
+  if(isOk){
+    scoreP3 += 0.25;
+    inp.style.borderColor = 'var(--g)';
+    st.innerHTML = `<b style="color:var(--g)">✅ Chính xác (+0,25 đ) – Đáp số: ${q.ans} ${q.unit}</b>`;
+  } else {
+    inp.style.borderColor = 'var(--r)';
+    st.innerHTML = `<b style="color:var(--r)">❌ Chưa đúng – Đáp số chuẩn: ${q.ans} ${q.unit}</b>`;
+  }
+  document.getElementById(`p3d_${qi}`).open = true;
+  updateScoreBox();
+}
+
+function toggleAllDetails(openState){
+  document.querySelectorAll('details.q').forEach(d => d.open = openState);
+}
+
+function render(){
+  const s = S[step];
+  const box = document.getElementById('mainContent');
+
+  const headerHtml = step < 3 ? `
+    <div class="head-bar">
+      <div>
+        <h1>${s.t}</h1>
+        <div class="mu">${s.sub}</div>
+      </div>
+      <div class="row" style="margin:0">
+        <button onclick="toggleAllDetails(true)">👁 Hiện hết giải thích</button>
+        <button onclick="toggleAllDetails(false)">🙈 Ẩn hết giải thích</button>
+      </div>
+    </div>
+  ` : `
+    <div class="head-bar">
+      <div>
+        <h1>${s.t}</h1>
+        <div class="mu">${s.sub}</div>
+      </div>
+    </div>
+  `;
+
+  if(step === 0){
+    box.innerHTML = headerHtml + P1.map((q, i) => `
+      <div class="q-card">
+        <div><b>Câu ${q.c}:</b> <span class="meta">${q.lv} • ${q.tp}</span></div>
+        <div style="margin-top:6px">${q.q}</div>
+        <div class="opt-grid">
+          ${q.o.map((opt, oi) => `<button class="opt-btn" onclick="ansP1(this,${i},${oi})"><b>${'ABCD'[oi]}.</b> ${opt}</button>`).join('')}
+        </div>
+        <div id="p1s_${i}" class="mu" style="margin-top:6px"></div>
+        <details class="q" id="p1d_${i}">
+          <summary>❓ Xem đáp án & hướng dẫn giải Câu ${q.c}</summary>
+          <div class="hs">👥 <b>Đáp án đúng: ${'ABCD'[q.a]}</b> — ${q.e}</div>
+        </details>
+      </div>
+    `).join('');
+  } else if(step === 1){
+    box.innerHTML = headerHtml + P2.map((q, qi) => `
+      <div class="q-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+          <div><b>Câu ${q.c}:</b> <span class="meta">${q.tp}</span></div>
+          <b id="p2score_${qi}" style="color:var(--ac);font-size:.85rem">Chưa làm</b>
+        </div>
+        <div style="margin:8px 0">${q.stem}</div>
+        <table>
+          <tr><th style="width:64%">Phát biểu</th><th style="width:14%">Mức độ</th><th style="width:22%">Lựa chọn</th></tr>
+          ${q.items.map((it, idx) => `
+            <tr>
+              <td><b>${it.id})</b> ${it.txt}</td>
+              <td style="text-align:center"><span class="meta" style="margin:0">${it.lv}</span></td>
+              <td style="text-align:center">
+                <button class="tf-btn" onclick="ansP2(${qi},${idx},true,this)">Đúng</button>
+                <button class="tf-btn" onclick="ansP2(${qi},${idx},false,this)">Sai</button>
+              </td>
+            </tr>
+          `).join('')}
+        </table>
+        <details class="q" id="p2d_${qi}">
+          <summary>❓ Xem đáp án & giải thích chi tiết Câu ${q.c}</summary>
+          <div class="hs">
+            ${q.items.map(it => `<div>• <b>Ý ${it.id}) [${it.a?'ĐÚNG':'SAI'}]:</b> ${it.e}</div>`).join('')}
+          </div>
+        </details>
+      </div>
+    `).join('');
+  } else if(step === 2){
+    box.innerHTML = headerHtml + P3.map((q, qi) => `
+      <div class="q-card">
+        <div><b>Câu ${q.c}:</b> <span class="meta">${q.lv} • ${q.tp}</span></div>
+        <div style="margin:8px 0">${q.q}</div>
+        <div class="row">
+          <span><b>Đáp số:</b></span>
+          <input type="text" id="p3in_${qi}" placeholder="Nhập số..." onkeydown="if(event.key==='Enter')ansP3(${qi})">
+          <span><b>${q.unit}</b></span>
+          <button class="p" id="p3btn_${qi}" onclick="ansP3(${qi})">Kiểm tra</button>
+        </div>
+        <div id="p3st_${qi}" class="mu" style="margin-top:4px"></div>
+        <details class="q" id="p3d_${qi}">
+          <summary>❓ Xem đáp số & lời giải chi tiết Câu ${q.c}</summary>
+          <div class="hs">👥 <b>Đáp số: ${q.ans} ${q.unit}</b> — ${q.e}</div>
+        </details>
+      </div>
+    `).join('');
+  } else {
+    box.innerHTML = headerHtml + `
+      <div class="k"><b>Tổng hợp Ma trận:</b> Phần I (4,5đ: 8 Biết – 2 Hiểu – 8 VD) • Phần II (4,0đ: 6 Biết – 8 Hiểu – 2 VD) • Phần III (1,5đ: 2 Biết – 2 Hiểu – 2 VD). Tổng cộng: <b>40% Biết – 30% Hiểu – 30% Vận dụng</b>.</div>
+
+      <h2>1. Bảng đáp án Phần I (18 câu – Mỗi câu 0,25 điểm)</h2>
+      <table>
+        <tr><th>Câu</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
+        <tr style="text-align:center;font-weight:700"><td>Đáp án</td><td>B</td><td>C</td><td>B</td><td>D</td><td>C</td><td>A</td><td>B</td><td>D</td><td>B</td></tr>
+        <tr style="text-align:center"><td>Mức độ</td><td>B (CĐ1)</td><td>B (CĐ2)</td><td>B (CĐ2)</td><td>B (CĐ3)</td><td>B (CĐ4)</td><td>B (CĐ4)</td><td>B (CĐ4)</td><td>B (CĐ4)</td><td>H (CĐ1)</td></tr>
+        <tr><th>Câu</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th></tr>
+        <tr style="text-align:center;font-weight:700"><td>Đáp án</td><td>B</td><td>B</td><td>A</td><td>A</td><td>B</td><td>B</td><td>A</td><td>B</td><td>A</td></tr>
+        <tr style="text-align:center"><td>Mức độ</td><td>H (CĐ3)</td><td>VD (CĐ1)</td><td>VD (CĐ1)</td><td>VD (CĐ2)</td><td>VD (CĐ3)</td><td>VD (CĐ4)</td><td>VD (CĐ4)</td><td>VD (CĐ4)</td><td>VD (CĐ4)</td></tr>
+      </table>
+
+      <h2 style="margin-top:14px">2. Bảng đáp án Phần II (4 câu Đúng/Sai – Tối đa 4,0 điểm)</h2>
+      <table>
+        <tr><th>Câu</th><th>Ý a)</th><th>Ý b)</th><th>Ý c)</th><th>Ý d)</th><th>Đơn vị kiến thức theo Ma trận</th></tr>
+        <tr style="text-align:center"><td><b>Câu 1</b></td><td><b>Đúng</b> (Biết)</td><td><b>Đúng</b> (Biết)</td><td><b>Đúng</b> (Hiểu)</td><td><b>Sai</b> (Hiểu)</td><td style="text-align:left">Chủ đề 1: Sự chuyển thể (2B – 2H)</td></tr>
+        <tr style="text-align:center"><td><b>Câu 2</b></td><td><b>Đúng</b> (Biết)</td><td><b>Đúng</b> (Biết)</td><td><b>Sai</b> (Hiểu)</td><td><b>Đúng</b> (Hiểu)</td><td style="text-align:left">Chủ đề 2: Nội năng & ĐL I NĐLH (2B – 2H)</td></tr>
+        <tr style="text-align:center"><td><b>Câu 3</b></td><td><b>Đúng</b> (Biết)</td><td><b>Đúng</b> (Hiểu)</td><td><b>Sai</b> (Hiểu)</td><td><b>Đúng</b> (VD)</td><td style="text-align:left">Chủ đề 4: Nhiệt nóng chảy riêng λ (1B – 2H – 1VD)</td></tr>
+        <tr style="text-align:center"><td><b>Câu 4</b></td><td><b>Đúng</b> (Biết)</td><td><b>Đúng</b> (Hiểu)</td><td><b>Sai</b> (Hiểu)</td><td><b>Đúng</b> (VD)</td><td style="text-align:left">Chủ đề 4: Nhiệt hóa hơi riêng L (1B – 2H – 1VD)</td></tr>
+      </table>
+
+      <h2 style="margin-top:14px">3. Bảng đáp án Phần III (6 câu trả lời ngắn – Mỗi câu 0,25 điểm)</h2>
+      <table>
+        <tr><th>Câu</th><th>Câu 1</th><th>Câu 2</th><th>Câu 3</th><th>Câu 4</th><th>Câu 5</th><th>Câu 6</th></tr>
+        <tr style="text-align:center;font-weight:700"><td>Đáp án</td><td>160</td><td>1500</td><td>320</td><td>27,6</td><td>19,6</td><td>74,3</td></tr>
+        <tr style="text-align:center"><td>Mức độ</td><td>Biết (CĐ2)</td><td>Biết (CĐ3)</td><td>Hiểu (CĐ2)</td><td>Hiểu (CĐ4)</td><td>VD (CĐ2)</td><td>VD (CĐ4)</td></tr>
+      </table>
+    `;
+  }
+
+  document.getElementById('bar').innerHTML = S.map((item, i) => `<b title="${item.t}" class="${i===step?'on':done.includes(i)?'ok':''}" onclick="go(${i})"></b>`).join('');
+  document.getElementById('pv').disabled = (step === 0);
+  document.getElementById('nx').disabled = (step === S.length - 1);
+}
+
+function go(i){
+  if(!done.includes(step) && i > step) done.push(step);
+  step = i;
+  window.scrollTo({top:0, behavior:'smooth'});
+  render();
+}
+
+function fs(d){
+  sz = d===-99 ? 24 : Math.min(36, Math.max(18, sz + d));
+  document.documentElement.style.fontSize = sz + 'px';
+  document.getElementById('fsv').textContent = sz;
+}
+
+document.getElementById('pv').onclick = () => go(step - 1);
+document.getElementById('nx').onclick = () => go(step + 1);
+
+render();
+</script>
+</body>
+</html>
