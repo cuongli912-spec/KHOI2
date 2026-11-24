@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kiểm tra thường xuyên số 2 – Vật lí 12 – Chương 2: Khí lí tưởng</title>
+<style>
+:root{--bg1:#06204a;--bg2:#0c3470;--gold:#f5c542;--gold2:#ffe08a;--tx:#fff;--card:rgba(255,255,255,.09);--ok:#2e9d4f;--red:#c0392b}
+[data-theme=light]{--bg1:#eef4ff;--bg2:#d8e6ff;--gold:#b8860b;--gold2:#7a5a00;--tx:#0b2150;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Arial,sans-serif;color:var(--tx);background:linear-gradient(160deg,var(--bg1),var(--bg2));min-height:100vh;font-size:18px;user-select:none;-webkit-user-select:none}
+input,textarea{user-select:text;-webkit-user-select:text}
+.wrap{width:100%;max-width:100%;margin:0;padding:4px 6px}
+.frame{width:100%;min-height:calc(100vh - 46px);border:2px solid var(--gold);border-radius:10px;padding:8px 10px}
+h1{color:var(--gold2);text-align:center;margin:6px 0;font-size:1.25em}
+.sub{text-align:center;opacity:.9;margin:2px 0 8px}
+.btn{background:var(--gold);color:#1b1b1b;border:0;border-radius:20px;padding:8px 18px;font-weight:700;font-size:.9em;cursor:pointer}
+.btn.red{background:var(--red);color:#fff}.btn.ghost{background:transparent;color:var(--gold2);border:1.5px solid var(--gold)}
+.btn.sm{padding:4px 11px;font-size:.8em}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:1000px){.grid4{grid-template-columns:1fr 1fr}}@media(max-width:560px){.grid4{grid-template-columns:1fr}}
+label{font-size:.8em;color:var(--gold2);display:block;margin-bottom:2px}
+input[type=text],input[type=password]{width:100%;padding:8px;border-radius:8px;border:1.5px solid var(--gold);font-size:.95em;background:#fff;color:#111}
+.card{background:var(--card);border:1px solid rgba(245,197,66,.45);border-radius:10px;padding:8px 12px;margin:8px 0}
+.rules li{margin:3px 0;font-size:.85em}
+#tools{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center;margin-bottom:4px}
+#topbar{position:sticky;top:0;z-index:9;background:var(--bg1);border:1.5px solid var(--gold);border-radius:10px;padding:6px 10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#timer{font-size:1.3em;font-weight:800;color:var(--gold2)}#timer.warn{color:#ff6b5e}
+#bar{flex:1 1 140px;height:8px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden}#barin{height:100%;width:0;background:var(--gold)}
+#pal{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+#pal button{width:34px;height:30px;border-radius:6px;border:1px solid var(--gold);background:transparent;color:var(--tx);font-size:.7em;cursor:pointer}
+#pal button.d{background:var(--gold);color:#111;font-weight:700}
+.sec{color:var(--gold2);font-size:1.05em;margin:12px 0 2px;border-bottom:2px solid var(--gold)}
+.q{background:var(--card);border-radius:10px;padding:8px 12px;margin:8px 0;border-left:4px solid var(--gold)}
+.q b.n{color:var(--gold2)}
+.optgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}@media(max-width:820px){.optgrid{grid-template-columns:1fr}}
+.opt{padding:8px 10px;border:1.5px solid rgba(245,197,66,.6);border-radius:8px;cursor:pointer}.opt.s{background:var(--gold);color:#111;font-weight:600}
+.tf{display:flex;gap:8px;align-items:center;margin:5px 0;flex-wrap:wrap}.tf .t{flex:1 1 300px}
+.tf button{padding:4px 14px;border-radius:14px;border:1.5px solid var(--gold);background:transparent;color:var(--tx);cursor:pointer}.tf button.s{background:var(--gold);color:#111;font-weight:700}
+.sa input{width:200px;margin-top:6px}
+.res td{padding:6px 12px;border-bottom:1px solid rgba(245,197,66,.4)}
+.hide{display:none}
+.big{font-size:2.2em;color:var(--gold2);font-weight:800}
+</style>
+</head>
+<body oncontextmenu="return false">
+<div class="wrap"><div class="frame">
+<div id="tools">
+ <button class="btn sm ghost" onclick="fs(-2)">A-</button><span id="fsz">18</span><button class="btn sm ghost" onclick="fs(2)">A+</button>
+ <button class="btn sm ghost" onclick="toggleTheme()">☀/🌙</button>
+ <button class="btn sm ghost" onclick="toggleFull()">⛶ Toàn màn hình</button>
+</div>
+
+<div id="s-login">
+ <h1>KIỂM TRA THƯỜNG XUYÊN SỐ 2 – VẬT LÍ 12</h1>
+ <div class="sub">Chương 2: Khí lí tưởng · Trường THPT Phạm Thành Trung · 30 phút · 10,0 điểm</div>
+ <div class="card"><div class="grid4">
+  <div><label>Họ và tên</label><input type="text" id="ten" autocomplete="off"></div>
+  <div><label>Lớp</label><input type="text" id="lop" placeholder="VD: 12A2" autocomplete="off"></div>
+  <div><label>Số thứ tự trong lớp</label><input type="text" id="stt" inputmode="numeric" autocomplete="off"></div>
+  <div><label>Mật khẩu vào đề</label><input type="password" id="pw" autocomplete="off"></div>
+ </div><div id="lmsg" style="color:#ff8a80;margin-top:6px;font-weight:600"></div></div>
+ <div class="card"><b style="color:var(--gold2)">Cấu trúc đề:</b> Phần I – 12 câu nhiều phương án (6,0đ) · Phần II – 2 câu đúng/sai (2,0đ) · Phần III – 4 câu trả lời ngắn (2,0đ).
+  <ul class="rules">
+   <li>Đề được rút ngẫu nhiên, thứ tự câu và phương án mỗi bạn có thể khác nhau.</li>
+   <li>Không chuyển tab/cửa sổ, không thu nhỏ trình duyệt: hệ thống sẽ <b>tự động nộp bài</b> ngay khi phát hiện.</li>
+   <li>Không đăng nhập cùng lúc trên 2 thiết bị. Mỗi bạn có tối đa 3 lượt; vào lại phải có mật khẩu của lượt kế tiếp do giáo viên cấp.</li>
+   <li>Phần III: có thể nhập dấu phẩy hoặc dấu chấm thập phân. Sau khi nộp chỉ hiển thị điểm, không hiển thị đáp án.</li>
+  </ul>
+  <button class="btn" onclick="startExam()">Bắt đầu làm bài</button></div>
+</div>
+
+<div id="s-exam" class="hide">
+ <div id="topbar">
+  <span id="timer">30:00</span><div id="bar"><div id="barin"></div></div>
+  <span>Mã đề: <b id="made"></b></span><span>Lượt: <b id="luot"></b></span><span id="prog"></span>
+  <button class="btn sm ghost" onclick="jump('sec1')">Phần I</button><button class="btn sm ghost" onclick="jump('sec2')">Phần II</button><button class="btn sm ghost" onclick="jump('sec3')">Phần III</button>
+  <button class="btn sm red" onclick="confirmSubmit()">Nộp bài</button>
+ </div>
+ <div id="pal"></div>
+ <div id="paper"></div>
+ <div style="text-align:center;margin:12px"><button class="btn red" onclick="confirmSubmit()">Nộp bài</button></div>
+</div>
+
+<div id="s-result" class="hide" style="text-align:center">
+ <h1>KẾT QUẢ BÀI LÀM</h1>
+ <div class="big" id="r-total"></div>
+ <div id="r-status" style="margin:6px;font-weight:700"></div>
+ <table class="res" style="margin:8px auto"><tbody id="r-body"></tbody></table>
+ <button class="btn ghost" onclick="location.reload()">Về trang đầu</button>
+</div>
+</div></div>
+
+<script>
+/* ================= CẤU HÌNH ================= */
+const CONFIG={
+ WEBHOOK:"DAN_LINK_WEB_APP_APPS_SCRIPT_VAO_DAY",
+ EXAM_ID:"KTTX2_LY12_C2_2026",
+ PASSWORDS:{1:"000000",2:"000000",3:"000000"},
+ MAX_ATTEMPTS:3, PING_INTERVAL_MS:15000, MINUTES:30
+};
+/* ============ NGÂN HÀNG CÂU HỎI (mỗi slot = mảng các câu có thể rút; thêm câu vào slot để đề ngẫu nhiên hơn) ============ */
+const P1=(ma,q,o,a)=>({ma,q,o,a});
+const BANK={
+p1:[
+[P1("Đ1-I.1","Phát biểu nào sau đây phù hợp với nội dung của mô hình động học phân tử chất khí?",["Kích thước các phân tử khí rất lớn so với khoảng cách trung bình giữa chúng.","Các phân tử khí đứng yên, chỉ chuyển động khi bị nung nóng.","Các phân tử khí chuyển động hỗn loạn không ngừng, va chạm đàn hồi với nhau và với thành bình.","Giữa hai lần va chạm, các phân tử khí chuyển động chậm dần rồi dừng lại."],2)],
+[P1("Đ1-I.2","Nung nóng một lượng khí trong bình kín (thể tích không đổi) thì áp suất khí tăng. Giải thích nào sau đây là đúng?",["Số phân tử khí trong bình tăng lên.","Các phân tử chuyển động nhanh hơn nên số va chạm vào thành bình trong mỗi giây và lực va chạm trung bình đều tăng.","Kích thước mỗi phân tử khí tăng lên.","Khối lượng mỗi phân tử khí tăng lên."],1)],
+[P1("Đ1-I.3","Hệ thức nào sau đây biểu diễn định luật Boyle cho một lượng khí xác định?",["p₁V₁ = p₂V₂ (nhiệt độ không đổi).","p₁/V₁ = p₂/V₂ (nhiệt độ không đổi).","V₁/T₁ = V₂/T₂ (áp suất không đổi).","p₁/T₁ = p₂/T₂ (thể tích không đổi)."],0)],
+[P1("Đ1-I.4","Trong hệ tọa độ (p, V), đường biểu diễn quá trình đẳng nhiệt của một lượng khí xác định là",["đường thẳng đi qua gốc tọa độ.","đường thẳng song song với trục V.","đường thẳng song song với trục p.","một nhánh của đường hypebol."],3)],
+[P1("Đ1-I.5","Phát biểu nào sau đây đúng với định luật Charles?",["Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ nghịch với nhiệt độ tuyệt đối.","Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ thuận với nhiệt độ tuyệt đối.","Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ thuận với nhiệt độ Celsius.","Trong quá trình đẳng áp, thể tích của một lượng khí xác định không phụ thuộc vào nhiệt độ."],1)],
+[P1("Đ1-I.6","Đồ thị V – T (T tính theo thang Kelvin) mô tả quá trình đẳng áp của một lượng khí xác định là",["đường hypebol.","đường thẳng song song với trục T.","đường thẳng có phần kéo dài đi qua gốc tọa độ.","đường thẳng song song với trục V."],2)],
+[P1("Đ1-I.7","Hệ thức nào sau đây mô tả quá trình đẳng tích của một lượng khí xác định (T là nhiệt độ tuyệt đối)?",["pT = hằng số.","pV = hằng số.","V/T = hằng số.","p/T = hằng số."],3)],
+[P1("Đ1-I.8","Trong quá trình đẳng tích của một lượng khí xác định, đồ thị biểu diễn áp suất p theo nhiệt độ t (°C) là",["đường thẳng dốc lên, phần kéo dài cắt trục nhiệt độ tại −273 °C.","đường thẳng đi qua gốc tọa độ (0, 0).","đường hypebol.","đường thẳng song song với trục t."],0)],
+[P1("Đ1-I.9","Phương trình trạng thái của khí lí tưởng (lượng khí xác định, T là nhiệt độ tuyệt đối) là",["pT/V = hằng số.","pV/T = hằng số.","VT/p = hằng số.","p/(VT) = hằng số."],1)],
+[P1("Đ1-I.10","Khí trong xi-lanh cách nhiệt có áp suất p₁, thể tích V₁. Nén nhanh pít-tông để thể tích khí giảm còn V₁/2, khi đó áp suất khí là p₂. Nhận định nào sau đây đúng?",["p₂ nhỏ hơn 2p₁ vì khí tỏa nhiệt ra ngoài.","p₂ bằng 2p₁ theo định luật Boyle.","p₂ lớn hơn 2p₁ vì nhiệt độ khí tăng lên.","p₂ bằng p₁ vì xi-lanh cách nhiệt."],2)],
+[P1("Đ1-I.11","Phương trình Clapeyron đối với n mol khí lí tưởng được viết đúng là",["pV = nRT, với T tính theo °C.","pV = nR/T.","p/V = nRT, với V tính theo m³.","pV = nRT, với p tính theo Pa, V tính theo m³, T tính theo K."],3)],
+[P1("Đ1-I.12","Hai bình chứa khí heli (He) và khí oxi (O₂) ở cùng nhiệt độ. Nhận định nào sau đây đúng khi so sánh các phân tử khí trong hai bình?",["Động năng tịnh tiến trung bình bằng nhau; tốc độ trung bình của phân tử He lớn hơn.","Động năng tịnh tiến trung bình bằng nhau; tốc độ trung bình của phân tử O₂ lớn hơn.","Động năng tịnh tiến trung bình của He lớn hơn; tốc độ trung bình bằng nhau.","Động năng tịnh tiến trung bình và tốc độ trung bình của hai loại phân tử đều bằng nhau."],0)]
+],
+p2:[
+[{ma:"Đ1-II.1",q:"Khi nghiên cứu chất khí theo mô hình động học phân tử, một học sinh đưa ra các nhận định sau:",s:[
+ ["Áp suất chất khí tác dụng lên thành bình là do các phân tử khí va chạm vào thành bình gây ra.",1],
+ ["Theo mô hình động học phân tử, va chạm giữa các phân tử khí là va chạm không đàn hồi nên động năng của chúng giảm dần theo thời gian.",0],
+ ["Khí thực có thể coi gần đúng là khí lí tưởng khi ở áp suất thấp và nhiệt độ không quá thấp.",1],
+ ["Một lốp xe được bơm căng, để ngoài nắng nóng lên (thể tích lốp coi như không đổi): số chỉ áp kế tăng vì số lần va chạm của phân tử lên vỏ lốp trong mỗi giây tăng, còn lực va chạm trung bình của mỗi lần va chạm không đổi.",0]]}],
+[{ma:"Đ1-II.2",q:"Bóng thám không chứa khí heli được thả từ mặt đất bay lên cao. Khi bay lên, áp suất và nhiệt độ của khí quyển đều giảm, vỏ bóng giãn ra nên thể tích bóng tăng dần. Coi khí heli là khí lí tưởng, khối lượng khí trong bóng không đổi.",s:[
+ ["Nếu giả sử nhiệt độ khí trong bóng không đổi thì khi áp suất giảm, thể tích khí trong bóng tăng (p và V tỉ lệ nghịch).",1],
+ ["Nếu giả sử áp suất khí trong bóng không đổi và nhiệt độ giảm thì thể tích khí trong bóng tăng.",0],
+ ["Nếu vỏ bóng không giãn nở (thể tích khí không đổi) và bóng bay lên vùng khí quyển có nhiệt độ thấp hơn thì áp suất khí trong bóng giảm.",1],
+ ["Ở mặt đất, khí trong bóng có áp suất 1,0.10⁵ Pa, nhiệt độ 27 °C. Ở độ cao khoảng 10 km, áp suất là 2,5.10⁴ Pa, nhiệt độ −48 °C. Coi áp suất, nhiệt độ khí trong bóng bằng của khí quyển xung quanh thì thể tích bóng ở độ cao đó gấp 3 lần thể tích bóng ở mặt đất.",1]]}]
+],
+p3:[
+[{ma:"Đ1-III.1",q:"Một lượng khí có thể tích 12 lít ở áp suất 1,5 atm. Nén khí đẳng nhiệt đến áp suất 4,5 atm. Thể tích của khí sau khi nén là bao nhiêu lít? (Làm tròn kết quả đến chữ số hàng đơn vị.)",a:4}],
+[{ma:"Đ1-III.2",q:"Khí trong xi-lanh có pít-tông chuyển động tự do (áp suất không đổi), thể tích 2,0 lít ở 27 °C. Hơ nóng khí đến khi thể tích là 2,4 lít. Nhiệt độ cuối của khí là bao nhiêu °C? (Làm tròn kết quả đến chữ số hàng đơn vị.)",a:87}],
+[{ma:"Đ1-III.3",q:"Lốp ô tô chứa khí ở 17 °C, áp suất 2,9 atm. Sau khi xe chạy, nhiệt độ khí trong lốp tăng lên 57 °C. Coi thể tích lốp không đổi. Áp suất khí trong lốp lúc này là bao nhiêu atm? (Làm tròn kết quả đến chữ số hàng phần mười.)",a:3.3}],
+[{ma:"Đ1-III.4",q:"Một bình dung tích 20 lít chứa khí lí tưởng ở 27 °C, áp suất 2,0 atm. Số mol khí trong bình là bao nhiêu mol? (Làm tròn kết quả đến chữ số hàng phần mười.) Cho R = 8,31 J/(mol·K); 1 atm = 1,013.10⁵ Pa.",a:1.6}]
+]};
+const CONST_NOTE="Cho: R = 8,31 J/(mol·K); k = 1,38.10⁻²³ J/K; 1 atm = 1,013.10⁵ Pa; T(K) = t(°C) + 273.";
+
+/* ================= TIỆN ÍCH ================= */
+const $=id=>document.getElementById(id);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const strip=h=>String(h).replace(/<[^>]*>/g,"");
+const pad=n=>String(n).padStart(2,"0");
+const fmt=d=>`${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;
+let size=18,isConfirming=false,EX=null,ANS=null,ST={},timerH=null,pingH=null,submitted=false,guardOn=false;
+function fs(d){size=Math.max(14,Math.min(34,size+d));document.body.style.fontSize=size+"px";$("fsz").textContent=size}
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==="dark"?"light":"dark"}
+function toggleFull(){isConfirming=true;setTimeout(()=>isConfirming=false,600);
+ if(!document.fullscreenElement)(document.documentElement.requestFullscreen||function(){}).call(document.documentElement);else document.exitFullscreen()}
+function jump(id){const e=$(id);if(e)e.scrollIntoView({behavior:"smooth",block:"start"})}
+function devId(){let d=localStorage.getItem("DEVICE_ID");if(!d){d="D"+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem("DEVICE_ID",d)}return d}
+const hasHook=()=>/^https:\/\/script\.google\.com\//.test(CONFIG.WEBHOOK);
+async function post(obj){if(!hasHook())return{ok:true,offline:true};
+ try{const r=await fetch(CONFIG.WEBHOOK,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({examId:CONFIG.EXAM_ID},obj))});return await r.json()}
+ catch(e){return{ok:true,error:String(e),offline:true}}}
+
+/* ================= RÚT ĐỀ ================= */
+function makeExam(){
+ const p1=shuffle(BANK.p1.map(sl=>{const q=pick(sl);const keep=q.o.every(x=>strip(x).length<=10);
+  const idx=keep?q.o.map((_,i)=>i):shuffle(q.o.map((_,i)=>i));return{ma:q.ma,q:q.q,o:idx.map(i=>q.o[i]),a:idx.indexOf(q.a)}}));
+ const p2=BANK.p2.map(sl=>pick(sl));const p3=BANK.p3.map(sl=>pick(sl));
+ return{p1,p2,p3,made:Math.random().toString(36).slice(2,6).toUpperCase(),ma:[...p1,...p2,...p3].map(x=>x.ma).join(",")};
+}
+
+/* ================= BẮT ĐẦU ================= */
+async function startExam(){
+ const ten=$("ten").value.trim(),lop=$("lop").value.trim().toUpperCase().replace(/\s+/g,""),sttn=parseInt($("stt").value,10),pw=$("pw").value.trim();
+ const m=t=>{$("lmsg").textContent=t};
+ if(!ten||!lop||!sttn||sttn<1)return m("Vui lòng nhập đủ Họ và tên, Lớp, Số thứ tự.");
+ const stt=pad(sttn),key=`${lop}_${stt}`,lk=`KT_${CONFIG.EXAM_ID}_${key}`;
+ const used=parseInt(localStorage.getItem(lk)||"0",10),att=used+1;
+ if(att>CONFIG.MAX_ATTEMPTS)return m("Bạn đã dùng hết 3 lượt làm bài.");
+ if(pw!==CONFIG.PASSWORDS[att])return m(att===1?"Mật khẩu vào đề không đúng.":`Cần nhập mật khẩu lượt ${att} do giáo viên cấp.`);
+ m("Đang kiểm tra phiên làm bài...");
+ const dev=devId(),rs=await post({action:"start",key,lop,stt,ten,attempt:att,password:pw,device:dev});
+ if(rs&&rs.ok===false)return m(rs.reason==="MULTI_DEVICE"?"Tài khoản này đang làm bài ở thiết bị khác. Không được đăng nhập 2 thiết bị.":(rs.message||"Không vào được đề ("+rs.reason+")."));
+ localStorage.setItem(lk,String(att)); // lưu lượt ngay khi mở đề (chống F5)
+ EX=makeExam();ANS={p1:Array(12).fill(null),p2:[Array(4).fill(null),Array(4).fill(null)],p3:Array(4).fill("")};
+ ST={ten,lop,stt,key,att,dev,open:new Date(),end:Date.now()+CONFIG.MINUTES*60000};submitted=false;
+ $("made").textContent=EX.made;$("luot").textContent=att+"/"+CONFIG.MAX_ATTEMPTS;
+ render();$("s-login").classList.add("hide");$("s-exam").classList.remove("hide");window.scrollTo(0,0);
+ tick();timerH=setInterval(tick,500);
+ if(hasHook())pingH=setInterval(doPing,CONFIG.PING_INTERVAL_MS);
+ setTimeout(()=>{guardOn=true},1200);
+}
+
+/* ================= HIỂN THỊ ================= */
+function render(){
+ let h=`<div class="card" style="font-size:.85em">${CONST_NOTE}</div><div class="sec" id="sec1"><b>PHẦN I.</b> Trắc nghiệm nhiều phương án lựa chọn (12 câu – 6,0 điểm). Mỗi câu chỉ chọn một phương án.</div>`;
+ EX.p1.forEach((q,i)=>{h+=`<div class="q" id="q1_${i}"><b class="n">Câu ${i+1}.</b> ${q.q}<div class="optgrid">`+q.o.map((o,j)=>`<div class="opt" id="o${i}_${j}" onclick="sel1(${i},${j})"><b>${"ABCD"[j]}.</b> ${o}</div>`).join("")+`</div></div>`});
+ h+=`<div class="sec" id="sec2"><b>PHẦN II.</b> Trắc nghiệm đúng sai (2 câu – 2,0 điểm). Mỗi ý a), b), c), d) chọn Đúng hoặc Sai.</div>`;
+ EX.p2.forEach((q,i)=>{h+=`<div class="q" id="q2_${i}"><b class="n">Câu ${i+1}.</b> ${q.q}`+q.s.map((s,j)=>`<div class="tf"><span class="t"><b>${"abcd"[j]})</b> ${s[0]}</span><button id="t${i}_${j}_1" onclick="sel2(${i},${j},1)">Đúng</button><button id="t${i}_${j}_0" onclick="sel2(${i},${j},0)">Sai</button></div>`).join("")+`</div>`});
+ h+=`<div class="sec" id="sec3"><b>PHẦN III.</b> Trắc nghiệm trả lời ngắn (4 câu – 2,0 điểm).</div>`;
+ EX.p3.forEach((q,i)=>{h+=`<div class="q sa" id="q3_${i}"><b class="n">Câu ${i+1}.</b> ${q.q}<br><input type="text" inputmode="decimal" placeholder="Nhập đáp số" oninput="sel3(${i},this.value)" autocomplete="off"></div>`});
+ $("paper").innerHTML=h;
+ let p="";for(let i=0;i<12;i++)p+=`<button id="p1_${i}" onclick="jump('q1_${i}')">I.${i+1}</button>`;
+ for(let i=0;i<2;i++)p+=`<button id="p2_${i}" onclick="jump('q2_${i}')">II.${i+1}</button>`;
+ for(let i=0;i<4;i++)p+=`<button id="p3_${i}" onclick="jump('q3_${i}')">III.${i+1}</button>`;
+ $("pal").innerHTML=p;upd();
+}
+function sel1(i,j){ANS.p1[i]=j;EX.p1[i].o.forEach((_,k)=>$(`o${i}_${k}`).classList.toggle("s",k===j));upd()}
+function sel2(i,j,v){ANS.p2[i][j]=v;$(`t${i}_${j}_1`).classList.toggle("s",v===1);$(`t${i}_${j}_0`).classList.toggle("s",v===0);upd()}
+function sel3(i,v){ANS.p3[i]=v;upd()}
+function upd(){let d=0;
+ ANS.p1.forEach((a,i)=>{const ok=a!==null;if(ok)d++;$("p1_"+i).classList.toggle("d",ok)});
+ ANS.p2.forEach((a,i)=>{const ok=a.every(x=>x!==null);if(ok)d++;$("p2_"+i).classList.toggle("d",ok)});
+ ANS.p3.forEach((a,i)=>{const ok=a.trim()!=="";if(ok)d++;$("p3_"+i).classList.toggle("d",ok)});
+ $("prog").textContent=`Đã làm ${d}/18`;}
+function tick(){const left=Math.max(0,Math.round((ST.end-Date.now())/1000));
+ $("timer").textContent=`${pad(Math.floor(left/60))}:${pad(left%60)}`;$("timer").classList.toggle("warn",left<=300);
+ $("barin").style.width=(100-left/(CONFIG.MINUTES*60)*100)+"%";
+ if(left<=0&&!submitted)submitExam("TIME_UP")}
+function confirmSubmit(){isConfirming=true;const un=ANS.p1.filter(a=>a===null).length+ANS.p2.filter(a=>a.some(x=>x===null)).length+ANS.p3.filter(a=>a.trim()==="").length;
+ const ok=confirm(un?`Bạn còn ${un} câu chưa hoàn thành. Vẫn nộp bài?`:"Xác nhận nộp bài?");setTimeout(()=>isConfirming=false,600);if(ok)submitExam("OK")}
+
+/* ================= CHỐNG GIAN LẬN ================= */
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&guardOn&&!isConfirming&&!submitted)submitExam("VIOLATE_TAB")});
+window.addEventListener("blur",()=>{if(guardOn&&!isConfirming&&!submitted)submitExam("VIOLATE_TAB")});
+window.addEventListener("beforeunload",e=>{if(EX&&!submitted){e.preventDefault();e.returnValue=""}});
+async function doPing(){if(submitted)return;const r=await post({action:"ping",key:ST.key,device:ST.dev,attempt:ST.att});
+ if(r&&r.ok===false&&r.reason==="MULTI_DEVICE")submitExam("VIOLATE_DEVICE")}
+
+/* ================= CHẤM & NỘP ================= */
+function norm(s){return parseFloat(String(s).trim().replace(",","."))}
+async function submitExam(reason){
+ if(submitted)return;submitted=true;clearInterval(timerH);clearInterval(pingH);
+ let s1=0,s2=0,s3=0;
+ EX.p1.forEach((q,i)=>{if(ANS.p1[i]===q.a)s1+=0.5});
+ EX.p2.forEach((q,i)=>q.s.forEach((s,j)=>{if(ANS.p2[i][j]!==null&&ANS.p2[i][j]===s[1])s2+=0.25}));
+ EX.p3.forEach((q,i)=>{const v=norm(ANS.p3[i]);if(!isNaN(v)&&Math.abs(v-q.a)<=0.015)s3+=0.5});
+ const total=s1+s2+s3,end=new Date(),dur=Math.round((end-ST.open)/1000),durText=`${Math.floor(dur/60)} phút ${dur%60} giây`;
+ const stMap={OK:"Nộp bài bình thường",TIME_UP:"Hết giờ – hệ thống tự nộp",VIOLATE_TAB:"VI PHẠM: chuyển màn hình/tab – tự động nộp",VIOLATE_DEVICE:"VI PHẠM: đăng nhập 2 thiết bị – tự động nộp"};
+ const status=stMap[reason]||reason,openT=fmt(ST.open),subT=fmt(end);
+ const f=n=>String(n.toFixed(2)).replace(".",",");
+ $("s-exam").classList.add("hide");$("s-result").classList.remove("hide");window.scrollTo(0,0);
+ if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
+ $("r-total").textContent=`${f(total)} / 10,0 điểm`;$("r-status").textContent=status;$("r-status").style.color=reason.startsWith("VIOLATE")?"#ff8a80":"var(--gold2)";
+ $("r-body").innerHTML=[["Học sinh",`${ST.ten} – Lớp ${ST.lop} – STT ${ST.stt}`],["Lượt thi / Mã đề",`${ST.att}/${CONFIG.MAX_ATTEMPTS} / ${EX.made}`],["Phần I (6,0đ)",f(s1)],["Phần II (2,0đ)",f(s2)],["Phần III (2,0đ)",f(s3)],["Thời gian mở đề",openT],["Thời gian nộp bài",subT],["Thời lượng làm bài",durText]].map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td></tr>`).join("");
+ const ansTxt=a=>JSON.stringify(a);
+ await post({action:"submit",key:ST.key,lop:ST.lop,stt:ST.stt,ten:ST.ten,attempt:ST.att,device:ST.dev,made:EX.made,openTime:openT,submitTime:subT,duration:durText,status,
+  s1,s2,s3,total,ans1:EX.p1.map((q,i)=>ANS.p1[i]===null?"-":"ABCD"[ANS.p1[i]]).join(""),
+  ans2:ANS.p2.map(a=>a.map(x=>x===null?"-":x?"Đ":"S").join("")).join(" | "),ans3:ANS.p3.join(" | "),ma:EX.ma});
+}
+</script>
+</body>
+</html>
