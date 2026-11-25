@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ĐỀ KIỂM TRA NGẪU NHIÊN – VẬT LÍ 12 – CHƯƠNG 2: KHÍ LÍ TƯỞNG</title>
+<style>
+:root{--bg1:#06204a;--bg2:#0c3470;--card:#0f2f63;--card2:#143a78;--gold:#f5c542;--gold2:#ffe08a;--text:#eef3ff;--mut:#a9bbe0;--ok:#2ecc71;--bad:#ff6b6b;--line:#2c4f8f;--in:#0a2552;--opt:#0b2a5c;--top:#071d44;--th:#163b7a;--btn2:#1d4688;--barbg:#12356f;--sel:#1b4a96;--ph1:#173f82;--frame:rgba(6,32,74,.62);--b1:#ffe08a;--b2:#f5c542}
+html{font-size:18px;scroll-behavior:smooth}
+html[data-theme="light"]{--bg1:#eaf1fc;--bg2:#d6e4f8;--card:#ffffff;--card2:#f1f6ff;--gold:#8a5d00;--gold2:#6b4700;--text:#10244a;--mut:#4d6288;--ok:#2fb86a;--bad:#e5575a;--line:#b4c8e8;--in:#eef4ff;--opt:#f6f9ff;--top:#ffffff;--th:#dce8fa;--btn2:#dce8fa;--barbg:#cfdcf2;--sel:#fff3cf;--ph1:#e6efff;--frame:rgba(255,255,255,.78)}
+html[data-theme="light"] .btn.sec{color:var(--text);box-shadow:0 2px 0 #b4c8e8}
+html[data-theme="light"] .opt .l{color:#10244a}
+*{box-sizing:border-box}
+body{margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(160deg,var(--bg1),var(--bg2));min-height:100vh;line-height:1.45;font-size:1rem;overflow-x:hidden}
+.wrap{width:100%;max-width:100%;margin:0;padding:4px 6px}
+.frame{width:100%;min-height:calc(100vh - 46px);border:2px solid var(--gold);border-radius:10px;background:var(--frame);padding:8px 10px;display:flex;flex-direction:column}
+h1{margin:0 0 2px;font-size:1.35rem;color:var(--gold);text-align:center;letter-spacing:.2px}
+.sub{text-align:center;color:var(--mut);margin-bottom:8px;font-size:.92rem}
+.screen{display:none;flex:1}.screen.on{display:block}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:7px 0}
+.box h3{margin:0 0 6px;color:var(--gold2);font-size:1.02rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:960px){.grid2{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.grid3,.grid2{grid-template-columns:1fr}}
+.part-card{background:var(--card2);border:1px solid var(--gold);border-radius:10px;padding:9px;text-align:center;font-size:.94rem}
+.part-card b{display:block;color:var(--gold);font-size:1.02rem}
+input[type=text],input[type=number],input[type=password],textarea{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--in);color:var(--text);font-size:.98rem;font-family:inherit}
+input:focus,textarea:focus{outline:2px solid var(--gold)}
+.fld label{display:block;font-size:.82rem;color:var(--gold2);font-weight:700;margin-bottom:3px}
+.btn{cursor:pointer;border:0;border-radius:10px;padding:10px 20px;font-size:1.02rem;font-weight:700;background:linear-gradient(180deg,var(--b1),var(--b2));color:#3a2a00;box-shadow:0 3px 0 #b88a10}
+.btn:hover{filter:brightness(1.07)}.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.sec{background:var(--btn2);color:var(--text);box-shadow:0 2px 0 var(--in);border:1px solid var(--line)}
+.btn.ghost{padding:4px 10px;font-size:.85rem;margin-left:6px}
+.center{text-align:center}
+.alert-box{background:rgba(255,107,107,.14);border:1px solid var(--bad);border-radius:8px;padding:7px 10px;margin:6px 0;color:var(--text);font-size:.9rem}
+.alert-box b{color:var(--bad)}
+.info-badge{display:inline-block;padding:3px 10px;border-radius:8px;font-size:.84rem;font-weight:700;margin-top:6px;background:var(--in);border:1px solid var(--gold);color:var(--gold2)}
+.info-badge.bad{border-color:var(--bad);color:var(--bad);background:rgba(255,107,107,.12)}
+/* compact sticky header */
+.tools{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:6px;background:var(--top);border:2px solid var(--gold);border-radius:10px;padding:3px 8px;margin-bottom:4px;font-size:14px}
+.tools .tt{font-weight:700;color:var(--gold);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tools .tb{display:flex;gap:5px;align-items:center;flex-shrink:0}
+.tools button{cursor:pointer;min-width:34px;height:28px;padding:0 7px;border-radius:7px;border:1px solid var(--gold);background:transparent;color:var(--gold2);font-weight:800;font-size:13px;font-family:inherit}
+.tools button:hover{background:rgba(245,197,66,.18)}
+.topbar{position:sticky;top:38px;z-index:20;background:var(--top);border:2px solid var(--gold);border-radius:10px;padding:5px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.timer{font-size:1.35rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;min-width:82px}
+.timer.warn{color:var(--bad);animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.45}}
+.prog{flex:1;min-width:140px;color:var(--mut);font-size:.86rem}
+.bar{height:6px;background:var(--barbg);border-radius:6px;overflow:hidden;margin-top:2px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .25s}
+.nav{display:flex;gap:5px;flex-wrap:wrap}
+.nav button{padding:4px 9px;font-size:.84rem;border-radius:7px;border:1px solid var(--gold);background:transparent;color:var(--gold2);cursor:pointer;font-weight:600}
+.nav button:hover{background:rgba(245,197,66,.15)}
+.palbox{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:5px 8px;margin:4px 0 6px}
+.pal{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pal a{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:7px;border:1px solid var(--line);background:var(--in);color:var(--mut);font-size:.8rem;text-decoration:none;font-weight:700}
+.pal a.done{background:var(--b2);color:#3a2a00;border-color:var(--gold)}
+.pal .lab{width:auto;border:0;background:none;color:var(--gold2);padding:0 5px;height:28px;display:flex;align-items:center;font-weight:800;font-size:.82rem}
+.shieldbar{background:rgba(255,107,107,.13);border:1px solid var(--bad);border-radius:8px;padding:5px 10px;margin:4px 0;font-size:.84rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.shieldbar b{color:var(--bad)}
+/* part & questions */
+.parthead{background:linear-gradient(90deg,var(--ph1),var(--card));border-left:5px solid var(--gold);border-radius:8px;padding:7px 12px;margin:12px 0 6px;scroll-margin-top:110px}
+.parthead b{color:var(--gold);font-size:1.06rem}.parthead span{display:block;color:var(--mut);font-size:.86rem}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:7px 0;scroll-margin-top:110px;user-select:none;-webkit-user-select:none}
+.q .qt{font-weight:600;margin-bottom:6px}.q .qt .n{color:var(--gold);font-weight:800;margin-right:4px}
+.optgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+@media(max-width:820px){.optgrid{grid-template-columns:1fr}}
+.opt{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;margin:0;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--opt);transition:.12s}
+.opt:hover{border-color:var(--gold)}
+.opt .l{flex:0 0 26px;height:26px;border-radius:50%;background:var(--btn2);color:var(--gold2);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.opt.sel{border-color:var(--gold);background:var(--sel)}.opt.sel .l{background:var(--b2);color:#3a2a00}
+.ctx{background:var(--in);border-left:4px solid var(--gold);border-radius:7px;padding:8px 10px;margin:6px 0;font-size:.96rem}
+.yi{display:flex;gap:10px;align-items:center;padding:6px 0;border-top:1px dashed var(--line)}
+@media(max-width:600px){.yi{flex-direction:column;align-items:flex-start}}
+.yi .tx{flex:1}.yi .tx b{color:var(--gold);margin-right:4px}
+.tf{display:flex;gap:6px;flex-shrink:0}
+.tf button{cursor:pointer;padding:5px 14px;border-radius:7px;border:1px solid var(--line);background:var(--opt);color:var(--text);font-weight:700;font-family:inherit;font-size:.92rem}
+.tf button:hover{border-color:var(--gold)}
+.tf button.sel{background:var(--b2);color:#3a2a00;border-color:var(--gold)}
+.sa input{max-width:280px;font-size:1.08rem;font-weight:700;color:var(--gold2);user-select:text;-webkit-user-select:text}
+.hint{color:var(--mut);font-size:.82rem;margin-top:3px}
+.constbar{background:var(--in);border:1px dashed var(--gold);border-radius:8px;padding:5px 10px;margin:4px 0 6px;font-size:.88rem;color:var(--gold2);text-align:center}
+.submitbar{text-align:center;margin:14px 0 4px}
+/* result */
+.score{font-size:3rem;font-weight:900;color:var(--gold);text-align:center;line-height:1.1}
+.score small{font-size:1.15rem;color:var(--mut)}
+.tbl{width:100%;border-collapse:collapse;margin-top:8px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:center}
+.tbl th{background:var(--th);color:var(--gold2)}
+.timegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+@media(max-width:650px){.timegrid{grid-template-columns:1fr}}
+.tcard{background:var(--in);border:1px solid var(--line);border-radius:8px;padding:7px 9px;text-align:center;font-size:.86rem}
+.tcard b{display:block;color:var(--gold2);font-size:.94rem;margin-top:2px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;margin-top:auto;padding-top:8px}
+.mcode{color:var(--gold2);font-weight:800}
+</style>
+</head>
+<body oncontextmenu="return false">
+<div class="wrap">
+<div class="tools"><span class="tt">Vật lí 12 • KTTX số 2 – Đề ngẫu nhiên</span><div class="tb"><button onclick="fs(-1)" title="Giảm cỡ chữ">A−</button><button id="fsv" onclick="fsReset()" title="Về cỡ chữ mặc định">18</button><button onclick="fs(1)" title="Tăng cỡ chữ">A+</button><button id="thBtn" onclick="toggleTheme()" title="Chế độ sáng / tối">☀️</button><button id="fullBtn" onclick="toggleFull()" title="Toàn màn hình">⛶</button></div></div>
+<div class="frame">
+
+<!-- ========== TRANG ĐẦU ========== -->
+<section id="s-intro" class="screen on">
+  <h1>ĐỀ KIỂM TRA THƯỜNG XUYÊN SỐ 2 – VẬT LÍ 12</h1>
+  <div class="sub">Chương 2: Chất khí (Khí lí tưởng) • Đề ngẫu nhiên theo ma trận • Thời gian: 30 phút</div>
+
+  <div class="box">
+    <h3>📝 Thông tin thí sinh &amp; Mật khẩu vào đề</h3>
+    <div class="grid2">
+      <div class="fld">
+        <label for="inName">Họ và tên (*)</label>
+        <input type="text" id="inName" placeholder="Nhập họ và tên đầy đủ">
+      </div>
+      <div class="fld">
+        <label for="inClass">Lớp (*)</label>
+        <input type="text" id="inClass" placeholder="VD: 12A1" oninput="updateAttemptHint()">
+      </div>
+      <div class="fld">
+        <label for="inSTT">Số thứ tự trong lớp (*)</label>
+        <input type="number" id="inSTT" min="1" max="99" placeholder="VD: 15" oninput="updateAttemptHint()">
+      </div>
+      <div class="fld">
+        <label for="inPass">Mật khẩu vào đề (*)</label>
+        <input type="password" id="inPass" placeholder="Nhập mật khẩu giáo viên cung cấp">
+      </div>
+    </div>
+    <div id="attemptHint" class="info-badge">🔐 Lượt thi số 1 – Nhập mật khẩu lần 1 để bắt đầu</div>
+    <div id="startMsg" style="margin-top:8px;font-size:.9rem;color:var(--bad);font-weight:700"></div>
+  </div>
+
+  <div class="box">
+    <h3>📌 Cấu trúc đề chuẩn Bộ GD&amp;ĐT (10,0 điểm)</h3>
+    <div class="grid3">
+      <div class="part-card"><b>PHẦN I</b>12 câu nhiều phương án (A–D)<br>0,5 điểm / câu = <b>6,0 đ</b></div>
+      <div class="part-card"><b>PHẦN II</b>2 câu Đúng/Sai (8 ý a–d)<br>0,25 điểm / ý = <b>2,0 đ</b></div>
+      <div class="part-card"><b>PHẦN III</b>4 câu trả lời ngắn<br>0,5 điểm / câu = <b>2,0 đ</b></div>
+    </div>
+    <p style="margin:10px 0 0;color:var(--mut)">Toàn bộ 3 phần = <b style="color:var(--gold2)">10,0 điểm</b> – hệ thống tự động chấm điểm. Tỉ lệ nhận thức: <b style="color:var(--gold2)">40% Biết – 30% Hiểu – 30% Vận dụng</b>.</p>
+  </div>
+
+  <div class="box">
+    <h3>🛡️ Quy định chống gian lận &amp; Theo dõi thời gian</h3>
+    <div class="alert-box">
+      <b>CẢNH BÁO QUAN TRỌNG:</b> Hệ thống kích hoạt chế độ <b>cấm chuyển màn hình</b> và <b>cấm đăng nhập trên 2 thiết bị</b>.
+    </div>
+    <ul style="margin:0;padding-left:20px">
+      <li><b>Cấm chuyển màn hình / chuyển tab / thoát ứng dụng:</b> Nếu rời khỏi màn hình làm bài trong lúc đang thi, hệ thống sẽ <b>tự động nộp bài ngay lập tức</b> và khóa lượt thi.</li>
+      <li><b>Không đăng nhập trên 2 thiết bị:</b> Mỗi học sinh (theo Lớp + Số thứ tự) chỉ được đăng nhập trên <b>1 thiết bị duy nhất</b>. Nếu phát hiện đăng nhập trên thiết bị thứ 2, hệ thống sẽ <b>tự động nộp bài và ghi nhận vi phạm</b>.</li>
+      <li><b>Khóa vào lại:</b> Sau khi đã nộp bài hoặc bị vi phạm, hệ thống tự động khóa lượt thi. Nếu được giáo viên cho phép làm lại, học sinh phải nhập <b>mật khẩu mới</b> do giáo viên cấp.</li>
+      <li>Hệ thống tự động ghi nhận chính xác <b>Thời gian mở đề</b> và <b>Thời gian nộp bài</b> gửi về bảng điểm của giáo viên. Sau khi nộp chỉ hiện điểm số, không hiện đáp án.</li>
+    </ul>
+  </div>
+  <div class="center"><button class="btn" id="btnStart" onclick="startExam()">🚀 BẮT ĐẦU LÀM BÀI</button></div>
+</section>
+
+<!-- ========== LÀM BÀI ========== -->
+<section id="s-test" class="screen">
+  <div class="topbar">
+    <div class="timer" id="timer">30:00</div>
+    <div class="prog"><span id="progTxt">Đã làm 0/24 lệnh hỏi</span> • Mã đề <span class="mcode" id="mcode"></span> • Lần <span class="mcode" id="attShow">1</span><div class="bar"><i id="progBar"></i></div></div>
+    <div class="nav">
+      <button onclick="goto('p1')">Phần I</button>
+      <button onclick="goto('p2')">Phần II</button>
+      <button onclick="goto('p3')">Phần III</button>
+    </div>
+  </div>
+  <div class="shieldbar">
+    <span>🛡️ <b>Đang giám sát:</b> Không chuyển tab/ứng dụng và không đăng nhập thiết bị khác (vi phạm sẽ tự động nộp bài).</span>
+    <span>🕒 Mở đề lúc: <b id="openTimeShow" style="color:var(--gold2)"></b></span>
+  </div>
+  <div class="palbox"><div class="pal" id="pal"></div></div>
+  <div class="constbar">Cho: R = 8,31 J/(mol·K); &nbsp; k = 1,38·10<sup>−23</sup> J/K; &nbsp; 1 atm = 1,013·10<sup>5</sup> Pa; &nbsp; T(K) = t(°C) + 273.</div>
+
+  <div id="testBody"></div>
+
+  <div class="submitbar"><button class="btn" onclick="submitExam('NORMAL')">📤 NỘP BÀI</button></div>
+</section>
+
+<!-- ========== KẾT QUẢ ========== -->
+<section id="s-result" class="screen">
+  <h1>KẾT QUẢ BÀI LÀM</h1>
+  <div class="sub" id="whoTxt"></div>
+  <div class="box">
+    <div id="violateBanner" class="alert-box" style="display:none"></div>
+    <div class="score"><span id="scTotal">0</span> <small>/ 10,0 điểm</small></div>
+    <div class="center" style="color:var(--mut)" id="scNote"></div>
+    <div class="timegrid">
+      <div class="tcard">🕒 Thời gian mở đề<b id="resOpen"></b></div>
+      <div class="tcard">🏁 Thời gian nộp bài<b id="resClose"></b></div>
+      <div class="tcard">⏱️ Thời lượng làm bài<b id="resDur"></b></div>
+    </div>
+    <p id="sendst" style="text-align:center;font-size:.88rem;color:#ffd54f;margin:8px 0"></p>
+    <table class="tbl">
+      <tr><th>Phần</th><th>Kết quả</th><th>Điểm</th><th>Tối đa</th></tr>
+      <tr><td>I. Nhiều phương án lựa chọn</td><td id="r1n"></td><td id="r1s"></td><td>6,0</td></tr>
+      <tr><td>II. Trắc nghiệm Đúng/Sai</td><td id="r2n"></td><td id="r2s"></td><td>2,0</td></tr>
+      <tr><td>III. Trả lời ngắn</td><td id="r3n"></td><td id="r3s"></td><td>2,0</td></tr>
+      <tr style="font-weight:800"><td>TỔNG CỘNG</td><td id="rtn"></td><td id="rts"></td><td>10,0</td></tr>
+    </table>
+  </div>
+  <div class="center"><button class="btn sec" onclick="backToIntro()">🔐 Về trang đầu (cần mật khẩu mới nếu làm lại)</button></div>
+  <p class="center" style="color:var(--mut);font-size:.9rem">Lượt thi đã đóng. Để vào làm lại lần 2 hoặc lần 3, học sinh cần mật khẩu mới do giáo viên cung cấp.</p>
+</section>
+
+<footer>Trường THPT Phạm Thành Trung • Vật lí 12 – Chương 2: Khí lí tưởng • Năm học 2026 – 2027</footer>
+</div></div>
+
+<script>
+/* ================= CẤU HÌNH GIÁO VIÊN (CHỈNH TẠI ĐÂY) ================= */
+const CONFIG = {
+  // Dán đường dẫn Web App Google Apps Script của Bảng điểm KTTX2 Vật lí 12 vào đây:
+  WEBHOOK: "https://script.google.com/macros/s/AKfycbz7GRz4ysLCxiUJQnAndLVoQj52lxH2LUUqHU_e1v0Ydc15ahbVte9uY_QitBNzNP7xKQ/exec",
+
+  // Mã định danh kỳ kiểm tra (dùng để phân biệt lưu trữ trên trình duyệt)
+  EXAM_ID: "KTTX2_LY12_C2_2026",
+
+  // Bộ mật khẩu cho từng lần đăng nhập (không phân biệt chữ hoa/thường)
+  PASSWORDS: {
+    1: "VL0211",   // Mật khẩu đăng nhập lần 1
+    2: "VL0233",   // Mật khẩu mở khóa lần 2 (chỉ cấp khi GV cho phép)
+    3: "VL0244"    // Mật khẩu mở khóa lần 3 (chỉ cấp khi GV cho phép)
+  },
+
+  // Số lần thi tối đa
+  MAX_ATTEMPTS: 3,
+
+  // Chu kì kiểm tra đăng nhập 2 thiết bị (ms) - mặc định 15 giây
+  PING_INTERVAL_MS: 15000
+};
+/* ====================================================================== */
+
+const gameData={"time": 1800, "p1": [[{"id": "Đ1-I.1", "q": "Phát biểu nào sau đây phù hợp với nội dung của mô hình động học phân tử chất khí?", "o": ["Kích thước các phân tử khí rất lớn so với khoảng cách trung bình giữa chúng.", "Các phân tử khí đứng yên, chỉ chuyển động khi bị nung nóng.", "Các phân tử khí chuyển động hỗn loạn không ngừng, va chạm đàn hồi với nhau và với thành bình.", "Giữa hai lần va chạm, các phân tử khí chuyển động chậm dần rồi dừng lại."], "a": 2}, {"id": "Đ2-I.1", "q": "Khí lí tưởng là loại khí mà", "o": ["các phân tử có kích thước đáng kể và luôn hút nhau mạnh.", "các phân tử được coi là chất điểm và chỉ tương tác với nhau khi va chạm.", "các phân tử luôn đứng yên và cách đều nhau.", "áp suất tác dụng lên thành bình luôn bằng không."], "a": 1}, {"id": "Đ3-I.1", "q": "Theo mô hình động học phân tử chất khí, phát biểu nào sau đây là đúng?", "o": ["Các phân tử khí đứng yên tại các vị trí cân bằng cố định.", "Các phân tử khí chuyển động hỗn loạn không ngừng.", "Lực tương tác giữa các phân tử khí rất lớn ở mọi khoảng cách.", "Kích thước của các phân tử khí rất lớn so với khoảng cách giữa chúng."], "a": 1}, {"id": "Đ4-I.1", "q": "Trong mô hình động học phân tử chất khí, khi không va chạm với nhau và với thành bình, các phân tử khí lí tưởng được xem là chuyển động như thế nào?", "o": ["Chuyển động tròn đều quanh một tâm cố định.", "Chuyển động thẳng đều.", "Chuyển động thẳng nhanh dần đều.", "Dao động điều hòa quanh vị trí cân bằng."], "a": 1}], [{"id": "Đ1-I.2", "q": "Nung nóng một lượng khí trong bình kín (thể tích không đổi) thì áp suất khí tăng. Giải thích nào sau đây là đúng?", "o": ["Số phân tử khí trong bình tăng lên.", "Các phân tử chuyển động nhanh hơn nên số va chạm vào thành bình trong mỗi giây và lực va chạm trung bình đều tăng.", "Kích thước mỗi phân tử khí tăng lên.", "Khối lượng mỗi phân tử khí tăng lên."], "a": 1}, {"id": "Đ2-I.2", "q": "Nén chậm một lượng khí trong xi-lanh sao cho nhiệt độ khí không đổi thì áp suất khí tăng. Nguyên nhân nào sau đây là đúng?", "o": ["Các phân tử khí chuyển động nhanh hơn.", "Mỗi phân tử khí va chạm vào thành bình với lực lớn hơn.", "Số phân tử khí trong xi-lanh tăng lên.", "Mật độ phân tử tăng nên số va chạm lên mỗi đơn vị diện tích thành bình trong mỗi giây tăng."], "a": 3}, {"id": "Đ3-I.2", "q": "Nguyên nhân cơ bản gây ra áp suất của chất khí tác dụng lên thành bình chứa là do", "o": ["lực hút tĩnh điện giữa các phân tử khí và thành bình.", "trọng lượng của khối khí tác dụng lên đáy bình.", "các phân tử khí chuyển động hỗn loạn và va chạm liên tục vào thành bình.", "các phân tử khí luôn đẩy nhau ra xa thành bình."], "a": 2}, {"id": "Đ4-I.2", "q": "Xét một lượng khí đựng trong bình kín. Khi các phân tử khí chuyển động hỗn loạn va chạm vào thành bình, chúng truyền một phần động lượng cho thành bình. Hệ quả vĩ mô của vô số va chạm liên tục này là", "o": ["tạo ra áp suất của chất khí tác dụng lên thành bình.", "làm khối lượng của bình chứa tăng dần theo thời gian.", "làm tất cả các phân tử khí dừng chuyển động.", "làm thể tích của mỗi phân tử khí nở ra."], "a": 0}], [{"id": "Đ1-I.3", "q": "Hệ thức nào sau đây biểu diễn định luật Boyle cho một lượng khí xác định?", "o": ["p<sub>1</sub>V<sub>1</sub> = p<sub>2</sub>V<sub>2</sub> (nhiệt độ không đổi).", "p<sub>1</sub>/V<sub>1</sub> = p<sub>2</sub>/V<sub>2</sub> (nhiệt độ không đổi).", "V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub> (áp suất không đổi).", "p<sub>1</sub>/T<sub>1</sub> = p<sub>2</sub>/T<sub>2</sub> (thể tích không đổi)."], "a": 0}, {"id": "Đ2-I.3", "q": "Phát biểu nào sau đây là nội dung của định luật Boyle?", "o": ["Ở áp suất không đổi, thể tích của một lượng khí xác định tỉ lệ thuận với nhiệt độ tuyệt đối.", "Ở thể tích không đổi, áp suất của một lượng khí xác định tỉ lệ thuận với nhiệt độ tuyệt đối.", "Ở nhiệt độ không đổi, áp suất của một lượng khí xác định tỉ lệ nghịch với thể tích.", "Ở nhiệt độ không đổi, áp suất của một lượng khí xác định tỉ lệ thuận với thể tích."], "a": 2}, {"id": "Đ3-I.5", "q": "Định luật Boyle áp dụng cho quá trình biến đổi trạng thái nào sau đây của một lượng khí xác định?", "o": ["Quá trình đẳng áp.", "Quá trình đẳng tích.", "Quá trình đẳng nhiệt.", "Quá trình đoạn nhiệt."], "a": 2}, {"id": "Đ4-I.5", "q": "Nội dung nào sau đây phát biểu đúng định luật Boyle đối với một lượng khí lí tưởng xác định?", "o": ["Khi nhiệt độ không đổi, áp suất tỉ lệ thuận với thể tích.", "Khi nhiệt độ không đổi, áp suất tỉ lệ nghịch với thể tích.", "Khi thể tích không đổi, áp suất tỉ lệ thuận với nhiệt độ tuyệt đối.", "Khi áp suất không đổi, thể tích tỉ lệ thuận với nhiệt độ tuyệt đối."], "a": 1}], [{"id": "Đ1-I.4", "q": "Trong hệ tọa độ (p, V), đường biểu diễn quá trình đẳng nhiệt của một lượng khí xác định là", "o": ["đường thẳng đi qua gốc tọa độ.", "đường thẳng song song với trục V.", "đường thẳng song song với trục p.", "một nhánh của đường hypebol."], "a": 3}, {"id": "Đ2-I.4", "q": "Để quá trình nén khí bằng pít-tông trong xi-lanh được coi là quá trình đẳng nhiệt, cần", "o": ["nén từ từ để khí kịp trao đổi nhiệt với môi trường và giữ được nhiệt độ không đổi.", "nén thật nhanh để khí không kịp trao đổi nhiệt.", "bọc cách nhiệt hoàn toàn xi-lanh.", "giữ cho áp suất khí không đổi trong suốt quá trình nén."], "a": 0}, {"id": "Đ3-I.6", "q": "Giữ nhiệt độ của một lượng khí lí tưởng xác định không đổi, nếu dãn khí để thể tích tăng gấp 2 lần thì áp suất của khối khí sẽ", "o": ["tăng gấp 2 lần.", "giảm đi 2 lần.", "tăng gấp 4 lần.", "không thay đổi."], "a": 1}, {"id": "Đ4-I.6", "q": "Trong hệ tọa độ (p, V), đường biểu diễn quá trình biến đổi đẳng nhiệt của một lượng khí lí tưởng xác định có dạng là", "o": ["một đường thẳng đi qua gốc tọa độ.", "một đường thẳng song song với trục Op.", "một đường thẳng song song với trục OV.", "một đường hypebol."], "a": 3}], [{"id": "Đ1-I.5", "q": "Phát biểu nào sau đây đúng với định luật Charles?", "o": ["Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ nghịch với nhiệt độ tuyệt đối.", "Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ thuận với nhiệt độ tuyệt đối.", "Trong quá trình đẳng áp, thể tích của một lượng khí xác định tỉ lệ thuận với nhiệt độ Celsius.", "Trong quá trình đẳng áp, thể tích của một lượng khí xác định không phụ thuộc vào nhiệt độ."], "a": 1}, {"id": "Đ2-I.5", "q": "Một lượng khí xác định biến đổi từ trạng thái (V<sub>1</sub>, T<sub>1</sub>) sang trạng thái (V<sub>2</sub>, T<sub>2</sub>) trong quá trình đẳng áp (T là nhiệt độ tuyệt đối). Hệ thức nào sau đây đúng?", "o": ["V<sub>1</sub>T<sub>1</sub> = V<sub>2</sub>T<sub>2</sub>.", "V<sub>1</sub>/V<sub>2</sub> = T<sub>2</sub>/T<sub>1</sub>.", "V<sub>1</sub> + T<sub>1</sub> = V<sub>2</sub> + T<sub>2</sub>.", "V<sub>1</sub>T<sub>2</sub> = V<sub>2</sub>T<sub>1</sub>."], "a": 3}, {"id": "Đ3-I.7", "q": "Trong quá trình đẳng áp của một lượng khí lí tưởng xác định, mối liên hệ giữa thể tích V và nhiệt độ tuyệt đối T được biểu diễn bằng hệ thức nào sau đây?", "o": ["V · T = hằng số.", "V/T = hằng số.", "V/t (°C) = hằng số.", "V + T = hằng số."], "a": 1}, {"id": "Đ4-I.7", "q": "Định luật Charles mô tả mối liên hệ giữa các thông số trạng thái của một lượng khí lí tưởng xác định trong quá trình nào sau đây?", "o": ["Quá trình đẳng áp.", "Quá trình đẳng nhiệt.", "Quá trình đẳng tích.", "Quá trình có cả p, V, T đều thay đổi."], "a": 0}], [{"id": "Đ1-I.6", "q": "Đồ thị V – T (T tính theo thang Kelvin) mô tả quá trình đẳng áp của một lượng khí xác định là", "o": ["đường hypebol.", "đường thẳng song song với trục T.", "đường thẳng có phần kéo dài đi qua gốc tọa độ.", "đường thẳng song song với trục V."], "a": 2}, {"id": "Đ2-I.6", "q": "Khí được chứa trong xi-lanh đặt thẳng đứng, đậy bằng pít-tông nhẹ chuyển động tự do, ngoài khí quyển có áp suất không đổi. Hơ nóng từ từ khí trong xi-lanh. Quá trình biến đổi trạng thái của khí là quá trình", "o": ["đẳng nhiệt.", "đẳng áp.", "đẳng tích.", "mà cả áp suất, thể tích và nhiệt độ đều không đổi."], "a": 1}, {"id": "Đ3-I.8", "q": "Trong hệ tọa độ (V, T) với T là nhiệt độ tuyệt đối (K), đường đẳng áp của một lượng khí lí tưởng xác định có dạng là", "o": ["một đường hypebol.", "một đường thẳng song song với trục OV.", "một đường thẳng song song với trục OT.", "một đường thẳng có đường kéo dài đi qua gốc tọa độ O."], "a": 3}, {"id": "Đ4-I.8", "q": "Đun nóng đẳng áp một lượng khí lí tưởng xác định trong xi-lanh có pít-tông chuyển động tự do sao cho nhiệt độ tuyệt đối T tăng gấp đôi. Khi đó, thể tích V của khối khí sẽ", "o": ["giảm đi một nửa.", "không thay đổi.", "tăng gấp đôi.", "tăng gấp bốn lần."], "a": 2}], [{"id": "Đ1-I.7", "q": "Hệ thức nào sau đây mô tả quá trình đẳng tích của một lượng khí xác định (T là nhiệt độ tuyệt đối)?", "o": ["pT = hằng số.", "pV = hằng số.", "V/T = hằng số.", "p/T = hằng số."], "a": 3}, {"id": "Đ2-I.7", "q": "Trong quá trình đẳng tích của một lượng khí xác định, áp suất của khí", "o": ["tỉ lệ thuận với nhiệt độ tuyệt đối.", "tỉ lệ nghịch với nhiệt độ tuyệt đối.", "tỉ lệ nghịch với thể tích.", "tỉ lệ thuận với nhiệt độ Celsius."], "a": 0}, {"id": "Đ3-I.9", "q": "Trong quá trình đẳng tích của một lượng khí lí tưởng xác định, áp suất p và nhiệt độ tuyệt đối T có mối quan hệ là", "o": ["p tỉ lệ thuận với T.", "p tỉ lệ nghịch với T.", "p không phụ thuộc vào T.", "p tỉ lệ thuận với T<sup>2</sup>."], "a": 0}, {"id": "Đ4-I.9", "q": "Trong hệ tọa độ (p, T) với T là nhiệt độ tuyệt đối (K), đường biểu diễn quá trình đẳng tích của một lượng khí lí tưởng xác định có dạng là", "o": ["một đường hypebol.", "một đường thẳng có đường kéo dài đi qua gốc tọa độ O.", "một đường thẳng song song với trục OT.", "một đường thẳng song song với trục Op."], "a": 1}], [{"id": "Đ1-I.8", "q": "Trong quá trình đẳng tích của một lượng khí xác định, đồ thị biểu diễn áp suất p theo nhiệt độ t (°C) là", "o": ["đường thẳng dốc lên, phần kéo dài cắt trục nhiệt độ tại −273 °C.", "đường thẳng đi qua gốc tọa độ (0, 0).", "đường hypebol.", "đường thẳng song song với trục t."], "a": 0}, {"id": "Đ2-I.8", "q": "Vì sao không nên để bình khí kín (bình xịt, bình gas mini) gần nguồn nhiệt?", "o": ["Vì thể tích khí giảm làm bình bị bẹp lại.", "Vì khối lượng khí trong bình tăng lên.", "Vì thể tích bình không đổi nên khi nhiệt độ tăng, áp suất khí tăng mạnh, có thể gây nổ.", "Vì áp suất khí giảm khiến khí bị rò rỉ ra ngoài."], "a": 2}, {"id": "Đ3-I.10", "q": "Khi làm lạnh một bình kín có thể tích không đổi chứa khí lí tưởng, áp suất khí trong bình giảm xuống chủ yếu là vì", "o": ["số lượng phân tử khí trong bình bị giảm đi.", "kích thước của mỗi phân tử khí co lại.", "các phân tử khí chuyển động chậm hơn nên va chạm vào thành bình ít hơn và yếu hơn.", "khối lượng của mỗi phân tử khí giảm xuống."], "a": 2}, {"id": "Đ4-I.10", "q": "Vào những ngày nắng nóng, lốp xe đạp hoặc xe máy bơm quá căng dễ bị nổ hơn bình thường. Hiện tượng này chủ yếu gắn liền với quá trình biến đổi nào sau đây của không khí bên trong lốp xe?", "o": ["Quá trình đẳng tích: nhiệt độ tăng làm áp suất khí trong lốp tăng cao.", "Quá trình đẳng nhiệt: thể tích lốp giảm đột ngột làm áp suất tăng.", "Quá trình đẳng áp: nhiệt độ tăng làm khối lượng khí trong lốp tăng lên.", "Quá trình đẳng tích: nhiệt độ tăng làm số phân tử khí trong lốp tăng gấp đôi."], "a": 0}], [{"id": "Đ1-I.9", "q": "Phương trình trạng thái của khí lí tưởng (lượng khí xác định, T là nhiệt độ tuyệt đối) là", "o": ["pT/V = hằng số.", "pV/T = hằng số.", "VT/p = hằng số.", "p/(VT) = hằng số."], "a": 1}, {"id": "Đ2-I.9", "q": "Hệ thức p<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = p<sub>2</sub>V<sub>2</sub>/T<sub>2</sub> chỉ áp dụng được khi nào?", "o": ["Với mọi khối lượng khí, T tính theo thang Celsius.", "Chỉ khi nhiệt độ của khí không đổi.", "Chỉ khi một trong ba thông số p, V, T không đổi.", "Với một lượng khí xác định, T là nhiệt độ tuyệt đối."], "a": 3}, {"id": "Đ3-I.3", "q": "Trong quá trình biến đổi trạng thái của một lượng khí lí tưởng xác định mà cả áp suất p, thể tích V và nhiệt độ tuyệt đối T đều thay đổi, hệ thức nào sau đây luôn đúng?", "o": ["p<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = p<sub>2</sub>V<sub>2</sub>/T<sub>2</sub>.", "p<sub>1</sub>V<sub>1</sub>T<sub>1</sub> = p<sub>2</sub>V<sub>2</sub>T<sub>2</sub>.", "p<sub>1</sub>T<sub>1</sub>/V<sub>1</sub> = p<sub>2</sub>T<sub>2</sub>/V<sub>2</sub>.", "V<sub>1</sub>T<sub>1</sub>/p<sub>1</sub> = V<sub>2</sub>T<sub>2</sub>/p<sub>2</sub>."], "a": 0}, {"id": "Đ4-I.3", "q": "Một khối khí lí tưởng xác định biến đổi từ trạng thái 1 (p<sub>1</sub>, V<sub>1</sub>, T<sub>1</sub>) sang trạng thái 2 (p<sub>2</sub>, V<sub>2</sub>, T<sub>2</sub>) trong đó cả ba thông số trạng thái đều thay đổi. Đại lượng nào sau đây có giá trị không đổi trong suốt quá trình biến đổi?", "o": ["Tích pV.", "Thương p/T.", "Thương V/T.", "Thương pV/T."], "a": 3}], [{"id": "Đ1-I.10", "q": "Khí trong xi-lanh cách nhiệt có áp suất p<sub>1</sub>, thể tích V<sub>1</sub>. Nén nhanh pít-tông để thể tích khí giảm còn V<sub>1</sub>/2, khi đó áp suất khí là p<sub>2</sub>. Nhận định nào sau đây đúng?", "o": ["p<sub>2</sub> nhỏ hơn 2p<sub>1</sub> vì khí tỏa nhiệt ra ngoài.", "p<sub>2</sub> bằng 2p<sub>1</sub> theo định luật Boyle.", "p<sub>2</sub> lớn hơn 2p<sub>1</sub> vì nhiệt độ khí tăng lên.", "p<sub>2</sub> bằng p<sub>1</sub> vì xi-lanh cách nhiệt."], "a": 2}, {"id": "Đ2-I.10", "q": "Trong một quá trình biến đổi của một lượng khí xác định, cả thể tích và áp suất của khí đều tăng. Nhận định nào sau đây đúng?", "o": ["Nhiệt độ tuyệt đối của khí tăng.", "Nhiệt độ tuyệt đối của khí giảm.", "Nhiệt độ tuyệt đối của khí không đổi.", "Không thể kết luận gì về sự thay đổi nhiệt độ."], "a": 0}, {"id": "Đ3-I.4", "q": "Một lượng khí lí tưởng xác định được nén nhanh trong một xi-lanh sao cho thể tích giảm một nửa và áp suất tăng gấp ba lần. Khi đó, nhiệt độ tuyệt đối của khối khí sẽ", "o": ["giảm đi một nửa.", "tăng lên 1,5 lần.", "không thay đổi.", "tăng lên 6 lần."], "a": 1}, {"id": "Đ4-I.4", "q": "Một lượng khí lí tưởng xác định biến đổi trạng thái sao cho thể tích tăng gấp đôi đồng thời áp suất tăng gấp đôi. Khi đó, nhiệt độ tuyệt đối T của khối khí sẽ", "o": ["không thay đổi.", "tăng gấp 2 lần.", "tăng gấp 4 lần.", "giảm đi 4 lần."], "a": 2}], [{"id": "Đ1-I.11", "q": "Phương trình Clapeyron đối với n mol khí lí tưởng được viết đúng là", "o": ["pV = nRT, với T tính theo °C.", "pV = nR/T.", "p/V = nRT, với V tính theo m<sup>3</sup>.", "pV = nRT, với p tính theo Pa, V tính theo m<sup>3</sup>, T tính theo K."], "a": 3}, {"id": "Đ2-I.11", "q": "Gọi N là số phân tử khí, k là hằng số Boltzmann. Phương trình Clapeyron có thể viết dưới dạng", "o": ["pV = N/(kT).", "pV = NkT.", "p = NkTV.", "pV = Nk/T."], "a": 1}, {"id": "Đ3-I.11", "q": "Động năng tịnh tiến trung bình của một phân tử khí lí tưởng được xác định bởi công thức W̄<sub>đ</sub> = (3/2)kT (với T là nhiệt độ tuyệt đối). Phát biểu nào sau đây là đúng?", "o": ["W̄<sub>đ</sub> phụ thuộc vào khối lượng của phân tử khí.", "W̄<sub>đ</sub> chỉ phụ thuộc vào nhiệt độ tuyệt đối, không phụ thuộc vào bản chất của khí.", "W̄<sub>đ</sub> tỉ lệ nghịch với nhiệt độ tuyệt đối T.", "Ở cùng một nhiệt độ, khí nhẹ hơn có động năng tịnh tiến trung bình lớn hơn."], "a": 1}, {"id": "Đ4-I.11", "q": "Hai bình kín chứa hai loại khí lí tưởng khác nhau là khí hiđrô (H<sub>2</sub>) và khí ôxi (O<sub>2</sub>) ở cùng một nhiệt độ tuyệt đối T. So sánh động năng tịnh tiến trung bình của phân tử hai khí này, nhận xét nào sau đây là đúng?", "o": ["Động năng tịnh tiến trung bình của phân tử O<sub>2</sub> lớn hơn phân tử H<sub>2</sub>.", "Động năng tịnh tiến trung bình của phân tử H<sub>2</sub> lớn hơn phân tử O<sub>2</sub>.", "Không thể so sánh được vì chưa biết áp suất của hai bình.", "Động năng tịnh tiến trung bình của phân tử hai khí bằng nhau."], "a": 3}], [{"id": "Đ1-I.12", "q": "Hai bình chứa khí heli (He) và khí oxi (O<sub>2</sub>) ở cùng nhiệt độ. Nhận định nào sau đây đúng khi so sánh các phân tử khí trong hai bình?", "o": ["Động năng tịnh tiến trung bình bằng nhau; tốc độ trung bình của phân tử He lớn hơn.", "Động năng tịnh tiến trung bình bằng nhau; tốc độ trung bình của phân tử O<sub>2</sub> lớn hơn.", "Động năng tịnh tiến trung bình của He lớn hơn; tốc độ trung bình bằng nhau.", "Động năng tịnh tiến trung bình và tốc độ trung bình của hai loại phân tử đều bằng nhau."], "a": 0}, {"id": "Đ2-I.12", "q": "Nhiệt độ tuyệt đối của một lượng khí lí tưởng tăng gấp 4 lần. Khi đó, đối với các phân tử khí,", "o": ["động năng tịnh tiến trung bình tăng 4 lần và tốc độ trung bình tăng 4 lần.", "động năng tịnh tiến trung bình tăng 2 lần và tốc độ trung bình tăng 4 lần.", "động năng tịnh tiến trung bình tăng 4 lần và tốc độ trung bình tăng 2 lần.", "động năng tịnh tiến trung bình tăng 2 lần và tốc độ trung bình tăng 2 lần."], "a": 2}, {"id": "Đ3-I.12", "q": "Xét phương trình Clapeyron pV = nRT cho một lượng khí lí tưởng chứa trong bình kín có thể tích V không đổi. Nếu bơm thêm khí vào bình để số mol n tăng gấp đôi đồng thời giữ nguyên nhiệt độ tuyệt đối T thì áp suất khí trong bình sẽ", "o": ["giảm đi một nửa.", "không thay đổi.", "tăng gấp đôi.", "tăng gấp bốn lần."], "a": 2}, {"id": "Đ4-I.12", "q": "Theo phương trình Clapeyron pV = nRT, xét hai bình kín có cùng thể tích chứa cùng số mol khí lí tưởng. Nếu nhiệt độ tuyệt đối ở bình 1 gấp đôi nhiệt độ tuyệt đối ở bình 2 thì áp suất khí ở bình 1 sẽ", "o": ["bằng một nửa áp suất khí ở bình 2.", "bằng áp suất khí ở bình 2.", "gấp đôi áp suất khí ở bình 2.", "gấp bốn lần áp suất khí ở bình 2."], "a": 2}]], "p2": [[{"id": "Đ1-II.1", "ctx": "Khi nghiên cứu chất khí theo mô hình động học phân tử, một học sinh đưa ra các nhận định sau:", "sub": [{"k": "a)", "t": "Áp suất chất khí tác dụng lên thành bình là do các phân tử khí va chạm vào thành bình gây ra.", "a": true}, {"k": "b)", "t": "Theo mô hình động học phân tử, va chạm giữa các phân tử khí là va chạm không đàn hồi nên động năng của chúng giảm dần theo thời gian.", "a": false}, {"k": "c)", "t": "Khí thực có thể coi gần đúng là khí lí tưởng khi ở áp suất thấp và nhiệt độ không quá thấp.", "a": true}, {"k": "d)", "t": "Một lốp xe được bơm căng, để ngoài nắng nóng lên (thể tích lốp coi như không đổi): số chỉ áp kế tăng vì số lần va chạm của phân tử lên vỏ lốp trong mỗi giây tăng, còn lực va chạm trung bình của mỗi lần va chạm không đổi.", "a": false}]}, {"id": "Đ2-II.1", "ctx": "Khi tìm hiểu về chất khí theo mô hình động học phân tử, một nhóm học sinh đưa ra các nhận định sau:", "sub": [{"k": "a)", "t": "Các phân tử khí chuyển động hỗn loạn không ngừng.", "a": true}, {"k": "b)", "t": "Trong mô hình khí lí tưởng, kích thước các phân tử khí rất nhỏ so với khoảng cách trung bình giữa chúng.", "a": true}, {"k": "c)", "t": "Giữ nhiệt độ khí không đổi và tăng thể tích khí thì tốc độ trung bình của các phân tử giảm, do đó áp suất khí giảm.", "a": false}, {"k": "d)", "t": "Một bình kín chứa khí được đưa từ ngoài trời vào ngăn mát tủ lạnh (thể tích bình không đổi): số chỉ áp kế gắn trên bình giảm vì số phân tử khí trong bình giảm.", "a": false}]}, {"id": "Đ3-II.1", "ctx": "Một bình kín có thể tích không đổi chứa một lượng khí lí tưởng xác định. Người ta làm lạnh khối khí để nhiệt độ tuyệt đối giảm từ 400 K xuống còn 200 K.", "sub": [{"k": "a)", "t": "Áp suất khí tác dụng lên thành bình do các phân tử khí va chạm liên tục vào thành bình.", "a": true}, {"k": "b)", "t": "Khi nhiệt độ giảm, các phân tử khí chuyển động chậm hơn nên số va chạm vào thành bình trong một giây và lực va chạm trung bình đều giảm, làm áp suất giảm.", "a": true}, {"k": "c)", "t": "Khi nhiệt độ tuyệt đối giảm đi một nửa (từ 400 K xuống 200 K), tốc độ của mọi phân tử khí trong bình đều giảm đi một nửa.", "a": false}, {"k": "d)", "t": "Nếu giữ nguyên nhiệt độ ở 200 K rồi nén khí để thể tích bình giảm xuống thì áp suất khí tăng lên là do động năng trung bình của mỗi phân tử khí tăng.", "a": false}]}, {"id": "Đ4-II.1", "ctx": "Một xi-lanh có pít-tông kín chứa một lượng khí lí tưởng xác định ở nhiệt độ 300 K. Người ta giữ nguyên nhiệt độ của khí và đẩy từ từ pít-tông để thể tích khí giảm đi một nửa.", "sub": [{"k": "a)", "t": "Trong quá trình nén, các phân tử khí vẫn chuyển động hỗn loạn không ngừng và va chạm liên tục vào thành xi-lanh cũng như mặt pít-tông.", "a": true}, {"k": "b)", "t": "Do nhiệt độ của khối khí được giữ không đổi nên động năng tịnh tiến trung bình của các phân tử khí không thay đổi.", "a": true}, {"k": "c)", "t": "Khi thể tích giảm đi một nửa ở nhiệt độ không đổi, áp suất khí tăng lên là do tốc độ chuyển động nhiệt trung bình của các phân tử khí tăng gấp đôi.", "a": false}, {"k": "d)", "t": "Nếu sau đó cố định pít-tông rồi đun nóng để nhiệt độ tuyệt đối của khí tăng từ 300 K lên 450 K thì động năng tịnh tiến trung bình của phân tử khí tăng lên 1,5 lần.", "a": true}]}], [{"id": "Đ1-II.2", "ctx": "Bóng thám không chứa khí heli được thả từ mặt đất bay lên cao. Khi bay lên, áp suất và nhiệt độ của khí quyển đều giảm, vỏ bóng giãn ra nên thể tích bóng tăng dần. Coi khí heli là khí lí tưởng, khối lượng khí trong bóng không đổi.", "sub": [{"k": "a)", "t": "Nếu giả sử nhiệt độ khí trong bóng không đổi thì khi áp suất giảm, thể tích khí trong bóng tăng (p và V tỉ lệ nghịch).", "a": true}, {"k": "b)", "t": "Nếu giả sử áp suất khí trong bóng không đổi và nhiệt độ giảm thì thể tích khí trong bóng tăng.", "a": false}, {"k": "c)", "t": "Nếu vỏ bóng không giãn nở (thể tích khí không đổi) và bóng bay lên vùng khí quyển có nhiệt độ thấp hơn thì áp suất khí trong bóng giảm.", "a": true}, {"k": "d)", "t": "Ở mặt đất, khí trong bóng có áp suất 1,0·10<sup>5</sup> Pa, nhiệt độ 27 °C. Ở độ cao khoảng 10 km, áp suất là 2,5·10<sup>4</sup> Pa, nhiệt độ −48 °C. Coi áp suất, nhiệt độ khí trong bóng bằng của khí quyển xung quanh thì thể tích bóng ở độ cao đó gấp 3 lần thể tích bóng ở mặt đất.", "a": true}]}, {"id": "Đ2-II.2", "ctx": "Một thợ lặn thở ra một bọt khí ở độ sâu 20 m dưới mặt nước. Tại đó, áp suất khí trong bọt là 3,0·10<sup>5</sup> Pa và nhiệt độ 7 °C. Bọt khí nổi lên mặt nước, nơi có áp suất 1,0·10<sup>5</sup> Pa và nhiệt độ 21 °C. Coi khí trong bọt là khí lí tưởng, khối lượng khí không đổi.", "sub": [{"k": "a)", "t": "Nếu giả sử nhiệt độ khí trong bọt không đổi thì khi áp suất giảm 3 lần, thể tích bọt khí tăng 3 lần.", "a": true}, {"k": "b)", "t": "Nếu giả sử áp suất khí trong bọt không đổi thì thể tích khí tỉ lệ thuận với nhiệt độ Celsius.", "a": false}, {"k": "c)", "t": "Nếu khí được chứa trong một bình cứng kín (thể tích không đổi) thì khi đưa bình từ đáy lên mặt nước, áp suất khí trong bình giảm vì áp suất của nước giảm.", "a": false}, {"k": "d)", "t": "Thể tích bọt khí khi nổi lên mặt nước gấp 3,15 lần thể tích bọt khí ở độ sâu 20 m.", "a": true}]}, {"id": "Đ3-II.2", "ctx": "Một quả bóng thám không bằng cao su đàn hồi chứa một lượng khí heli xác định (coi là khí lí tưởng) được thả bay lên từ mặt đất. Ở mặt đất, khí trong bóng có áp suất p<sub>1</sub> = 1,0·10<sup>5</sup> Pa, nhiệt độ T<sub>1</sub> = 300 K và thể tích V<sub>1</sub> = 3,0 m<sup>3</sup>. Khi bay lên cao, áp suất khí quyển và nhiệt độ không khí xung quanh đều giảm. Coi áp suất khí trong bóng luôn bằng áp suất khí quyển bên ngoài.", "sub": [{"k": "a)", "t": "Trong quá trình bóng bay lên cao, do lượng khí heli trong bóng không đổi nên đại lượng pV/T luôn không đổi.", "a": true}, {"k": "b)", "t": "Nếu giả sử nhiệt độ của khí trong bóng không đổi khi bay lên cao, việc áp suất khí quyển giảm sẽ làm thể tích của quả bóng giảm đi.", "a": false}, {"k": "c)", "t": "Nếu ở một độ cao nhất định, áp suất khí trong bóng được giữ không đổi nhưng nhiệt độ không khí xung quanh giảm xuống thì thể tích của quả bóng sẽ giảm.", "a": true}, {"k": "d)", "t": "Nếu vỏ bóng bị cố định không thể giãn nở (giữ thể tích không đổi 3,0 m<sup>3</sup>) và nhiệt độ khí giảm từ 300 K xuống 240 K thì áp suất khí trong bóng giảm xuống còn 0,8·10<sup>5</sup> Pa.", "a": true}]}, {"id": "Đ4-II.2", "ctx": "Một quả bóng thám không có vỏ cao su đàn hồi chứa một lượng khí hiđrô xác định (coi là khí lí tưởng) được thả bay lên từ mặt đất. Ở mặt đất, khí trong bóng có áp suất p<sub>1</sub> = 1,0·10<sup>5</sup> Pa, nhiệt độ t<sub>1</sub> = 27 °C và thể tích V<sub>1</sub> = 4,0 m<sup>3</sup>. Càng lên cao, áp suất khí quyển càng giảm và nhiệt độ không khí xung quanh càng hạ thấp. Coi áp suất khí bên trong bóng luôn bằng áp suất khí quyển bên ngoài.", "sub": [{"k": "a)", "t": "Vì cả áp suất, thể tích và nhiệt độ của khí trong bóng đều thay đổi khi bay lên cao nên không thể áp dụng phương trình trạng thái p<sub>1</sub>V<sub>1</sub>/T<sub>1</sub> = p<sub>2</sub>V<sub>2</sub>/T<sub>2</sub> cho khối khí này.", "a": false}, {"k": "b)", "t": "Nếu xét trong một tầng khí quyển có nhiệt độ không đổi, khi bóng tiếp tục bay lên nơi có áp suất khí quyển nhỏ hơn thì quả bóng sẽ phồng to thêm.", "a": true}, {"k": "c)", "t": "Giả sử quả bóng bay ngang ở một độ cao không đổi (áp suất không đổi) và đi vào vùng không khí ấm hơn (nhiệt độ tăng), thể tích của quả bóng sẽ co nhỏ lại.", "a": false}, {"k": "d)", "t": "Nếu vỏ bóng không thể giãn nở (giữ nguyên thể tích 4,0 m<sup>3</sup>) và nhiệt độ khí trong bóng giảm xuống còn −63 °C thì áp suất khí trong bóng giảm xuống còn 0,7·10<sup>5</sup> Pa.", "a": true}]}]], "p3": [[{"id": "Đ1-III.1", "q": "Một lượng khí có thể tích 12 lít ở áp suất 1,5 atm. Nén khí đẳng nhiệt đến áp suất 4,5 atm. Thể tích của khí sau khi nén là bao nhiêu lít? (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 4}, {"id": "Đ2-III.1", "q": "Một lượng khí có thể tích 4,5 lít ở áp suất 2,4 atm. Cho khí giãn đẳng nhiệt đến áp suất 1,8 atm. Thể tích của khí sau khi giãn là bao nhiêu lít? (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 6}, {"id": "Đ3-III.1", "q": "Một quả bóng có thể tích 2,5 L ban đầu chứa không khí ở áp suất 1,0·10<sup>5</sup> Pa. Người ta dùng bơm tay bơm thêm không khí vào bóng, mỗi lần bơm đưa được 0,125 L không khí ở áp suất 1,0·10<sup>5</sup> Pa vào trong bóng. Sau 24 lần bơm, coi nhiệt độ không đổi và thể tích quả bóng không đổi. Tính áp suất không khí trong bóng sau khi bơm, theo đơn vị 10<sup>5</sup> Pa. (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 2.2}, {"id": "Đ4-III.1", "q": "Một lượng khí lí tưởng được chứa trong một xi-lanh kín có pít-tông. Ban đầu khí có thể tích 6,0 L và áp suất 1,2·10<sup>5</sup> Pa. Đẩy chậm pít-tông để nén khí xuống còn thể tích 1,5 L sao cho nhiệt độ của khí không đổi. Tính áp suất của khí trong xi-lanh sau khi nén, theo đơn vị 10<sup>5</sup> Pa. (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 4.8}], [{"id": "Đ1-III.2", "q": "Khí trong xi-lanh có pít-tông chuyển động tự do (áp suất không đổi), thể tích 2,0 lít ở 27 °C. Hơ nóng khí đến khi thể tích là 2,4 lít. Nhiệt độ cuối của khí là bao nhiêu °C? (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 87}, {"id": "Đ2-III.2", "q": "Khí trong một xi-lanh có pít-tông chuyển động tự do (áp suất không đổi), thể tích 2,5 lít ở 57 °C. Phải đun nóng khí đến nhiệt độ bao nhiêu °C để thể tích khí tăng lên 3,0 lít? (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 123}, {"id": "Đ3-III.2", "q": "Một lượng khí lí tưởng chứa trong xi-lanh có pít-tông chuyển động tự do, ở nhiệt độ 27 °C có thể tích 2,5 L. Nung nóng khối khí đến khi thể tích đạt 3,5 L trong điều kiện áp suất không đổi. Tính nhiệt độ cuối của khối khí theo đơn vị °C. (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 147}, {"id": "Đ4-III.2", "q": "Một lượng khí lí tưởng đựng trong một xi-lanh có pít-tông nhẹ chuyển động tự do. Ở nhiệt độ 17 °C, khối khí có thể tích 5,0 L. Nung nóng đẳng áp khối khí cho đến khi thể tích của nó đạt 6,5 L. Tính nhiệt độ của khối khí sau khi nung theo đơn vị °C. (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 104}], [{"id": "Đ1-III.3", "q": "Lốp ô tô chứa khí ở 17 °C, áp suất 2,9 atm. Sau khi xe chạy, nhiệt độ khí trong lốp tăng lên 57 °C. Coi thể tích lốp không đổi. Áp suất khí trong lốp lúc này là bao nhiêu atm? (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 3.3}, {"id": "Đ2-III.3", "q": "Một bình kín chứa khí ở 7 °C, áp suất 1,4 atm. Phải nung nóng khí trong bình đến nhiệt độ bao nhiêu °C để áp suất khí tăng lên 2,1 atm? Coi thể tích bình không đổi. (Làm tròn kết quả đến chữ số hàng đơn vị.)", "a": 147}, {"id": "Đ3-III.3", "q": "Một bình kín chứa khí lí tưởng ở nhiệt độ 27 °C và áp suất 2,0·10<sup>5</sup> Pa. Nung nóng bình đến nhiệt độ 147 °C (coi thể tích bình không đổi). Tính áp suất khí trong bình lúc này, theo đơn vị 10<sup>5</sup> Pa. (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 2.8}, {"id": "Đ4-III.3", "q": "Một bình thép kín có dung tích không đổi chứa khí ôxi ở nhiệt độ 7 °C và áp suất 2,8·10<sup>5</sup> Pa. Đem bình phơi nắng cho đến khi nhiệt độ khí trong bình tăng lên 77 °C. Tính áp suất khí trong bình lúc này, theo đơn vị 10<sup>5</sup> Pa. (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 3.5}], [{"id": "Đ1-III.4", "q": "Một bình dung tích 20 lít chứa khí lí tưởng ở 27 °C, áp suất 2,0 atm. Số mol khí trong bình là bao nhiêu mol? (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 1.6}, {"id": "Đ2-III.4", "q": "Động năng tịnh tiến trung bình của một phân tử khí lí tưởng ở nhiệt độ 127 °C bằng bao nhiêu ×10<sup>−21</sup> J? (Làm tròn kết quả đến chữ số hàng phần mười.)", "a": 8.3}, {"id": "Đ3-III.4", "q": "Một bình kín có thể tích 16,62 L chứa khí lí tưởng ở nhiệt độ 27 °C và áp suất 2,0·10<sup>5</sup> Pa. Cho R = 8,31 J/(mol·K). Tính tổng động năng tịnh tiến của tất cả các phân tử khí trong bình, theo đơn vị 10<sup>3</sup> J. (Làm tròn kết quả đến chữ số hàng phần trăm.)", "a": 4.99}, {"id": "Đ4-III.4", "q": "Một bình kín có thể tích 24,93 L chứa khí lí tưởng ở nhiệt độ 77 °C và áp suất 1,4·10<sup>5</sup> Pa. Cho R = 8,31 J/(mol·K). Tính tổng động năng tịnh tiến của tất cả các phân tử khí trong bình, theo đơn vị 10<sup>3</sup> J. (Làm tròn kết quả đến chữ số hàng phần trăm.)", "a": 5.24}]]};
+
+let R1=[],R2=[],R3=[],st=null,MADE="",lastPayload=null;
+let isConfirming=false,guardActive=false,pingTimer=null;
+const $=id=>document.getElementById(id);
+const L="ABCD";
+const fmt=n=>(Math.round(n*100)/100).toString().replace(".",",");
+
+/* ---------- Thiết bị & Lưu trữ lượt thi ---------- */
+function getDeviceId(){
+  const k="DEV_ID_"+CONFIG.EXAM_ID;
+  let id=localStorage.getItem(k);
+  if(!id){
+    id="DEV-"+Math.random().toString(36).slice(2,7).toUpperCase()+"-"+Date.now().toString(36).slice(-4).toUpperCase();
+    localStorage.setItem(k,id);
+  }
+  return id;
+}
+const DEVICE_ID=getDeviceId();
+
+function normClass(s){return (s||"").trim().toUpperCase().replace(/\s+/g,"")}
+function normSTT(s){const n=parseInt(s,10);return isNaN(n)?"":String(n).padStart(2,"0")}
+function studentKey(cls,stt){return normClass(cls)+"_"+normSTT(stt)}
+
+function getLocalAttempts(key){
+  try{
+    const map=JSON.parse(localStorage.getItem("ATT_"+CONFIG.EXAM_ID)||"{}");
+    return Number(map[key]||0);
+  }catch(e){return 0}
+}
+function setLocalAttempts(key,cnt){
+  try{
+    const map=JSON.parse(localStorage.getItem("ATT_"+CONFIG.EXAM_ID)||"{}");
+    map[key]=Math.max(Number(map[key]||0),cnt);
+    localStorage.setItem("ATT_"+CONFIG.EXAM_ID,JSON.stringify(map));
+  }catch(e){}
+}
+
+function formatDateTime(d){
+  const pad=n=>String(n).padStart(2,"0");
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;
+}
+function formatDuration(sec){
+  sec=Math.max(0,Math.floor(sec));
+  const m=Math.floor(sec/60),s=sec%60;
+  return `${String(m).padStart(2,"0")} phút ${String(s).padStart(2,"0")} giây`;
+}
+
+function updateAttemptHint(){
+  const cls=$("inClass").value,stt=$("inSTT").value;
+  const el=$("attemptHint");
+  if(!normClass(cls)||!normSTT(stt)){
+    el.className="info-badge";
+    el.textContent="🔐 Nhập Họ tên, Lớp, Số thứ tự và Mật khẩu vào đề";
+    return;
+  }
+  const doneCnt=getLocalAttempts(studentKey(cls,stt));
+  const nextAtt=doneCnt+1;
+  if(nextAtt>CONFIG.MAX_ATTEMPTS){
+    el.className="info-badge bad";
+    el.textContent=`⛔ Học sinh này đã hết ${CONFIG.MAX_ATTEMPTS} lượt thi cho phép.`;
+  }else if(nextAtt===1){
+    el.className="info-badge";
+    el.textContent="🔐 Lượt thi số 1 – Nhập mật khẩu lần 1 để bắt đầu";
+  }else{
+    el.className="info-badge bad";
+    el.textContent=`🔒 Đã hoàn thành/vi phạm lượt ${doneCnt}. Muốn vào lượt ${nextAtt} phải nhập MẬT KHẨU LẦN ${nextAtt} do giáo viên cấp.`;
+  }
+}
+
+/* ---------- Gọi Apps Script Webhook ---------- */
+function hasValidWebhook(){
+  return CONFIG.WEBHOOK && CONFIG.WEBHOOK.startsWith("https://script.google.com/");
+}
+async function callServer(payload){
+  if(!hasValidWebhook()) return {offline:true,ok:true};
+  try{
+    const res=await fetch(CONFIG.WEBHOOK,{
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+    const txt=await res.text();
+    return JSON.parse(txt);
+  }catch(err){
+    return {offline:true,error:String(err)};
+  }
+}
+
+function sendResult(p){
+  lastPayload=p||lastPayload;
+  const el=$("sendst");
+  if(!hasValidWebhook()){
+    if(el)el.textContent="⚠️ Chưa nhúng link Google Apps Script (WEBHOOK) – báo giáo viên để cấu hình.";
+    return;
+  }
+  if(el)el.textContent="⏳ Đang gửi bài và lưu bảng điểm về giáo viên…";
+  fetch(CONFIG.WEBHOOK,{
+    method:"POST",
+    keepalive:true,
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(lastPayload)
+  })
+  .then(r=>r.text())
+  .then(()=>{if(el)el.textContent="✅ Đã lưu điểm, thời gian mở/nộp đề về bảng điểm giáo viên."})
+  .catch(()=>{
+    fetch(CONFIG.WEBHOOK,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(lastPayload)})
+    .then(()=>{if(el)el.textContent="✅ Đã gửi bài cho giáo viên."})
+    .catch(()=>{if(el)el.innerHTML='❌ Chưa gửi được (kiểm tra mạng). <button class="btn ghost" onclick="sendResult()">Gửi lại</button>'});
+  });
+}
+
+/* ---------- Rút đề ngẫu nhiên đúng ma trận ---------- */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pickOne(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+function makeExam(){
+  R1=shuffle(gameData.p1.map(slot=>{
+    const q=pickOne(slot);
+    const short=Math.max(...q.o.map(x=>x.replace(/<[^>]+>/g,"").length))<=10;
+    const order=short?[0,1,2,3]:shuffle([0,1,2,3]);
+    return {src:q.id,q:q.q,o:order.map(k=>q.o[k]),a:order.indexOf(q.a)};
+  }));
+  R2=gameData.p2.map(slot=>{
+    const q=pickOne(slot);
+    return {src:q.id,ctx:q.ctx,sub:q.sub.map(x=>({k:x.k,t:x.t,a:x.a}))};
+  });
+  R3=gameData.p3.map(slot=>{
+    const q=pickOne(slot);
+    return {src:q.id,q:q.q,a:q.a};
+  });
+  MADE=Math.random().toString(36).slice(2,6).toUpperCase();
+}
+
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0)}
+function goto(id){const e=$(id);if(e)e.scrollIntoView({behavior:"smooth",block:"start"})}
+function backToIntro(){
+  $("inPass").value="";
+  $("startMsg").textContent="";
+  updateAttemptHint();
+  showScreen("s-intro");
+}
+
+/* ---------- Dựng giao diện bài thi ---------- */
+function buildTest(){
+  let h="";
+  h+=`<div class="parthead" id="p1"><b>PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn</b><span>Câu 1 → ${R1.length} • mỗi câu chỉ chọn 1 phương án • 0,5 điểm / câu</span></div>`;
+  R1.forEach((q,i)=>{
+    h+=`<div class="q" id="q1_${i}"><div class="qt"><span class="n">Câu ${i+1}:</span>${q.q}</div><div class="optgrid">`;
+    q.o.forEach((o,j)=>{h+=`<div class="opt" id="o1_${i}_${j}" onclick="pick1(${i},${j})"><span class="l">${L[j]}</span><span>${o}</span></div>`});
+    h+=`</div></div>`;
+  });
+
+  h+=`<div class="parthead" id="p2"><b>PHẦN II. Câu trắc nghiệm Đúng/Sai</b><span>Câu 1 → ${R2.length} • mỗi câu có 4 ý a, b, c, d • 0,25 điểm / ý đúng</span></div>`;
+  R2.forEach((q,i)=>{
+    h+=`<div class="q" id="q2_${i}"><div class="qt"><span class="n">Câu ${i+1}:</span></div><div class="ctx">${q.ctx}</div>`;
+    q.sub.forEach((it,j)=>{
+      h+=`<div class="yi"><div class="tx"><b>${it.k}</b>${it.t}</div><div class="tf"><button id="tf_${i}_${j}_1" onclick="pick2(${i},${j},true)">Đúng</button><button id="tf_${i}_${j}_0" onclick="pick2(${i},${j},false)">Sai</button></div></div>`;
+    });
+    h+=`</div>`;
+  });
+
+  h+=`<div class="parthead" id="p3"><b>PHẦN III. Câu trắc nghiệm trả lời ngắn</b><span>Câu 1 → ${R3.length} • chỉ nhập giá trị số theo đúng đơn vị đề bài yêu cầu • 0,5 điểm / câu</span></div>`;
+  R3.forEach((q,i)=>{
+    h+=`<div class="q sa" id="q3_${i}"><div class="qt"><span class="n">Câu ${i+1}:</span>${q.q}</div><input type="text" id="in3_${i}" placeholder="Nhập đáp số" oninput="pick3(${i},this.value)"><div class="hint">Chỉ ghi số, dùng dấu phẩy (,) hoặc dấu chấm (.) thập phân.</div></div>`;
+  });
+
+  $("testBody").innerHTML=h;
+
+  let p=`<span class="lab">I:</span>`;
+  R1.forEach((_,i)=>p+=`<a href="#q1_${i}" id="pl1_${i}" onclick="event.preventDefault();goto('q1_${i}')">${i+1}</a>`);
+  p+=`<span class="lab">II:</span>`;
+  R2.forEach((_,i)=>p+=`<a href="#q2_${i}" id="pl2_${i}" onclick="event.preventDefault();goto('q2_${i}')">${i+1}</a>`);
+  p+=`<span class="lab">III:</span>`;
+  R3.forEach((_,i)=>p+=`<a href="#q3_${i}" id="pl3_${i}" onclick="event.preventDefault();goto('q3_${i}')">${i+1}</a>`);
+  $("pal").innerHTML=p;
+}
+
+function pick1(i,j){if(st.done)return;st.a1[i]=j;for(let k=0;k<4;k++)$(`o1_${i}_${k}`).classList.toggle("sel",k===j);refresh()}
+function pick2(i,j,val){if(st.done)return;st.a2[i][j]=val;$(`tf_${i}_${j}_1`).classList.toggle("sel",val===true);$(`tf_${i}_${j}_0`).classList.toggle("sel",val===false);refresh()}
+function pick3(i,val){if(st.done)return;st.a3[i]=val;refresh()}
+
+let fsz=18;
+function fs(d){fsz=Math.min(34,Math.max(14,fsz+d*2));document.documentElement.style.fontSize=fsz+"px";$("fsv").textContent=fsz}
+function fsReset(){fsz=18;document.documentElement.style.fontSize="18px";$("fsv").textContent=18}
+function toggleTheme(){const d=document.documentElement,l=d.getAttribute("data-theme")==="light";d.setAttribute("data-theme",l?"dark":"light");$("thBtn").textContent=l?"☀️":"🌙"}
+function toggleFull(){
+  isConfirming=true;
+  if(!document.fullscreenElement){
+    (document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen||(()=>Promise.resolve())).call(document.documentElement).catch(()=>{});
+  }else{
+    (document.exitFullscreen||document.webkitExitFullscreen||(()=>Promise.resolve())).call(document).catch(()=>{});
+  }
+  setTimeout(()=>{isConfirming=false},600);
+}
+
+function answered(){
+  const c1=st.a1.filter(x=>x!==null).length;
+  const c2=st.a2.reduce((s,arr)=>s+arr.filter(x=>x!==null).length,0);
+  const c3=st.a3.filter(x=>x.trim()!=="").length;
+  const max=R1.length+R2.length*4+R3.length;
+  return {c1,c2,c3,total:c1+c2+c3,max};
+}
+function refresh(){
+  const a=answered();
+  $("progTxt").textContent=`Đã làm ${a.total}/${a.max} lệnh hỏi`;
+  $("progBar").style.width=(a.total/a.max*100)+"%";
+  st.a1.forEach((x,i)=>$(`pl1_${i}`).classList.toggle("done",x!==null));
+  st.a2.forEach((arr,i)=>$(`pl2_${i}`).classList.toggle("done",arr.every(x=>x!==null)));
+  st.a3.forEach((x,i)=>$(`pl3_${i}`).classList.toggle("done",x.trim()!==""));
+}
+
+/* ---------- Chống gian lận: Chuyển màn hình & 2 thiết bị ---------- */
+document.addEventListener("visibilitychange",()=>{
+  if(guardActive && st && !st.done && document.hidden){
+    submitExam("VIOLATE_TAB");
+  }
+});
+window.addEventListener("blur",()=>{
+  if(!guardActive || !st || st.done || isConfirming) return;
+  setTimeout(()=>{
+    if(guardActive && st && !st.done && !isConfirming && (!document.hasFocus() || document.hidden)){
+      submitExam("VIOLATE_TAB");
+    }
+  },350);
+});
+
+function startPingLoop(){
+  if(pingTimer) clearInterval(pingTimer);
+  if(!hasValidWebhook()) return;
+  pingTimer=setInterval(async()=>{
+    if(!st || st.done) return;
+    const res=await callServer({
+      action:"ping",
+      examId:CONFIG.EXAM_ID,
+      key:st.key,
+      deviceId:DEVICE_ID,
+      attempt:st.attempt
+    });
+    if(res && res.ok===false && res.reason==="MULTI_DEVICE"){
+      submitExam("VIOLATE_DEVICE");
+    }
+  },CONFIG.PING_INTERVAL_MS);
+}
+
+/* ---------- Đồng hồ & Bắt đầu làm bài ---------- */
+function tick(){
+  st.left--;
+  if(st.left<=0){st.left=0;drawTimer();submitExam("TIMEOUT");return}
+  drawTimer();
+}
+function drawTimer(){
+  const m=Math.floor(st.left/60),s=st.left%60;
+  const t=$("timer");t.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  t.classList.toggle("warn",st.left<=60);
+}
+
+async function startExam(){
+  const name=$("inName").value.trim();
+  const cls=normClass($("inClass").value);
+  const stt=normSTT($("inSTT").value);
+  const pass=$("inPass").value.trim().toUpperCase();
+  const msg=$("startMsg");
+  msg.textContent="";
+
+  if(!name||!cls||!stt){
+    msg.textContent="⚠️ Em hãy nhập đầy đủ Họ và tên, Lớp và Số thứ tự trước khi làm bài.";
+    return;
+  }
+  if(!pass){
+    msg.textContent="⚠️ Em hãy nhập Mật khẩu vào đề do giáo viên cung cấp.";
+    return;
+  }
+
+  const key=studentKey(cls,stt);
+  let localDone=getLocalAttempts(key);
+  let attempt=localDone+1;
+
+  if(attempt>CONFIG.MAX_ATTEMPTS){
+    msg.textContent=`⛔ Em đã sử dụng hết ${CONFIG.MAX_ATTEMPTS} lượt thi tối đa. Liên hệ giáo viên nếu cần hỗ trợ.`;
+    return;
+  }
+
+  // Kiểm tra mật khẩu theo lượt dự kiến ở local trước
+  const expectedLocalPass=(CONFIG.PASSWORDS[attempt]||"").toUpperCase();
+  if(pass!==expectedLocalPass){
+    if(attempt===1) msg.textContent="❌ Sai mật khẩu vào đề lần 1. Vui lòng kiểm tra lại.";
+    else msg.textContent=`❌ Em đã thi/vi phạm lượt ${localDone}. Để vào lượt ${attempt} phải nhập đúng MẬT KHẨU LẦN ${attempt} mới do giáo viên cấp.`;
+    return;
+  }
+
+  const btn=$("btnStart");
+  btn.disabled=true;
+  btn.textContent="⏳ Đang xác thực phiên thi…";
+
+  const openDate=new Date();
+  const openTimeStr=formatDateTime(openDate);
+
+  // Kiểm tra đồng bộ với máy chủ Google Sheets (chống đăng nhập 2 thiết bị & chống thi lại trên máy khác)
+  const srv=await callServer({
+    action:"start",
+    examId:CONFIG.EXAM_ID,
+    key,name,cls,stt,
+    attempt,
+    pass,
+    deviceId:DEVICE_ID,
+    openTime:openTimeStr
+  });
+
+  btn.disabled=false;
+  btn.textContent="🚀 BẮT ĐẦU LÀM BÀI";
+
+  if(srv && srv.ok===false){
+    if(srv.reason==="MULTI_DEVICE"){
+      msg.textContent="🚫 PHÁT HIỆN VI PHẠM: Tài khoản (Lớp + Số thứ tự) này đang mở bài trên một thiết bị khác! Hệ thống đã khóa và tự động nộp bài.";
+      setLocalAttempts(key,attempt);
+      updateAttemptHint();
+      return;
+    }
+    if(srv.reason==="NEED_NEXT_PASS"){
+      const nextA=Number(srv.nextAttempt||2);
+      setLocalAttempts(key,nextA-1);
+      updateAttemptHint();
+      if(nextA>CONFIG.MAX_ATTEMPTS){
+        msg.textContent=`⛔ Tài khoản này đã hết ${CONFIG.MAX_ATTEMPTS} lượt thi trên hệ thống.`;
+      }else{
+        msg.textContent=`🔒 Tài khoản này đã nộp bài/vi phạm ở thiết bị trước. Muốn vào lượt ${nextA} bắt buộc phải nhập MẬT KHẨU LẦN ${nextA} mới!`;
+      }
+      return;
+    }
+    if(srv.reason==="WRONG_PASS"){
+      msg.textContent="❌ Mật khẩu không đúng với lượt thi hiện tại trên hệ thống.";
+      return;
+    }
+    if(srv.reason==="MAX_ATTEMPTS"){
+      setLocalAttempts(key,CONFIG.MAX_ATTEMPTS);
+      updateAttemptHint();
+      msg.textContent=`⛔ Tài khoản này đã hết ${CONFIG.MAX_ATTEMPTS} lượt thi tối đa.`;
+      return;
+    }
+  }
+
+  if(st&&st.tm)clearInterval(st.tm);
+  makeExam();
+  st={
+    key,name,cls,stt,attempt,
+    openTs:openDate.getTime(),
+    openTime:openTimeStr,
+    a1:R1.map(()=>null),
+    a2:R2.map(q=>q.sub.map(()=>null)),
+    a3:R3.map(()=>""),
+    left:gameData.time,
+    tm:null,
+    done:false
+  };
+
+  // Khóa ngay lượt thi trên thiết bị khi đã mở đề (chống tải lại trang F5)
+  setLocalAttempts(key,attempt);
+  $("mcode").textContent=MADE;
+  $("attShow").textContent=attempt;
+  $("openTimeShow").textContent=openTimeStr;
+  buildTest();refresh();drawTimer();$("sendst").textContent="";
+  showScreen("s-test");
+  st.tm=setInterval(tick,1000);
+
+  // Kích hoạt cảm biến chống gian lận sau 1,2 giây để trình duyệt ổn định focus
+  guardActive=false;
+  setTimeout(()=>{if(st && !st.done) guardActive=true},1200);
+  startPingLoop();
+}
+
+/* ---------- Chấm điểm & Nộp bài ---------- */
+function parseNum(s){
+  if(s===null||s===undefined)return NaN;
+  const clean=String(s).trim().replace(/\s+/g,"").replace(",",".");
+  if(!clean)return NaN;
+  return Number(clean);
+}
+function checkShort(u,ans){
+  const n=parseNum(u);
+  if(isNaN(n))return false;
+  return Math.abs(n-ans)<=0.015;
+}
+
+function grade(){
+  let n1=0,n2=0,n3=0;
+  R1.forEach((q,i)=>{if(st.a1[i]===q.a)n1++});
+  R2.forEach((q,i)=>{q.sub.forEach((it,j)=>{if(st.a2[i][j]===it.a)n2++})});
+  R3.forEach((q,i)=>{if(checkShort(st.a3[i],q.a))n3++});
+  const s1=n1*0.5,s2=n2*0.25,s3=n3*0.5;
+  return {n1,n2,n3,s1,s2,s3,tot:s1+s2+s3};
+}
+
+function submitExam(mode){
+  if(!st||st.done)return;
+  if(mode==="NORMAL"){
+    const a=answered();
+    const miss=a.max-a.total;
+    const text=miss>0?`Em còn ${miss} lệnh hỏi chưa làm xong. Vẫn nộp bài?`:"Em chắc chắn muốn nộp bài?";
+    isConfirming=true;
+    const ok=confirm(text);
+    setTimeout(()=>{isConfirming=false},300);
+    if(!ok)return;
+  }
+
+  st.done=true;
+  guardActive=false;
+  if(st.tm)clearInterval(st.tm);
+  if(pingTimer)clearInterval(pingTimer);
+
+  // Khóa ngay lượt thi trên thiết bị này
+  setLocalAttempts(st.key,st.attempt);
+
+  const closeDate=new Date();
+  const closeTimeStr=formatDateTime(closeDate);
+  const usedSec=Math.max(1,Math.round((closeDate.getTime()-st.openTs)/1000));
+
+  let statusLabel="Nộp bình thường";
+  let violateMsg="";
+  if(mode==="TIMEOUT"){
+    statusLabel="Hết giờ – Tự nộp";
+  }else if(mode==="VIOLATE_TAB"){
+    statusLabel="VI PHẠM: Chuyển màn hình/tab";
+    violateMsg="🚫 <b>BÀI ĐÃ BỊ TỰ ĐỘNG NỘP DO VI PHẠM CHUYỂN MÀN HÌNH / CHUYỂN TAB!</b> Lượt thi này đã bị khóa. Muốn làm lại phải có mật khẩu mới của giáo viên.";
+  }else if(mode==="VIOLATE_DEVICE"){
+    statusLabel="VI PHẠM: Đăng nhập trên 2 thiết bị";
+    violateMsg="🚫 <b>BÀI ĐÃ BỊ TỰ ĐỘNG NỘP DO PHÁT HIỆN ĐĂNG NHẬP TRÊN 2 THIẾT BỊ!</b> Lượt thi này đã bị khóa và đã báo về giáo viên.";
+  }
+
+  const g=grade();
+  $("whoTxt").textContent=`STT ${st.stt} • ${st.name} – Lớp ${st.cls} • Mã đề ${MADE} • Lần thi ${st.attempt}`;
+  const vb=$("violateBanner");
+  if(violateMsg){vb.innerHTML=violateMsg;vb.style.display="block"}else{vb.style.display="none"}
+
+  $("scTotal").textContent=fmt(g.tot);
+  $("scNote").textContent=`Trạng thái: ${statusLabel} • Điểm đã được chấm tự động theo thang 10,0.`;
+  $("resOpen").textContent=st.openTime;
+  $("resClose").textContent=closeTimeStr;
+  $("resDur").textContent=formatDuration(usedSec);
+
+  $("r1n").textContent=`${g.n1}/${R1.length} câu`;$("r1s").textContent=fmt(g.s1);
+  $("r2n").textContent=`${g.n2}/${R2.length*4} ý`;$("r2s").textContent=fmt(g.s2);
+  $("r3n").textContent=`${g.n3}/${R3.length} câu`;$("r3s").textContent=fmt(g.s3);
+  $("rtn").textContent=`${g.n1+g.n2+g.n3}/${R1.length+R2.length*4+R3.length} lệnh`;$("rts").textContent=fmt(g.tot);
+
+  const a1=st.a1.map(x=>x===null?"-":L[x]).join("");
+  const a2=st.a2.map(arr=>arr.map(x=>x===null?"-":(x?"Đ":"S")).join("")).join("|");
+  const a3=st.a3.map(x=>x.trim()||"-").join(" | ");
+  const ma="P1:"+R1.map(q=>q.src).join(",")+" | P2:"+R2.map(q=>q.src).join(",")+" | P3:"+R3.map(q=>q.src).join(",");
+
+  sendResult({
+    action:"submit",
+    examId:CONFIG.EXAM_ID,
+    key:st.key,
+    de:"KTTX2-L12-"+MADE,
+    stt:st.stt,
+    name:st.name,
+    cls:st.cls,
+    attempt:st.attempt,
+    openTime:st.openTime,
+    submitTime:closeTimeStr,
+    durationText:formatDuration(usedSec),
+    used:usedSec,
+    status:statusLabel,
+    violated:(mode==="VIOLATE_TAB"||mode==="VIOLATE_DEVICE"),
+    p1:+g.s1.toFixed(2),
+    p2:+g.s2.toFixed(2),
+    p3:+g.s3.toFixed(2),
+    tn:+g.tot.toFixed(2),
+    a1,a2,a3,ma,
+    deviceId:DEVICE_ID
+  });
+  showScreen("s-result");
+}
+
+updateAttemptHint();
+</script>
+</body>
+</html>
